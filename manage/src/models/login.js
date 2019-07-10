@@ -8,7 +8,6 @@ export default {
   state: {
     isLogin: -1
   },
-
   // 订阅
   subscriptions: {
     setup({ dispatch, history }) {  // eslint-disable-line
