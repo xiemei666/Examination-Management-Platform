@@ -1,0 +1,68 @@
+.wrapper{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    .class_content{
+        width: 100%;
+        height: 100%;
+        .addButton{
+            width: 160px;
+            height: 40px;
+            margin-bottom: 20px;
+        }
+    }
+    .mask{
+        width: 100%;
+        height: 100%;
+        background:rgba(0, 0, 0, .3);
+        position: absolute;
+        top:0;
+        left:0;
+        .mask_content{
+            width: 600px;
+            height: 300px;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            background:#fff;
+            .content_top{
+                width: 100%;
+                height: 180px;
+                .del{
+                    width: 56px;
+                    height: 56px;
+                    text-align: center;
+                    line-height: 56px;
+                    position: absolute;
+                    top:0;
+                    right:0;
+                    font-size: 20px;
+                }
+                h2{
+                    margin-top: 20px;
+                    text-align: center;
+                    line-height: 30px;
+                }
+                input{
+                    width: 440px;
+                    height: 40px;
+                    margin:20px 80px;
+                    border:0;
+                    border-bottom: 1px solid #ccc;
+                }
+            }
+            .footer_button{
+                width: 100%;
+                height: 120px;
+                display:block;
+                text-align: center;
+                Button{
+                    height: 40px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { connect } from 'dva';
 import styles from './addQuestions.scss'
 import {
@@ -8,11 +8,18 @@ import {
 import Editor from 'for-editor'
 const { Option } = Select;
 function AddQuestions(props) {
+  const {addQuestions,getClass,classify,allQuestions,allSubject,getText,allText}=props
+  useEffect(()=>{
+    getClass(),
+    allQuestions(),
+    getText()
+  },[])
   let handleSubmit = e => {
     e.preventDefault();
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        // addQuestions()
       }
     });
   };
@@ -56,10 +63,13 @@ function AddQuestions(props) {
                 style={{ width: 200 }}
               // onChange={handleChange}
               >
-                <Option value="周考1">周考1</Option>
-                <Option value="周考2">周考2</Option>
-                <Option value="周考3">周考3</Option>
-                <Option value="月考">月考</Option>
+                {
+                  classify.map(item=>(
+                    <Option key={item.exam_id}  value={item.exam_id}>{item.exam_name}</Option>
+                  ))
+                }
+                
+                
               </Select>
             </div>
             <div className={styles.course_types}>
@@ -70,16 +80,11 @@ function AddQuestions(props) {
                 style={{ width: 200 }}
               // onChange={handleChange}
               >
-                <Option value="javaScript上">javaScript上</Option>
-                <Option value="javaScript下">javaScript下</Option>
-                <Option value="模块化开发">模块化开发</Option>
-                <Option value="移动端开发">移动端开发</Option>
-                <Option value="node基础">node基础</Option>
-                <Option value="组件化开发(vue)">组件化开发(vue)</Option>
-                <Option value="渐进式开发(react)">渐进式开发(react)</Option>
-                <Option value="项目实战">项目实战</Option>
-                <Option value="javaScript高级">javaScript高级</Option>
-                <Option value="node高级">node高级</Option>
+                {
+                  allSubject.map(item=>(
+                    <Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Option>
+                  ))
+                }
               </Select>
             </div>
             <div className={styles.topic_type}>
@@ -90,11 +95,11 @@ function AddQuestions(props) {
                 style={{ width: 200 }}
               // onChange={handleChange}
               >
-                <Option value="简答题">简答题</Option>
-                <Option value="代码阅读题">代码阅读题</Option>
-                <Option value="代码补全">代码补全</Option>
-                <Option value="修改bug">修改bug</Option>
-                <Option value="手写代码">手写代码</Option>
+                {
+                  allText.map(item=>(
+                    <Option key={item.questions_type_id} value={item.questions_type_id}>{item.questions_type_text}</Option>
+                  ))
+                }
               </Select>
             </div>
           </div>
@@ -119,5 +124,32 @@ function AddQuestions(props) {
 
 AddQuestions.propTypes = {
 };
+const mapStateToProps = state => {
+  return state.add
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    addQuestions:() => {
+      dispatch({
+        type:"add/addQuestions"
+      })
+    },
+    getClass:()=>{
+      dispatch({
+        type:"add/getClass"
+      })
+    },
+    allQuestions:()=>{
+      dispatch({
+        type:"add/getAllSubject"
+      })
+    },
+    getText:()=>{
+      dispatch({
+        type:"add/getAllQuestions"
+      })
+    }
+  }
+}
 
-export default connect()(Form.create()(AddQuestions));
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(AddQuestions));

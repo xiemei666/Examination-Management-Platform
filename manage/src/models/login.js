@@ -1,4 +1,4 @@
-import { login } from '@/services/login'
+import { login } from '@/services'
 import { setToken, getToken } from '@/utils/index'
 import { routerRedux } from 'dva/router';
 export default {

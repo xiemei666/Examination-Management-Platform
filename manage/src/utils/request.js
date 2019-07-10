@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {getToken} from '@/utils/index'
 // create an axios instance
 const service = axios.create({
   baseURL: 'http://127.0.0.1:7001/',
@@ -11,10 +11,10 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // 判断是否有登陆态
-    // if (getToken()) {
-    //   // 让每个请求携带authorization
-    //   config.headers['authorization'] = getToken()
-    // }
+    if (getToken()) {
+      // 让每个请求携带authorization
+      config.headers['authorization'] = getToken()
+    }
     return config
   },
   error => {
