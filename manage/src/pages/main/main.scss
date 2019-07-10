@@ -16,6 +16,8 @@
         }
         .content_right{
             flex:1;
+            background:#eee;
+            overflow-y: scroll;
         }
     }
 }
