@@ -1,0 +1,11 @@
+div{
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    background: #f0f2f5;
+    min-height: 0;
+    h2{
+        padding: 20px 0px; 
+        margin-top: 10px;
+    }
+}

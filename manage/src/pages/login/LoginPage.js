@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import { connect } from 'dva';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox,message  } from 'antd';
 import styles from './LoginPage.scss';
 
 function LoginPage(props) {
@@ -9,11 +9,21 @@ function LoginPage(props) {
   // useEffect(() => {
   //   props.login({user_name:'chenmanjie',user_pwd:'Chenmanjie123!'});
   // },[])
-  let {isLogin} = props
-  console.log(isLogin)
-  if(isLogin){
-    props.history.push('/main')
-  }
+  
+  //判断是否登录成功
+  useEffect(()=>{
+    if (props.isLogin === 1){
+      message.success('登陆成功');
+      let path = '/';
+      // if (props.location.search){
+      //   path = decodeURIComponent(props.location.search.split('=')[1]);
+      // }
+      props.history.push(path);
+    }else if(props.isLogin === 0){
+      message.success('用户名或密码错误');
+    }
+  }, [props.isLogin])
+  
   // 处理表单提交
   let handleSubmit = ()=>{
     //validateFields  校验并获取一组输入域的值与 Error，若 fieldNames 参数为空，则校验全部组件
