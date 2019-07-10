@@ -1,0 +1,21 @@
+.wrapper{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    .content{
+        width: 100%;
+        display: flex;
+        flex: auto;
+        .slide{
+            width: 200px;
+            height: 100%;
+            ul{
+                height: 100%;
+            }
+        }
+        .content_right{
+            flex:1;
+        }
+    }
+}

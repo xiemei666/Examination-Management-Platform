@@ -1,0 +1,53 @@
+.header{
+    width: 100%;
+    height: 64px;
+    line-height: 64px;
+    padding: 0 50px;
+    box-shadow: 0 0 10px rgba(0,0,0,.19)!important;
+    display: flex;
+    justify-content: space-between;
+    .header_logo{
+        width: 120px;
+        margin: 16px 28px 16px 0;
+        float: left;
+        line-height: 31px;
+        text-align: center;
+        color: #fff;
+        font-weight: 700;
+        font-family: "\5B8B\4F53";
+        background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg") no-repeat;
+        background-size: 100% 100%;
+    }
+    .header_user{
+        height: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 10px;
+        .header_user_img{
+            font-size: 14px;
+            font-variant: tabular-nums;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: inline-block;
+            text-align: center;
+            color: #fff;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+            vertical-align: middle;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            border-radius: 50%;
+            margin-right: 10px;
+            img{
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+        }
+    }
+}
