@@ -40,86 +40,13 @@
                 label{
                     padding: 0 0 8px;
                 }
-                .topic_theme_content{
-                    width: 100%;
-                    height: 300px;
-                    border:1px solid #ccc;
-                    border-radius: 10px;
-                    display:flex;
-                    flex-direction: column;
-                    overflow: hidden;
-                    .option{
-                        width: 100%;
-                        height: 45px;
-                        border-bottom:1px solid #ccc;
-                        display:flex;
-                        .ul_left{
-                            width: 60%;
-                            height: 45px;
-                            display:flex;
-                            justify-content: space-around;
-                            line-height: 45px;
-                            li{
-                                display: flex;
-                                align-items: center;
-                                padding: 4px 6px;
-                                margin: 8px 4px;
-                                border-radius: 4px;
-                                line-height: normal;
-                                
-                                
-                            }
-                            li:hover{
-                                background: #ccc;
-                            }
-                        }
-                        .ul_right{
-                            width: 20%;
-                            height: 45px;
-                            display:flex;
-                            justify-content: space-around;
-                            li{
-                                width: 45px;
-                                height: 45px;
-                                line-height: 45px;
-                                text-align: center;
-                                i{
-                                   
-                                }
-                            }
-                        }
-                    }
-                    .option_content{
-                        width: 100%;
-                        height: 100%;
-                        display:flex;
-                        .option_left{
-                            width: 30px;
-                            height: 100%;
-                            margin:0;
-                            border-right: 1px solid #ccc;
-                            text-align: center;
-                            line-height: 50px;
-                            background:#eee;
-                        }
-                        .option_right{
-                            flex:1;
-                            textarea{
-                                width: 100%;
-                                height: 100%;
-                                border:0;
-                                padding:10px;
-                                font-size: 18px;
-                            }
-                        }
-                    }
-                }
             }
             .class{
                 width: 100%;
                 height:255px;
                 display:flex;
                 flex-direction: column;
+                margin-top: 30px;
                 .examination_type{
                     width: 100%;
                     height: 70px;
@@ -156,75 +83,6 @@
                 height: 370px;
                 display:flex;
                 flex-direction: column;
-                .answer_information_content{
-                    width: 100%;
-                    height: 300px;
-                    border:1px solid #ccc;
-                    border-radius: 10px;
-                    display:flex;
-                    flex-direction: column;
-                    overflow: hidden;
-                    .answer_option{
-                        width: 100%;
-                        height: 45px;
-                        border-bottom:1px solid #ccc;
-                        display:flex;
-                        .ul_left{
-                            width: 60%;
-                            height: 45px;
-                            display:flex;
-                            justify-content: space-around;
-                            li{
-                                width: 45px;
-                                height: 45px;
-                                line-height: 45px;
-                                text-align: center;
-                                i{
-                                   
-                                }
-                            }
-                        }
-                        .ul_right{
-                            width: 20%;
-                            height: 45px;
-                            display:flex;
-                            justify-content: space-around;
-                            li{
-                                width: 45px;
-                                height: 45px;
-                                line-height: 45px;
-                                text-align: center;
-                                i{
-                                   
-                                }
-                            }
-                        }
-                    }
-                    .answer_option_content{
-                        width: 100%;
-                        height: 100%;
-                        display:flex;
-                        .answer_option_left{
-                            width: 30px;
-                            height: 100%;
-                            margin:0;
-                            border-right: 1px solid #ccc;
-                            text-align: center;
-                            line-height: 50px;
-                            background:#eee;
-                        }
-                        .answer_option_right{
-                            flex:1;
-                            textarea{
-                                width: 100%;
-                                height: 100%;
-                                border:0;
-                                padding:10px;
-                                font-size: 18px;
-                            }
-                        }
-                    }
-                }
             }
             .footer{
                 width: 100%;

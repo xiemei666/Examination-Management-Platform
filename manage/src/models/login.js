@@ -36,25 +36,24 @@ export default {
     },
   },
 
-  // 异步操作
+  //异步操作
   effects: {
-    *login({ payload, type }, { call, put }) {
-      // console.log('payload...', payload, type)
-      let data = yield call(login, payload);
-      // console.log('data...', data);
+    *login({ payload, type }, { call, put }) {  // eslint-disable-line
+      // console.log('payload...',payload,type)
+      let data = yield call(login, payload)
+      console.log('data...', data)
 
       if (data.code == 1) {
         // 1.设置cookie
         setToken(data.token)
 
       }
-
-      // 调用reduce改变登陆状态
+      //调用reduce改变登录状态
       yield put({
-        type: 'updateLogin',
+        type: 'updataLogin',
         payload: data.code
-      })
-    }
+      });
+    },
   },
   //同步操作
   reducers: {

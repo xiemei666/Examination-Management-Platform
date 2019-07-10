@@ -1,48 +1,50 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './addQuestions.scss'
-import { Select, Button } from 'antd';
+import {
+  Select, Button, Form,
+  Input,
+} from 'antd';
+import Editor from 'for-editor'
 const { Option } = Select;
-function AddQuestions() {
+function AddQuestions(props) {
+  let handleSubmit = e => {
+    e.preventDefault();
+    props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
+  };
+  const { getFieldDecorator } = props.form;
   return (
     <div className={styles.wrapper}>
       <h2>添加试题</h2>
       <div className={styles.content}>
+      <Form onSubmit={handleSubmit}>
         <div className={styles.con}>
           <h3>题目信息</h3>
 
           <div className={styles.stem}>
+
             <label>题干</label>
-            <input placeholder='请输入题目标题，不要超过20个字' />
+           
+              <Form.Item>
+                {getFieldDecorator('user', {
+                  rules: [
+                    {
+                      required: true,
+                      message: 'Please input your E-mail!',
+                    },
+                  ],
+                })(<Input placeholder='请输入题目标题，不要超过20个字' />)}
+              </Form.Item>
+
           </div>
 
           <div className={styles.topic_theme}>
             <label>题目主题</label>
-            <div className={styles.topic_theme_content}>
-              <div className={styles.option}>
-                <ul className={styles.ul_left}>
-                  <li title='上一步 (ctrl+z)'>
-                    <i></i>
-                  </li>
-                  <li title='下一步 (ctrl+y)'>
-                    <i></i>
-                  </li>
-                  <li data-type="h1" title="一级标题">H1</li>
-                  <li data-type="h2" title="二级标题">H2</li>
-                  <li data-type="h3" title="三级标题">H3</li>
-                  <li data-type="h4" title="四级标题">H4</li>
-                </ul>
-                <ul className={styles.ul_right}></ul>
-              </div>
-              <div className={styles.option_content}>
-                <ul className={styles.option_left}>
-                  <li>1</li>
-                </ul>
-                <div className={styles.option_right}>
-                  <textarea placeholder='请输入内容...'></textarea>
-                </div>
-              </div>
-            </div>
+            <Editor placeholder="请输入内容..." />
           </div>
 
           <div className={styles.class}>
@@ -99,36 +101,17 @@ function AddQuestions() {
 
           <div className={styles.answer_information}>
             <h3>答案信息</h3>
-            <div className={styles.answer_information_content}>
-              <div className={styles.answer_option}>
-                <ul className={styles.ul_left}>
-                  <li title='上一步 (ctrl+z)'>
-                    <i></i>
-                  </li>
-                  <li title='下一步 (ctrl+c)'>
-                    <i></i>
-                  </li>
-                  <li data-type="h1" title="一级标题">H1</li>
-                  <li data-type="h2" title="二级标题">H2</li>
-                  <li data-type="h3" title="三级标题">H3</li>
-                  <li data-type="h4" title="四级标题">H4</li>
-                </ul>
-                <ul className={styles.ul_right}></ul>
-              </div>
-              <div className={styles.answer_option_content}>
-                <ul className={styles.answer_option_left}>
-                  <li>1</li>
-                </ul>
-                <div className={styles.answer_option_right}>
-                  <textarea placeholder='请输入内容...'></textarea>
-                </div>
-              </div>
-            </div>
+            <Editor placeholder="请输入内容..." />
           </div>
           <div className={styles.footer}>
-            <Button type="提交">提交</Button>
+              <Form.Item>
+                <Button type="primary" htmlType="submit">
+                  提交
+                </Button>
+              </Form.Item>
           </div>
         </div>
+        </Form>
       </div>
     </div>
   );
@@ -137,4 +120,4 @@ function AddQuestions() {
 AddQuestions.propTypes = {
 };
 
-export default connect()(AddQuestions);
+export default connect()(Form.create()(AddQuestions));

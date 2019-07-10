@@ -59,7 +59,7 @@ function CheckQuestions() {
               </Select>
             </div>
           </div>
-          <div style={{ width: '25%' }}>
+          <div style={{ width: '25%' }} className={styles.ant_submit}>
             <Button type="primary" icon="search">
               搜索
             </Button>
