@@ -16,6 +16,7 @@ app.model(require('./models/getQuestions').default);
 app.model(require('./models/addQuestions').default);
 app.model(require('./models/setQuestions').default);
 
+app.model(require('./models/classQuestions').default);
 // 4. Router
 app.router(require('./router').default);
 

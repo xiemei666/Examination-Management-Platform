@@ -1,4 +1,4 @@
-import { addQuestions, classify, getSubjects, getQuestion } from '@/services'
+import { add_Questions, classify, getSubjects, getQuestion } from '@/services'
 export default {
     //命名空间
     namespace: 'add',
@@ -6,7 +6,8 @@ export default {
     state: {
         classify: [],
         allSubject: [],
-        allText:[]
+        allText:[],
+        num:null
     },
     //订阅
     subscriptions: {
@@ -18,12 +19,16 @@ export default {
         *fetch({ payload }, { call, put }) {  // eslint-disable-line
             yield put({ type: 'save' });
         },
+        //添加试题
         *addQuestions({ payload }, { call, put }) {
-            //   let data=yield call(addQuestions(payload))
-            //   yield put({
-            //       type:"save",
-
-            //   })
+                let data=yield call(add_Questions,payload)
+                console.log("add",data)
+                yield put({
+                    type:"save",
+                    payload: {
+                        num:data.code
+                    }
+                })
         },
         // 获取考试类型
         *getClass({ payload }, { call, put }) {
@@ -48,7 +53,6 @@ export default {
         // 获取题目类型
         *getAllQuestions({ payload }, { call, put }) {
             let data = yield call(getQuestion);
-            console.log(data)
             yield put({
                 type: "save",
                 payload: {

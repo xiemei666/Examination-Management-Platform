@@ -1,0 +1,53 @@
+.wrapper{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    padding:0 24px;
+    h2{
+        padding: 20px 0px; 
+        margin-top: 10px;
+    }
+    .content{
+        width: 100%;
+        margin: 0px 0px 20px;
+        border:1px solid #ccc;
+        display:flex;
+        flex-wrap:wrap;
+        >div{
+            width: 33.3%;
+            text-align: center;
+            box-sizing: border-box;
+            padding:5px;
+            
+        }
+        .add_user{
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            .tab{
+                width: 100%;
+                display:flex;
+            }
+            .input{
+                width: 100%;
+                height: 30px;
+            }
+        }
+        .add_identityr{
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+        .add_api_jurisdiction{
+            border-bottom: 1px solid #ccc;
+        }
+        .add_view{
+            border-right: 1px solid #ccc;
+        }
+        .identityr_jurisdiction{
+            border-right: 1px solid #ccc;
+        }
+        // .view_jurisdiction{
+            
+        // }
+    }
+}

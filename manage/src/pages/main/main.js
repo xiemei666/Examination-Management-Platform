@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header'
 import styles from './main.scss'
-import {Link,Route,Switch} from 'dva/router'
+import { Link, Route, Switch } from 'dva/router'
 import AddQuestions from './questions/addQuestions/addQuestions'
 import ClassQuestions from './questions/classQuestions/classQuestions'
 import CheckQuestions from './questions/checkQuestions/checkQuestions'
@@ -15,7 +15,7 @@ import StudentManagement from './management/studentManagement/studentManagement'
 import ClassesApproved from './marking/classesApproved/classesApproved'
 import questiuonsDetail from "./questions/questionsDetail/questionsDetail"
 import editQuestions from "./questions/editQuestions/editQuestions"
-import { Menu, Icon, Button } from 'antd';
+import { Menu, Icon } from 'antd';
 const { SubMenu } = Menu;
 const Main = () => {
     return (
@@ -105,8 +105,8 @@ const Main = () => {
                         <Route path="/main/classroomManagement" component={ClassroomManagement} />
                         <Route path="/main/studentManagement" component={StudentManagement} />
                         <Route path="/main/classesApproved" component={ClassesApproved} />
-                        <Route path="/main/questions/detail/:id" component={questiuonsDetail}/>
-                        <Route path="/main/questions/editQuestions/:id" component={editQuestions}/>
+                        <Route path="/main/questions/detail/:id" component={questiuonsDetail} />
+                        <Route path="/main/questions/editQuestions/:id" component={editQuestions} />
                     </Switch>
                 </div>
             </div>

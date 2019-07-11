@@ -97,6 +97,96 @@
                     background:linear-gradient(-90deg,#4e75ff,#0139fd)!important;
                 }
             }
+            
+        }
+        .mask{
+            width: 100%;
+            height: 100%;
+            background:rgba(0, 0, 0, .3);
+            position: absolute;
+            top:0;
+            left:0;
+            z-index: 99999;
+            .mask_content{
+                width: 420px;
+                height: 200px;
+                position: absolute;
+                top:50%;
+                left:50%;
+                transform: translate(-50%,-50%);
+                background:#fff;
+                .content_top{
+                    width: 100%;
+                    height: 120px;
+                    span{
+                        width: 20px;
+                        height: 20px;
+                        border:1px solid orange;
+                        border-radius: 50%;
+                        display:block;
+                        text-align: center;
+                        line-height: 20px;
+                        margin:20px auto;
+                        color:orange;
+                    }
+                    h3{
+                        text-align: center;
+                        line-height: 30px;
+                    }
+                    p{
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+                .footer_button{
+                    width: 100%;
+                    height: 80px;
+                    display:block;
+                    text-align: center;
+                    Button{
+                        height: 40px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+        .added_mask{
+            width: 100%;
+            height: 100%;
+            background:rgba(0, 0, 0, .3);
+            position: absolute;
+            top:0;
+            left:0;
+            z-index: 99999;
+            .added_mask_content{
+                width: 420px;
+                height: 180px;
+                position: absolute;
+                top:50%;
+                left:50%;
+                transform: translate(-50%,-50%);
+                background:#fff;
+                display:flex;
+                flex-direction: column;
+                i{
+                    width: 20px;
+                    height: 20px;
+                    border:1px solid green;
+                    border-radius: 50%;
+                    display:block;
+                    text-align: center;
+                    line-height: 20px;
+                    margin:20px auto;
+                    color:green;
+                }
+                h3{
+                    text-align: center;
+                    line-height: 30px;
+                }
+                Button{
+                    margin:20px auto;
+                }
+            }
         }
     }
 }
