@@ -1,44 +1,50 @@
 import React,{useEffect,useState} from 'react';
 import { connect } from 'dva';
 import styles from './classQuestions.scss'
-import { Layout, Tag, Select, Button,Form,Table } from 'antd';
+import { Layout, Tag, Select, Button,Form,Table,Input } from 'antd';
 const { Content } = Layout;
 
 function ClassQuestions(props) {
+  const {getText,allText} = props
   const [mask,updataMask]=useState(false)
-
+  useEffect(() => {
+    getText()
+  },[])
   let handleSubmit = e => {
     e.preventDefault();
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
+        props.classQuestions({
+          text:values.input,
+          sort:new Date()*1
+        })
       }
     });
+    updataMask(false)
+    window.location.reload()
   };
   const columns = [
     {
-      title: '类型ID',
-      dataIndex: '类型ID',
-      render: text => <a href="javascript:;">{text}</a>,
+      title: 'Name',
+      dataIndex: 'questions_type_id',
+      key: 'questions_type_sort',
     },
     {
-      title: '类型名称',
-      dataIndex: '类型名称',
+      title: 'Age',
+      dataIndex: 'questions_type_text',
+      key: 'age',
     },
     {
       title: '操作',
-      dataIndex: '操作',
-    },
-  ];
-  const data = [
-    {
-      key: '1',
-      类型ID: 'John Brown',
-      类型名称: 32,
-      操作: 'New York No. 1 Lake Park',
+      dataIndex: 'address',
+      key: 'address',
     }
   ];
-  flag:false
+  const pageSizeOptions={
+    pageSize:5
+  }
+  const { getFieldDecorator } = props.form;
   return (
     <Form onSubmit={handleSubmit} className={styles.wrapper}>
       <Layout style={{ padding: '0 24px 24px' }}>
@@ -53,7 +59,7 @@ function ClassQuestions(props) {
           className={styles.class_content}
         >
           <Button type="primary" className={styles.addButton} onClick={()=>updataMask(true)}>+添加类型</Button>
-          <Table  columns={columns} dataSource={data} />
+          <Table  rowKey="questions_type_id" columns={columns} dataSource={allText} pagination={pageSizeOptions}/>
         </Content>
         {
           mask&&<div className={styles.mask}>
@@ -61,7 +67,17 @@ function ClassQuestions(props) {
             <div className={styles.content_top}>
               <p className={styles.del} onClick={()=>updataMask(false)}>x</p>
               <h2>创建新类型</h2>
-              <input placeholder='1111'/>
+              <Form.Item>
+                {getFieldDecorator('input', {
+                  //validateTrigger	校验子节点值的时机
+                  validateTrigger: 'onBlur',
+                  //rules	校验规则
+                  rules: [
+                    { required: true },
+                  ],
+
+                })(<Input placeholder='请输入类型名称' />)}
+              </Form.Item>
             </div>
             <Form.Item className={styles.footer_button}>
               <Button type="primary" htmlType="submit" style={{width:110}}>
@@ -81,5 +97,23 @@ function ClassQuestions(props) {
 
 ClassQuestions.propTypes = {
 };
-
-export default connect()(ClassQuestions);
+const mapStateToProps = state => {
+  return state.class
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    classQuestions:payload => {
+      dispatch({
+        type:'class/classQuestions',
+        payload
+      })
+    },
+    // 获取题目类型
+    getText: () => {
+      dispatch({
+        type: "class/getAllQuestions"
+      })
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(ClassQuestions));

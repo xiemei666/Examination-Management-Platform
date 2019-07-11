@@ -6,6 +6,7 @@
     box-shadow: 0 0 10px rgba(0,0,0,.19)!important;
     display: flex;
     justify-content: space-between;
+    z-index:999;
     .header_logo{
         width: 120px;
         margin: 16px 28px 16px 0;

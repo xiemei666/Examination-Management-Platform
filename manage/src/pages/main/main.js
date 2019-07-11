@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useEffect, useState } from 'react';
 import Header from '../../components/Header/Header'
 import styles from './main.scss'
 import {Link,Route,Switch} from 'dva/router'
@@ -13,7 +13,7 @@ import ClassManagement from './management/classManagement/classManagement'
 import ClassroomManagement from './management/classroomManagement/classroomManagement'
 import StudentManagement from './management/studentManagement/studentManagement'
 import ClassesApproved from './marking/classesApproved/classesApproved'
-import { Menu, Icon, Button } from 'antd';
+import { Menu, Icon } from 'antd';
 const { SubMenu } = Menu;
 const Main = () => {
     return (
