@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
 import styles from './addQuestions.scss'
-import { Select, Button, Form, Input,notification } from 'antd';
+import { Select, Button, Form, Input, notification } from 'antd';
 import Editor from 'for-editor'
 const { Option } = Select;
 function AddQuestions(props) {
-  const { addQuestions, getClass, classify, allQuestions, allSubject, getText, allText,num } = props
+  const { addQuestions, getClass, classify, allQuestions, allSubject, getText, allText, num } = props
   const [mask, updataMask] = useState(false)
   const [addedMask, updataAddedMask] = useState(false)
   useEffect(() => {
     getClass()
     allQuestions()
     getText()
-    
+
   }, [])
   useEffect(() => {
-   if(num===1){
-    updataMask(false)
-    updataAddedMask(true)
-   }else if(num!=1){
-    updataMask(false)
-    openNotification()
-   }
+    if (num === 1) {
+      updataMask(false)
+      updataAddedMask(true)
+    } else if (num != 1) {
+      updataMask(false)
+      openNotification()
+    }
   }, [num])
   const openNotification = () => {
     notification.open({
@@ -37,7 +37,7 @@ function AddQuestions(props) {
   let [value, setValue] = useState('')
   //声明答案
   let [answerValue, setAnswerValue] = useState('')
-  
+
   let handleChange = (value) => {
     setValue(value)
   }
@@ -49,7 +49,7 @@ function AddQuestions(props) {
     //validateFields  校验并获取一组输入域的值与 Error，若 fieldNames 参数为空，则校验全部组件
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log("values",values)
+        console.log("values", values)
         props.addQuestions({
           title: values.stem,
           exam_id: values.exam_id,
@@ -97,53 +97,53 @@ function AddQuestions(props) {
               <div className={styles.examination_type}>
                 <label>请选择考试类型</label>
                 <Form.Item>
-                {getFieldDecorator('exam_id', {
-                  initialValue:"8sc5d7-7p5f9e-cb2zii-ahe5i"
-                })(<Select
-                  style={{ width: 200 }}
-                >
-                  {
-                    classify.map(item => (
-                      <Option key={item.exam_id} value={item.exam_id}>{item.exam_name}</Option>
-                    ))
-                  }
+                  {getFieldDecorator('exam_id', {
+                    initialValue: "8sc5d7-7p5f9e-cb2zii-ahe5i"
+                  })(<Select
+                    style={{ width: 200 }}
+                  >
+                    {
+                      classify.map(item => (
+                        <Option key={item.exam_id} value={item.exam_id}>{item.exam_name}</Option>
+                      ))
+                    }
 
-                </Select>)}
-              </Form.Item>
-                
+                  </Select>)}
+                </Form.Item>
+
               </div>
               <div className={styles.course_types}>
                 <label>请选择课程类型</label>
                 <Form.Item>
-                {getFieldDecorator('subject_id', {
-                  initialValue:"fqtktr-1lq5u"
-                })(<Select
-                  style={{ width: 200 }}
-                >
-                  {
-                    allSubject.map(item => (
-                      <Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Option>
-                    ))
-                  }
-                </Select>)}
+                  {getFieldDecorator('subject_id', {
+                    initialValue: "fqtktr-1lq5u"
+                  })(<Select
+                    style={{ width: 200 }}
+                  >
+                    {
+                      allSubject.map(item => (
+                        <Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Option>
+                      ))
+                    }
+                  </Select>)}
                 </Form.Item>
-                
+
               </div>
               <div className={styles.topic_type}>
                 <label>请选择题目类型</label>
                 <Form.Item>
-                {getFieldDecorator('questions_type_id', {
-                  initialValue:"774318-730z8m"
-                })(
-                <Select
-                  style={{ width: 200 }}
-                >
-                  {
-                    allText.map(item => (
-                      <Option key={item.questions_type_id} value={item.questions_type_id}>{item.questions_type_text}</Option>
-                    ))
-                  }
-                </Select>)}
+                  {getFieldDecorator('questions_type_id', {
+                    initialValue: "774318-730z8m"
+                  })(
+                    <Select
+                      style={{ width: 200 }}
+                    >
+                      {
+                        allText.map(item => (
+                          <Option key={item.questions_type_id} value={item.questions_type_id}>{item.questions_type_text}</Option>
+                        ))
+                      }
+                    </Select>)}
                 </Form.Item>
               </div>
             </div>
