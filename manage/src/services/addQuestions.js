@@ -1,6 +1,6 @@
 import request from '../utils/request';
-
-export function addQuestions(params) {
+//添加试题
+export function add_Questions(params) {
   return request.post('/exam/questions', params);
 }
 // 获取考试类型

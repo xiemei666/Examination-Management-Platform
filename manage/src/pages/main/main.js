@@ -13,6 +13,8 @@ import ClassManagement from './management/classManagement/classManagement'
 import ClassroomManagement from './management/classroomManagement/classroomManagement'
 import StudentManagement from './management/studentManagement/studentManagement'
 import ClassesApproved from './marking/classesApproved/classesApproved'
+import questiuonsDetail from "./questions/questionsDetail/questionsDetail"
+import editQuestions from "./questions/editQuestions/editQuestions"
 import { Menu, Icon, Button } from 'antd';
 const { SubMenu } = Menu;
 const Main = () => {
@@ -99,13 +101,12 @@ const Main = () => {
                         <Route path="/main/userDisplay" component={UserDisplay} />
                         <Route path="/main/addTest" component={AddTest} />
                         <Route path="/main/testPaper" component={TestPaper} />
-
                         <Route path="/main/classManagement" component={ClassManagement} />
                         <Route path="/main/classroomManagement" component={ClassroomManagement} />
                         <Route path="/main/studentManagement" component={StudentManagement} />
-
                         <Route path="/main/classesApproved" component={ClassesApproved} />
-
+                        <Route path="/main/questions/detail/:id" component={questiuonsDetail}/>
+                        <Route path="/main/questions/editQuestions/:id" component={editQuestions}/>
                     </Switch>
                 </div>
             </div>

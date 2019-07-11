@@ -1,4 +1,4 @@
-import { getQuestions, getexamType, getQuestionsType,getSubject } from '@/services'
+import { getQuestions, getexamType, getQuestionsType, getSubject, searchTests } from '@/services'
 
 export default {
     //命名空间
@@ -12,7 +12,7 @@ export default {
         //所有的试题类型
         QuestionsType: [],
         //所有的课程
-        subjects:[]
+        subjects: []
 
     },
     //订阅
@@ -22,26 +22,32 @@ export default {
     // },
     //异步操作
     effects: {
-        *questions({ payload }, { call, put }) {  // eslint-disable-line
+        *questions({ payload }, { call, put }) {  // eslint-disable-line所有的试题
             console.log('payload...')
             let data = yield call(getQuestions)
             // console.log('question...', data.data)
             yield put({ type: 'save', payload: { qustions: data.data } });
         },
-        *examTypes({ payload }, { call, put }) {
+        *examTypes({ payload }, { call, put }) {//所有的考试类型
             let data = yield call(getexamType)
             // console.log('question...', data.data)
             yield put({ type: 'save', payload: { examType: data.data } });
         },
-        *QuestionsTypes({ payload }, { call, put }) {
+        *QuestionsTypes({ payload }, { call, put }) {//所有的试题类型
             let data = yield call(getQuestionsType)
             // console.log('question...', data.data)
             yield put({ type: 'save', payload: { QuestionsType: data.data } });
         },
-        *Subject({ payload }, { call, put }){
+        *Subject({ payload }, { call, put }) {//所有的课程
             let data = yield call(getSubject)
             // console.log('question...', data.data)
             yield put({ type: 'save', payload: { subjects: data.data } });
+        },
+        *searchTest({ payload }, { call, put }) {//查询试题
+            // console.log(payload)
+            let data = yield call(searchTests,payload)
+            console.log("data",data)
+            yield put({ type: 'save', payload: { qustions: data.data } });
         }
     },
     //同步操作

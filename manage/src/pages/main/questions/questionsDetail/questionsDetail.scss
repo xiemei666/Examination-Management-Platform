@@ -1,0 +1,14 @@
+.ant-layout-main{
+    width: 100%;
+    display: flex;
+    .ant-divider-vertical{
+        margin: 0 8px;
+        display: inline-block;
+        height: 0.9em;
+        width: 1px;
+        vertical-align: middle;
+        position: relative;
+        top: -0.06em;
+        
+    }
+}

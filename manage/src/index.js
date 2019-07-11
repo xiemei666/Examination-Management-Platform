@@ -14,6 +14,7 @@ const app = dva();
 app.model(require('./models/login').default);
 app.model(require('./models/getQuestions').default);
 app.model(require('./models/addQuestions').default);
+app.model(require('./models/setQuestions').default);
 
 // 4. Router
 app.router(require('./router').default);
