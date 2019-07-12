@@ -26,12 +26,12 @@ function ClassQuestions(props) {
   };
   const columns = [
     {
-      title: 'Name',
+      title: '类型ID',
       dataIndex: 'questions_type_id',
       key: 'questions_type_sort',
     },
     {
-      title: 'Age',
+      title: '类型名称',
       dataIndex: 'questions_type_text',
       key: 'age',
     },
