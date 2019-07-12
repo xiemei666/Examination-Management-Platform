@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
 import styles from './classQuestions.scss'
-import { Layout, Button, Form, Table, Input,Spin } from 'antd';
+import { Layout, Button, Form, Table, Input, Spin } from 'antd';
 const { Content } = Layout;
 
 function ClassQuestions(props) {
@@ -22,7 +22,8 @@ function ClassQuestions(props) {
       }
     });
     updataMask(false)
-    window.location.reload()
+    getText()
+    // window.location.reload()
   };
   const columns = [
     {
@@ -91,7 +92,7 @@ function ClassQuestions(props) {
           </div>
         }
       </Layout>
-      {props.global?<div className={styles.loading}><Spin/></div>: null}
+      {props.global ? <div className={styles.loading}><Spin /></div> : null}
     </Form>
   );
 }
