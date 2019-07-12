@@ -1,5 +1,7 @@
 import axios from 'axios'
 import {getToken} from '@/utils/index'
+//获取全局的报错信息
+import {message} from 'antd';
 // create an axios instance
 const service = axios.create({
   baseURL: 'http://127.0.0.1:7001/',
@@ -26,7 +28,8 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => response.data,
   error => {
-    return Promise.reject(error)
+    // return Promise.reject(error)
+    message.error(error.message);
   }
 )
 

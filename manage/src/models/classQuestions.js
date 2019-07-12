@@ -1,10 +1,10 @@
-import {class_Questions,get_Questionss} from '@/services'
+import { class_Questions, get_Questionss } from '@/services'
 export default {
     //命名空间
     namespace: 'class',
     //模块状态
     state: {
-        allText:[]
+        allText: []
     },
     //订阅
     subscriptions: {
