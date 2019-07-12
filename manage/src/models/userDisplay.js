@@ -7,16 +7,7 @@ export default {
     state: {
         //用户数据
         UserData: [],
-        // //身份数据
-        // IdentityData: [],
-        // //api接口权限
-        // ApiAuthority: [],
-        // //身份与接口关系
-        // IdentityApiAuthorityRelation: [],
-        // //视图接口权限
-        // ViewAuthority: [],
-        // //身份和视图权限关系
-        // IdentityViewAuthorityRelation: []
+        
     },
 
 
