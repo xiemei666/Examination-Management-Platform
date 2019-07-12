@@ -1,33 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
 import styles from './addQuestions.scss'
-import { Select, Button, Form, Input, notification } from 'antd';
+import { Select, Button, Form, Input, notification ,Spin,message} from 'antd';
 import Editor from 'for-editor'
 const { Option } = Select;
 function AddQuestions(props) {
-  const { addQuestions, getClass, classify, allQuestions, allSubject, getText, allText, num } = props
+  const { addQuestions, getClass, classify, allQuestions, allSubject, getText, allText, num ,updatanull,err} = props
   const [mask, updataMask] = useState(false)
   const [addedMask, updataAddedMask] = useState(false)
   useEffect(() => {
     getClass()
     allQuestions()
     getText()
-
   }, [])
   useEffect(() => {
     if (num === 1) {
       updataMask(false)
       updataAddedMask(true)
-    } else if (num != 1) {
-      updataMask(false)
-      openNotification()
+      updatanull()
     }
+    
   }, [num])
-  const openNotification = () => {
+  useEffect(()=>{
+    if(err){
+      console.log(err)
+      openNotification()
+      updataMask(false)
+      updatanull()
+    }
+    
+  },[err])
+  
+  function openNotification () {
     notification.open({
       message: 'Notification Title',
-      description:
-        'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+      description:"err"
+      ,
       onClick: () => {
         console.log('Notification Clicked!');
       },
@@ -44,12 +52,10 @@ function AddQuestions(props) {
   let handleChangeAnswer = (answerValue) => {
     setAnswerValue(answerValue)
   }
-
   let handleSubmit = e => {
     //validateFields  校验并获取一组输入域的值与 Error，若 fieldNames 参数为空，则校验全部组件
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log("values", values)
         addQuestions({
           title: values.stem,
           exam_id: values.exam_id,
@@ -158,40 +164,41 @@ function AddQuestions(props) {
               </Button>
             </div>
 
-          {
-            mask && <div className={styles.mask}>
-              <div className={styles.mask_content}>
-                <div className={styles.content_top}>
-                  <span>?</span>
-                  <h3>你确定要添加这道试题吗？</h3>
-                  <p>真的要添加吗</p>
+            {
+              mask && <div className={styles.mask}>
+                <div className={styles.mask_content}>
+                  <div className={styles.content_top}>
+                    <span>?</span>
+                    <h3>你确定要添加这道试题吗？</h3>
+                    <p>真的要添加吗</p>
+                  </div>
+                  <Form.Item className={styles.footer_button}>
+                    <Button onClick={() => updataMask(false)}>
+                      取消
+                </Button>
+                    <Button type="primary" htmlType="submit" style={{ width: 110 }}>
+                      确定
+                </Button>
+                  </Form.Item>
                 </div>
-                <Form.Item className={styles.footer_button}>
-                  <Button onClick={() => updataMask(false)}>
-                    取消
-                </Button>
-                  <Button type="primary" htmlType="submit" style={{ width: 110 }}>
-                    确定
-                </Button>
-                </Form.Item>
               </div>
-            </div>
-          }
+            }
 
-          {
-            addedMask && <div className={styles.added_mask}>
-              <div className={styles.added_mask_content}>
-                <i>√</i>
-                <h3>试题添加成功</h3>
-                <Button type="primary" style={{ width: 110 }} onClick={() => updataAddedMask(false)}>
-                  知道了
+            {
+              addedMask && <div className={styles.added_mask}>
+                <div className={styles.added_mask_content}>
+                  <i>√</i>
+                  <h3>试题添加成功</h3>
+                  <Button type="primary" style={{ width: 110 }} onClick={() => updataAddedMask(false)}>
+                    知道了
                 </Button>
+                </div>
               </div>
-            </div>
-          }
+            }
           </div>
         </Form>
       </div>
+      {props.global?<div className={styles.loading}><Spin/></div>: null}
     </div>
   );
 }
@@ -199,7 +206,10 @@ function AddQuestions(props) {
 AddQuestions.propTypes = {
 };
 const mapStateToProps = state => {
-  return state.add
+  return {
+    ...state.add,
+    global: state.loading.global
+  }
 }
 const mapDispatchToProps = dispatch => {
   return {
@@ -226,6 +236,11 @@ const mapDispatchToProps = dispatch => {
     getText: () => {
       dispatch({
         type: "add/getAllQuestions"
+      })
+    },
+    updatanull:()=>{
+      dispatch({
+        type:"add/changeNull"
       })
     }
   }

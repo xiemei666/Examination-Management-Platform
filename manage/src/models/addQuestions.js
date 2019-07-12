@@ -6,8 +6,9 @@ export default {
     state: {
         classify: [],
         allSubject: [],
-        allText:[],
-        num:null
+        allText: [],
+        err:'',
+        num: null
     },
     //订阅
     subscriptions: {
@@ -21,14 +22,31 @@ export default {
         },
         //添加试题
         *addQuestions({ payload }, { call, put }) {
-                let data=yield call(add_Questions,payload)
-                console.log("add",data)
+            let data = yield call(add_Questions, payload)
+            console.log(data)
+            try {
                 yield put({
-                    type:"save",
+                    type: "save",
                     payload: {
-                        num:data.code
+                        num: data.code
                     }
                 })
+
+            } catch (error) {
+                console.log(data)
+                yield put({
+                    type: "save",
+                    payload: {
+                        err: error
+                    }
+                })
+            }
+            // yield put({
+            //     type: "save",
+            //     payload: {
+            //         num: data.code
+            //     }
+            // })
         },
         // 获取考试类型
         *getClass({ payload }, { call, put }) {
@@ -60,6 +78,14 @@ export default {
                 }
             })
         },
+        *changeNull({ payload }, { call, put }) {
+            yield put({
+                type: "save",
+                payload: {
+                    num: null
+                }
+            })
+        }
     },
     //同步操作
     reducers: {

@@ -45,8 +45,8 @@ export default {
         },
         *searchTest({ payload }, { call, put }) {//查询试题
             // console.log(payload)
-            let data = yield call(searchTests,payload)
-            console.log("data",data)
+            let data = yield call(searchTests, payload)
+            console.log("data", data)
             yield put({ type: 'save', payload: { qustions: data.data } });
         }
     },

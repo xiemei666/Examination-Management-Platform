@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'dva';
-import { Layout, Tag } from 'antd';
+import { Layout, Tag,Spin } from 'antd';
 import styles from "./questionsDetail.scss"
 const { Content } = Layout;
 
@@ -58,6 +58,7 @@ function questionsDetail(props) {
                     </div>
                 </Content>
             </div>
+            {props.global ? <div className={styles.loading}><Spin /></div> : null}
         </Layout>
     );
 }
@@ -66,7 +67,8 @@ questionsDetail.propTypes = {
 };
 const mapStateToProps = state => {
     return {
-        ...state.questions
+        ...state.questions,
+        global: state.loading.global
     }
 }
 const mapDispatchToProps = dispatch => {

@@ -1,23 +1,23 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
 import styles from './classQuestions.scss'
-import { Layout, Tag, Select, Button,Form,Table,Input } from 'antd';
+import { Layout, Button, Form, Table, Input,Spin } from 'antd';
 const { Content } = Layout;
 
 function ClassQuestions(props) {
-  const {getText,allText} = props
-  const [mask,updataMask]=useState(false)
+  const { getText, allText } = props
+  const [mask, updataMask] = useState(false)
   useEffect(() => {
     getText()
-  },[])
+  }, [])
   let handleSubmit = e => {
     e.preventDefault();
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         // console.log('Received values of form: ', values);
         props.classQuestions({
-          text:values.input,
-          sort:new Date()*1
+          text: values.input,
+          sort: new Date() * 1
         })
       }
     });
@@ -41,8 +41,8 @@ function ClassQuestions(props) {
       key: 'address',
     }
   ];
-  const pageSizeOptions={
-    pageSize:5
+  const pageSizeOptions = {
+    pageSize: 5
   }
   const { getFieldDecorator } = props.form;
   return (
@@ -58,39 +58,40 @@ function ClassQuestions(props) {
           }}
           className={styles.class_content}
         >
-          <Button type="primary" className={styles.addButton} onClick={()=>updataMask(true)}>+添加类型</Button>
-          <Table  rowKey="questions_type_id" columns={columns} dataSource={allText} pagination={pageSizeOptions}/>
+          <Button type="primary" className={styles.addButton} onClick={() => updataMask(true)}>+添加类型</Button>
+          <Table rowKey="questions_type_id" columns={columns} dataSource={allText} pagination={pageSizeOptions} />
         </Content>
         {
-          mask&&<div className={styles.mask}>
-          <div className={styles.mask_content}>
-            <div className={styles.content_top}>
-              <p className={styles.del} onClick={()=>updataMask(false)}>x</p>
-              <h2>创建新类型</h2>
-              <Form.Item>
-                {getFieldDecorator('input', {
-                  //validateTrigger	校验子节点值的时机
-                  validateTrigger: 'onBlur',
-                  //rules	校验规则
-                  rules: [
-                    { required: true },
-                  ],
+          mask && <div className={styles.mask}>
+            <div className={styles.mask_content}>
+              <div className={styles.content_top}>
+                <p className={styles.del} onClick={() => updataMask(false)}>x</p>
+                <h2>创建新类型</h2>
+                <Form.Item>
+                  {getFieldDecorator('input', {
+                    //validateTrigger	校验子节点值的时机
+                    validateTrigger: 'onBlur',
+                    //rules	校验规则
+                    rules: [
+                      { required: true },
+                    ],
 
-                })(<Input placeholder='请输入类型名称' />)}
+                  })(<Input placeholder='请输入类型名称' />)}
+                </Form.Item>
+              </div>
+              <Form.Item className={styles.footer_button}>
+                <Button type="primary" htmlType="submit" style={{ width: 110 }}>
+                  确定
+              </Button>
+                <Button onClick={() => updataMask(false)}>
+                  取消
+              </Button>
               </Form.Item>
             </div>
-            <Form.Item className={styles.footer_button}>
-              <Button type="primary" htmlType="submit" style={{width:110}}>
-                确定
-              </Button>
-              <Button onClick={()=>updataMask(false)}>
-                取消
-              </Button>
-            </Form.Item>
           </div>
-        </div>
         }
       </Layout>
+      {props.global?<div className={styles.loading}><Spin/></div>: null}
     </Form>
   );
 }
@@ -98,13 +99,16 @@ function ClassQuestions(props) {
 ClassQuestions.propTypes = {
 };
 const mapStateToProps = state => {
-  return state.class
+  return {
+    ...state.class,
+    global: state.loading.global
+  }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    classQuestions:payload => {
+    classQuestions: payload => {
       dispatch({
-        type:'class/classQuestions',
+        type: 'class/classQuestions',
         payload
       })
     },
