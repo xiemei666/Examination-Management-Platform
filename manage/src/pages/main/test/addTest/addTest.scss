@@ -1,0 +1,28 @@
+:global{
+.addTest-list{
+    box-sizing: border-box;
+    width: 41.66666667%;
+    >div{
+        display: flex;
+        flex-direction: column;
+        >div:first-of-type{
+            overflow: visible !important;
+        }
+        >div:last-of-type{
+            width: 100%;
+            .ant-select-selection{
+                border-radius:2px !important;
+            }
+            .ant-input-number{
+                border-radius:2px !important;
+            }
+            input{
+                border-radius: 2px !important;
+            }
+            
+        }
+        
+    }
+    
+}
+}

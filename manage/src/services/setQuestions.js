@@ -2,7 +2,7 @@
 import request from '../utils/request';
 //添加试题
 export function set_Questions(params) {
-  return request.post('/exam/questions/update', params);
+  return request.put('/exam/questions/update', params);
 }
 // 获取考试类型
 export function get_Classify() {

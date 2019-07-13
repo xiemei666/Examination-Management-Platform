@@ -5,11 +5,14 @@ import { Layout, Button, Form, Table, Input, Spin } from 'antd';
 const { Content } = Layout;
 
 function ClassQuestions(props) {
+   
+  console.log(props.allText)
   const { getText, allText } = props
   const [mask, updataMask] = useState(false)
   useEffect(() => {
     getText()
   }, [])
+  
   let handleSubmit = e => {
     e.preventDefault();
     props.form.validateFieldsAndScroll((err, values) => {
@@ -19,12 +22,13 @@ function ClassQuestions(props) {
           text: values.input,
           sort: new Date() * 1
         })
+        getText()
       }
     });
     updataMask(false)
-    getText()
-    // window.location.reload()
+
   };
+ 
   const columns = [
     {
       title: '类型ID',

@@ -7,20 +7,31 @@ export default {
         allText: []
     },
     //订阅
-    subscriptions: {
-        setup({ dispatch, history }) {  // eslint-disable-line
-        },
-    },
+    // subscriptions: {
+    //     setup({ dispatch, history }) {  // eslint-disable-line
+    //     },
+    // },
     //异步操作
     effects: {
-        *fetch({ payload }, { call, put }) {  // eslint-disable-line
-            yield put({ type: 'save' });
-        },
+        // *fetch({ payload }, { call, put }) {  // eslint-disable-line
+        //     yield put({ type: 'save' });
+        // },
         //添加试题
         *classQuestions({ payload }, { call, put }) {
             let data = yield call(class_Questions, payload)
+            console.log(data)
+            if (data.code === 1) {
+                let data = yield call(get_Questionss);
+                yield put({
+                    type: "save",
+                    payload: {
+                        allText: data.data
+                    }
+                })
+            }
             yield put({
                 type: "save",
+
             })
         },
         // 获取题目类型
