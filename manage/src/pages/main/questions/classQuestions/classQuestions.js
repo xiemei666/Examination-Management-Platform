@@ -26,7 +26,6 @@ function ClassQuestions(props) {
       }
     });
     updataMask(false)
-
   };
  
   const columns = [
