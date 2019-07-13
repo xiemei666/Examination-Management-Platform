@@ -23,7 +23,6 @@ function ClassQuestions(props) {
     });
     updataMask(false)
     getText()
-    // window.location.reload()
   };
   const columns = [
     {

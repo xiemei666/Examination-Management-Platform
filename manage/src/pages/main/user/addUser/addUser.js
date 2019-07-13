@@ -11,9 +11,9 @@ function AddUser(props) {
     addApi_jurisdiction,
     addView,
     identityrJurisdiction,
-    viewJurisdiction} = props
+    viewJurisdiction } = props
   useEffect(() => {
-    
+
   }, [])
 
   const { getFieldDecorator } = props.form;
@@ -27,16 +27,19 @@ function AddUser(props) {
             <Radio.Button value="b" onClick={() => updataIdentityr(true)}>更新用户</Radio.Button>
           </Radio.Group>
           <Form onSubmit={
-            e=>{
+            e => {
+              //以前的默认值
               e.preventDefault();
+              // e.getFieldsValue()
               props.form.validateFields((err, values) => {
-                    if (!err) {
-                      console.log(values)
-                      // addIdentityr({
-                      //   identity_text:
-                      // })
-                    }
-                  });
+                if (!err) {
+                  console.log(values)
+                  console.log(values.user_name)
+                  // addIdentityr({
+                  //   identity_text:
+                  // })
+                }
+              });
             }
           } className={styles.addUser}>
             {
@@ -57,7 +60,7 @@ function AddUser(props) {
                 //rules	校验规则
                 rules: [
                   { required: true, message: '请输入正确的用户名!' },
-                  { min: 1, max: 20, message: '请输入正确的用户名!' }
+                  // { min: 1, max: 20, message: '请输入正确的用户名!' }
                 ],
               })(<Input placeholder='请输入用户名' />)}
             </Form.Item>
@@ -67,8 +70,8 @@ function AddUser(props) {
                 validateTrigger: 'onBlur',
                 //rules	校验规则
                 rules: [
-                  { required: true ,message: '请输入密码!' },
-                  { pattern: /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)(?=.*?[!#@*&.]).*$/, message: '请输入正确的密码格式!' }
+                  { required: true, message: '请输入密码!' },
+                  // { pattern: /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)(?=.*?[!#@*&.]).*$/, message: '请输入正确的密码格式!' }
                 ],
               })(<Input placeholder='请输入密码' />)}
             </Form.Item>
@@ -95,16 +98,16 @@ function AddUser(props) {
             <Radio.Button value="a">添加身份</Radio.Button>
           </Radio.Group>
           <Form onSubmit={
-            e=>{
+            e => {
               e.preventDefault();
               props.form.validateFields((err, values) => {
-                    if (!err) {
-                      console.log(values)
-                      // addIdentityr({
-                      //   identity_text:
-                      // })
-                    }
-                  });
+                if (!err) {
+                  console.log(values)
+                  // addIdentityr({
+                  //   identity_text:
+                  // })
+                }
+              });
             }
           } className={styles.addIdentityr}>
             <Form.Item>
@@ -126,7 +129,7 @@ function AddUser(props) {
           </Form>
         </div>
 
-        <div className={styles.add_api_jurisdiction}>
+        {/* <div className={styles.add_api_jurisdiction}>
           <Radio.Group defaultValue="a" size="large" className={styles.tab}>
             <Radio.Button value="a">添加api接口权限</Radio.Button>
           </Radio.Group>
@@ -303,7 +306,7 @@ function AddUser(props) {
               <Button>重置</Button>
             </Form.Item>
           </Form>
-        </div>
+        </div> */}
       </div>
     </div>
   );
