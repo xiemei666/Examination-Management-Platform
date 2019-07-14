@@ -23,7 +23,6 @@ export default {
         //添加试题
         *addQuestions({ payload }, { call, put }) {
             let data = yield call(add_Questions, payload)
-            console.log(data)
             try {
                 yield put({
                     type: "save",
@@ -41,12 +40,6 @@ export default {
                     }
                 })
             }
-            // yield put({
-            //     type: "save",
-            //     payload: {
-            //         num: data.code
-            //     }
-            // })
         },
         // 获取考试类型
         *getClass({ payload }, { call, put }) {

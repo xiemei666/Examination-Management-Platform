@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'dva';
-import { Layout, Tag, Select, Button,Spin} from 'antd';
+import { Layout, Tag, Select, Button} from 'antd';
 import { Link } from 'dva/router';
 import styles from "./checkQuestions.scss"
 
@@ -9,7 +9,6 @@ const { Option } = Select;
 const { Content } = Layout;
 
 function CheckQuestions(props) {
-  console.log(props)
   useEffect(() => {
     props.checkQusetons()
     props.getExamTypes()
@@ -133,7 +132,6 @@ function CheckQuestions(props) {
           </div>)}
         </div>
       </Content>
-      {props.global?<div className={styles.loading}><Spin/></div>: null}
     </Layout>
   );
 }
@@ -143,7 +141,6 @@ CheckQuestions.propTypes = {
 const mapStateToProps = state => {
   return {
     ...state.questions,
-    global: state.loading.global
   }
 }
 const mapDispatchToProps = dispatch => {

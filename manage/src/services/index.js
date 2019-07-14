@@ -5,3 +5,5 @@ export * from "./setQuestions"
 export * from './classQuestions'
 export * from "./userDisplay"
 export * from './addUser'
+export * from './classManagement'
+export * from './classroomManagement'

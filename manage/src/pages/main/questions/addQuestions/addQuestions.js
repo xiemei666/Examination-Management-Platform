@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
 import styles from './addQuestions.scss'
-import { Select, Button, Form, Input, notification ,Spin,message} from 'antd';
+import { Select, Button, Form, Input, notification } from 'antd';
 import Editor from 'for-editor'
 const { Option } = Select;
 function AddQuestions(props) {
@@ -198,7 +198,6 @@ function AddQuestions(props) {
           </div>
         </Form>
       </div>
-      {props.global?<div className={styles.loading}><Spin/></div>: null}
     </div>
   );
 }
@@ -208,7 +207,6 @@ AddQuestions.propTypes = {
 const mapStateToProps = state => {
   return {
     ...state.add,
-    global: state.loading.global
   }
 }
 const mapDispatchToProps = dispatch => {

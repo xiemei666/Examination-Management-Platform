@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'dva';
-import { Layout, Tag, Spin, Form, Icon, Input, Button, Checkbox, Select, InputNumber, DatePicker } from 'antd';
+import { Layout, Tag, Form, Icon, Input, Button, Checkbox, Select, InputNumber, DatePicker } from 'antd';
 import styles from "./addTest.scss"
 const { Content } = Layout;
 const { Option } = Select;
@@ -103,13 +103,11 @@ function AddTest(props) {
               <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
                 <Button type="primary" htmlType="submit">
                   Submit
-          </Button>
+                </Button>
               </Form.Item>
-
             </div>
           </div>
         </Form>
-
       </Content>
     </Layout>
   );

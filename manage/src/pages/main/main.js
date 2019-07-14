@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header'
 import styles from './main.scss'
+import { connect } from 'dva';
 import { Link, Route, Switch } from 'dva/router'
 import AddQuestions from './questions/addQuestions/addQuestions'
 import ClassQuestions from './questions/classQuestions/classQuestions'
@@ -15,9 +16,9 @@ import StudentManagement from './management/studentManagement/studentManagement'
 import ClassesApproved from './marking/classesApproved/classesApproved'
 import questiuonsDetail from "./questions/questionsDetail/questionsDetail"
 import editQuestions from "./questions/editQuestions/editQuestions"
-import { Menu, Icon } from 'antd';
+import { Menu, Icon,Spin } from 'antd';
 const { SubMenu } = Menu;
-const Main = () => {
+const Main = (props) => {
     return (
         <div className={styles.wrapper}>
             <Header></Header>
@@ -110,11 +111,17 @@ const Main = () => {
                     </Switch>
                 </div>
             </div>
+            {props.global ? <div className={styles.loading}><Spin /></div> : null}
         </div>
     );
 };
 
 Main.propTypes = {
 };
-
-export default Main;
+const mapStateToProps = state => {
+    return {
+      ...state.management,
+      global: state.loading.global
+    }
+  }
+export default connect(mapStateToProps)(Main);
