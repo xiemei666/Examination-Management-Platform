@@ -7,6 +7,7 @@
         flex-direction: column;
         >div:first-of-type{
             overflow: visible !important;
+            display: flex;
         }
         >div:last-of-type{
             width: 100%;
@@ -23,6 +24,40 @@
         }
         
     }
-    
+    >div:last-of-type{
+        >div{
+            margin: 0 !important;
+            button{
+                padding: 0 40px!important;
+                border-radius: 4px!important;
+                border: 0!important;
+                font-size: 14px!important;
+                color: #fff!important;
+                background: linear-gradient(-90deg,#4e75ff,#0139fd)!important;
+            }
+        }
+    }
+    .change_time>div:last-of-type>div>span{
+        display: flex ;
+        >.ant-form-item{
+            width: calc(50% - 12px) !important;
+            .ant-calendar-picker{
+                min-width: 100px !important; 
+            }
+           
+        }
+        
+    }
 }
+}
+.loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:rgba(0, 0, 0, .3)
 }

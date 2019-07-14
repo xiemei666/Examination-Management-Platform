@@ -27,6 +27,8 @@ app.model(require('./models/setQuestions').default);
 app.model(require('./models/classQuestions').default);
 app.model(require('./models/userDisplay').default);
 app.model(require('./models/addUser.js').default);
+app.model(require('./models/addTest.js').default);
+
 // 4. Router
 app.router(require('./router').default);
 
