@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
 import styles from './classQuestions.scss'
-import { Layout, Button, Form, Table, Input, Spin } from 'antd';
+import { Layout, Button, Form, Table, Input} from 'antd';
 const { Content } = Layout;
 
 function ClassQuestions(props) {
    
-  console.log(props.allText)
   const { getText, allText } = props
   const [mask, updataMask] = useState(false)
   useEffect(() => {
@@ -95,7 +94,6 @@ function ClassQuestions(props) {
           </div>
         }
       </Layout>
-      {props.global ? <div className={styles.loading}><Spin /></div> : null}
     </Form>
   );
 }
@@ -105,7 +103,6 @@ ClassQuestions.propTypes = {
 const mapStateToProps = state => {
   return {
     ...state.class,
-    global: state.loading.global
   }
 }
 const mapDispatchToProps = dispatch => {

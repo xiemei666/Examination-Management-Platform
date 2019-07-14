@@ -14,9 +14,10 @@ const app = dva(createLoading());
 app.use({
     //查看action前后的状态
     // onAction: createLogger(),
-    onError: (e) => {
-        message.error(e.message, /* duration */3);
-    }
+    //全局报错信息
+    // onError: (e) => {
+    //     message.error(e.message, /* duration */3);
+    // }
 });
 
 // 3. Model
@@ -26,9 +27,10 @@ app.model(require('./models/addQuestions').default);
 app.model(require('./models/setQuestions').default);
 app.model(require('./models/classQuestions').default);
 app.model(require('./models/userDisplay').default);
-app.model(require('./models/addUser.js').default);
-app.model(require('./models/addTest.js').default);
-
+app.model(require('./models/addTest').default);
+app.model(require('./models/addUser').default);
+app.model(require('./models/classManagement').default);
+app.model(require('./models/classroomManagement').default);
 // 4. Router
 app.router(require('./router').default);
 

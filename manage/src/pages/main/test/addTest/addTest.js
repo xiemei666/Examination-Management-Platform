@@ -99,11 +99,9 @@ function AddTest(props) {
                   创建试卷
                 </Button>
               </Form.Item>
-
             </div>
           </div>
         </Form>
-
       </Content>
       {props.global ? <div className={styles.loading}><Spin /></div> : null}
     </Layout>
