@@ -61,8 +61,8 @@ function ClassManagement(props) {
           }}>修改 {record.name}</span>
           <Divider type="vertical" />
           <span >删除</span>
-        </span>,
-        console.log(text)
+        </span>
+      
       ),
     },
   ];

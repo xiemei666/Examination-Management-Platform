@@ -13,7 +13,7 @@ function questionsDetail(props) {
     }, [])
 
     let { qustions } = props
-    let { user_name, questions_type_text, subject_text, exam_name, title, questions_stem, questions_answer } = qustions && { ...qustions[0] }
+    let { user_name, questions_type_text, subject_text, exam_name, title, questions_stem, questions_answer } = qustions && { ...qustions[0] } 
 
 
     return (

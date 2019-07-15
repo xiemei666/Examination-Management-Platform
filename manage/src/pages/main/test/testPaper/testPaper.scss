@@ -1,0 +1,10 @@
+:global{
+    .ant_buttons{
+        margin-bottom: 25px;
+        >div{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}

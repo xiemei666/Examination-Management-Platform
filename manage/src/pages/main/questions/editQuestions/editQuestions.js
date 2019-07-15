@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
 import styles from './editQuestions.scss'
-import { Select, Button, Form, Input, notification} from 'antd';
+import { Select, Button, Form, Input, notification } from 'antd';
 import Editor from 'for-editor'
 const { Option } = Select;
 function AddQuestions(props) {
