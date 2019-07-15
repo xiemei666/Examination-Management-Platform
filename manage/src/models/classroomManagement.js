@@ -1,4 +1,4 @@
-import { classroom_Management ,deleteroom_Management} from '@/services'
+import { classroom_Management ,deleteroom_Management,addroom_Management} from '@/services'
 export default {
     //命名空间
     namespace: 'roommanagement',
@@ -19,7 +19,6 @@ export default {
         // 获取全部教室
         *classroomManagement({ payload }, { call, put }) {
             let data = yield call(classroom_Management);
-            console.log(data)
             yield put({
                 type: "save",
                 payload: {
@@ -29,14 +28,27 @@ export default {
         },
         // 删除教师
         *deleteroomManagement({ payload }, { call, put }) {
-            let data = yield call(deleteroom_Management);
-            console.log(data)
+            let data = yield call(deleteroom_Management,payload);
             yield put({
                 type: "save",
-                payload: {
-                    allClass: data.data
-                }
             })
+            if(data.code===1){
+                yield put({
+                    type: "classroomManagement"
+                })
+            }
+        },
+        // 添加教室
+        *addroomManagement({ payload }, { call, put }) {
+            let data = yield call(addroom_Management,payload);
+            yield put({
+                type: "save"
+            })
+            if(data.code===1){
+                yield put({
+                    type: "classroomManagement"
+                })
+            }
         },
     },
     //同步操作

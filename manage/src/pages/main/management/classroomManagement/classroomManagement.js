@@ -4,7 +4,7 @@ import styles from './classroomManagement.scss'
 import { Layout, Button, Form, Table, Input,} from 'antd';
 const { Content } = Layout;
 function ClassroomManagement(props) {
-  const { classroomManagement, allClass } = props
+  const { classroomManagement, allClass,addroomManagement,deleteroomManagement } = props
   const [mask, updataMask] = useState(false)
   useEffect(() => {
     classroomManagement()
@@ -14,12 +14,9 @@ function ClassroomManagement(props) {
     e.preventDefault();
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        // console.log('Received values of form: ', values);
-        // props.classQuestions({
-        //   text: values.input,
-        //   sort: new Date() * 1
-        // })
-
+        addroomManagement({
+          room_text:values.room_name
+        })
       }
     });
     updataMask(false)
@@ -36,7 +33,7 @@ function ClassroomManagement(props) {
       key: '操作',
       render: (text, record) => (
         <span>
-          <a href="javascript:;">删除</a>
+            <span onClick={() => deleteroomManagement({room_id:text.room_id})}>删除</span>
         </span>
       ),
     },
@@ -61,32 +58,35 @@ function ClassroomManagement(props) {
           <Table rowKey="grade_id" columns={columns} dataSource={allClass} pagination={pageSizeOptions} />
           {
             mask && <div className={styles.mask}>
-              <div className={styles.mask_content}>
-                <div className={styles.content_top}>
-                  <p className={styles.del} onClick={() => updataMask(false)}>x</p>
-                  <h2>创建新类型</h2>
-                  <Form.Item>
-                    {getFieldDecorator('input', {
-                      //validateTrigger	校验子节点值的时机
-                      validateTrigger: 'onBlur',
-                      //rules	校验规则
-                      rules: [
-                        { required: true },
-                      ],
-
-                    })(<Input placeholder='请输入类型名称' />)}
-                  </Form.Item>
-                </div>
+            <div className={styles.mask_content}>
+              <div className={styles.content_top}>
+                <h3>添加班级</h3>
+                <p className={styles.del} onClick={() => updataMask(false)}>x</p>
+              </div>
+              <div className={styles.content_content}>
+                <Form.Item label="教室号">
+                  {getFieldDecorator('room_name', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请输入班级名!',
+                      },
+                    ],
+                  })(<Input placeholder='教室名' />)}
+                </Form.Item>
+              </div>
+              <div className={styles.content_bottom}>
                 <Form.Item className={styles.footer_button}>
-                  <Button type="primary" htmlType="submit" style={{ width: 110 }}>
-                    确定
-                  </Button>
                   <Button onClick={() => updataMask(false)}>
                     取消
+                  </Button>
+                  <Button type="primary" htmlType="submit" className={styles.Button}>
+                    提交
                   </Button>
                 </Form.Item>
               </div>
             </div>
+          </div>
           }
         </Form>
       </Content>
@@ -110,9 +110,17 @@ const mapDispatchToProps = dispatch => {
       })
     },
     //删除教室
-    deleteroomManagement: () => {
+    deleteroomManagement: payload => {
       dispatch({
         type: 'roommanagement/deleteroomManagement',
+        payload
+      })
+    },
+    //添加教室
+    addroomManagement: payload => {
+      dispatch({
+        type: 'roommanagement/addroomManagement',
+        payload
       })
     }
   }

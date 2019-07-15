@@ -1,4 +1,4 @@
-import {class_Management,class_room_Management,Course_name,addClass_Management,delete_Class_Management} from '@/services'
+import {class_Management,class_room_Management,Course_name,addClass_Management,delete_Class_Management,updata_Class_Management} from '@/services'
 export default {
     //命名空间
     namespace: 'management',
@@ -51,7 +51,6 @@ export default {
         // 添加班级
         *addClassManagement({ payload }, { call, put }) {
             let data = yield call(addClass_Management,payload);
-            console.log(data)
             yield put({
                 type: "save"
             })
@@ -64,6 +63,19 @@ export default {
         // 删除班级
         *deleteClass_Management({ payload }, { call, put }) {
             let data = yield call(delete_Class_Management,payload);
+            yield put({
+                type: "save",
+            })
+            if(data.code===1){
+                yield put({
+                    type: "classManagement"
+                })
+            }
+        },
+        // 更新班级
+        *updataClass_Management({ payload }, { call, put }) {
+            console.log(payload)
+            let data = yield call(updata_Class_Management,payload);
             yield put({
                 type: "save",
             })

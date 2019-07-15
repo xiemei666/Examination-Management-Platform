@@ -5,5 +5,9 @@ export function classroom_Management(params) {
 }
 //删除教室
 export function deleteroom_Management(params) {
-    return request.delete('/manger/room/delete', params);
-  }
+  return request.delete('/manger/room/delete', {data:params});
+}
+//添加教室
+export function addroom_Management(params) {
+  return request.post('/manger/room', params);
+}
