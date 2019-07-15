@@ -1,0 +1,35 @@
+.add_view{
+    border-right: 1px solid #ccc;
+    .tab{
+        width: 100%;
+        display:flex;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+    }
+    .add_view_content{
+        width: 100%;
+        display:flex;
+        flex-direction: column;
+        .add_view_select{
+            width: 100%;
+            height: 40px;
+            display:flex;
+            justify-content: flex-start;
+        }
+        .footer_button{
+            width: 100%;
+            height: 40px;
+            display:flex;
+            justify-content: flex-start;
+            text-align: center;
+            .button{
+                width: 110px;
+                background:linear-gradient(-90deg,#4e75ff,#0139fd)!important;
+            }
+            Button{
+                height: 40px;
+                margin-right: 10px;
+            }
+        }
+    }
+}

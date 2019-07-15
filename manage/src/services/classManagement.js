@@ -17,5 +17,10 @@ export function addClass_Management(params) {
 }
 //删除班级
 export function delete_Class_Management(params) {
-  return request.delete('/manger/grade/delete', params);
+  return request.delete('/manger/grade/delete',{ data:params});
+}
+//更新班级
+export function updata_Class_Management(params) {
+  console.log("params",params)
+  return request.put('/manger/grade/update', params);
 }
