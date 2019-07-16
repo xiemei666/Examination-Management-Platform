@@ -1,0 +1,20 @@
+.wrapper{
+    width: 100%;
+    height: 40px;
+    padding:4px 0;
+    display:flex;
+    margin-bottom: 20px;
+    .li{
+        margin-right: 15px;
+        input{
+            width: 180px;
+            height: 32px;
+        }
+        Button{
+            width: 110px;
+            height: 32px;
+            margin-right: 15px;
+            background:linear-gradient(-90deg,#4e75ff,#0139fd)!important;
+        }
+    }
+}

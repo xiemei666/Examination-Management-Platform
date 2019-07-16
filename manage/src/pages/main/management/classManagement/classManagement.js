@@ -26,27 +26,24 @@ function ClassManagement(props) {
     e.preventDefault();
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-       if(num){
-        console.log(111)
-        updataClassManagement({
-              grade_name:values.grade_name,
-              room_id:values.room_id,
-              subject_id:values.subject_id
-        })
-
-       }else{
-
-        addClassManagement({
-          grade_name: values.class_name,
-          subject_id: values.Course_name,
-          room_id: values.classroom_number
-        })
-        updataMask(false)
-       }
+        if (num) {
+          console.log('111', values)
+          // updataClassManagement({
+          //   grade_name: values.grade_name,
+          //   room_id: values.room_id,
+          //   subject_id: values.subject_id
+          // })
+        } else {
+          addClassManagement({
+            grade_name: values.class_name,
+            subject_id: values.Course_name,
+            room_id: values.classroom_number
+          })
+          updataMask(false)
+        }
       }
     });
   };
- 
   const columns = [
     {
       title: '班级名',
@@ -66,21 +63,20 @@ function ClassManagement(props) {
       title: '操作',
       key: '操作',
       render: (text, record) => (
-        
         <span>
-          <span onClick={(e) =>{
+          <span onClick={() => {
             updataNum(true)
             updataMask(true)
-            console.log("text",text),
-            console.log("record",record)
-            // props.form.setFieldsValue({
-            //   grade_name:text.grade_name,
-            //   room_id:text.room_id,
-            //   subject_id:text.subject_id
-            // })
+            console.log("text", text),
+            console.log("record", record)
+            props.form.setFieldsValue({
+              class_name: text.grade_name,
+              classroom_number: text.room_id,
+              Course_name: text.subject_id
+            })
           }}>修改</span>
           <Divider type="vertical" />
-        <span onClick={() => {deleteClassManagement({grade_id:text.grade_id})}}>删除</span>
+          <span onClick={() => { deleteClassManagement({ grade_id: text.grade_id }) }}>删除</span>
         </span>
       ),
     },
@@ -101,7 +97,7 @@ function ClassManagement(props) {
         }}
       >
         <Form onSubmit={handleSubmit} className={styles.wrapper}>
-          <Button type="primary" className={styles.addButton} onClick={() =>{updataMask(true),updataNum(false)} }>+添加班级</Button>
+          <Button type="primary" className={styles.addButton} onClick={() => { updataMask(true), updataNum(false) }}>+添加班级</Button>
           <Table rowKey="grade_id" columns={columns} dataSource={allClass} pagination={pageSizeOptions} />
           {
             mask && <div className={styles.mask}>
@@ -158,7 +154,7 @@ function ClassManagement(props) {
                   <Form.Item className={styles.footer_button}>
                     <Button onClick={() => updataMask(false)}>
                       取消
-                      </Button>
+                    </Button>
                     <Button type="primary" htmlType="submit" className={styles.Button}>
                       提交
                     </Button>
