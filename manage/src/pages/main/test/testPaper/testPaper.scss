@@ -7,4 +7,48 @@
             align-items: center;
         }
     }
+    .ant-btn-primary {
+        padding: 0 40px!important;
+        border-radius: 4px!important;
+        border: 0!important;
+        font-size: 14px!important;
+        color: #fff!important;
+        background: linear-gradient(-90deg,#4e75ff,#0139fd)!important;
+    }
+    .ant-form-inline{
+        >div{
+        margin-bottom: 10px;
+            .ant-form-item{
+                margin-bottom: 24px;
+                .ant-form-item-label{
+                    width: 33.3%;
+                }
+                .ant-form-item-control-wrapper{
+                    width: 62.5%;
+               
+                    .ant-select-selection--single{
+                        border-radius: 2px;
+                    }
+                    .ant-select{
+                    width: 100% !important;
+                    }
+                    .ant-select-enabled{
+                        width: 100%;
+                    }
+                }
+                
+            }
+        }
+    }
+    .ant-form-inline{
+        >div{
+            >.ant-form-item{
+                width: 25%;
+                margin-right: 0;
+                .ant-form-item-control-wrapper{
+                    width: 62.5%;
+                }
+            }
+        }
+    }
 }

@@ -17,7 +17,7 @@ export function getAll_Id(params) {
 }
 //添加身份
 export function add_Identityr(params) {
-  return request.get('/user/identity/edit', params);
+  return request.get('/user/identity/edit', {params});
 }
 
 
@@ -25,7 +25,7 @@ export function add_Identityr(params) {
 
 //添加api接口权限
 export function add_Api_jurisdiction(params) {
-  return request.get('/user/authorityApi/edit', params);
+  return request.get('/user/authorityApi/edit', {params});
 }
 //获取所有视图
 export function get_View(params) {
@@ -33,7 +33,7 @@ export function get_View(params) {
 }
 //添加视图接口权限
 export function add_View(params) {
-  return request.get('/user/authorityView/edit', params);
+  return request.get('/user/authorityView/edit', {params});
 }
 
 //获取所有api接口权限

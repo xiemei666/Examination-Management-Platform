@@ -1,11 +1,12 @@
-import { add_test, del_test ,updated_test,get_test} from '@/services'
+import { add_test, del_test, updated_test, get_test, get_test_detail } from '@/services'
 export default {
   //命名空间
   namespace: 'addTest',
   //模块状态
   state: {
     testQuestions: {},
-    exam:[]
+    exam: [],
+    detailTest:[]
   },
   //订阅
   subscriptions: {
@@ -27,24 +28,34 @@ export default {
         }
       });
     },
-    *delTest({ payload }, { call, put }){
-      let data = yield call(del_test,payload)
+    *delTest({ payload }, { call, put }) {
+      let data = yield call(del_test, payload)
       console.log(data)
     },
-    *updatedTest({ payload }, { call, put }){
-      let data = yield call(updated_test,payload)
-      console.log(data,"123123")
+    *updatedTest({ payload }, { call, put }) {
+      let data = yield call(updated_test, payload)
+      console.log(data, "123123")
     },
-    *getExam({ payload }, { call, put }){
+    *getExam({ payload }, { call, put }) {
       let data = yield call(get_test)
+      console.log(data)
+      yield put({
+        type: "save",
+        payload: {
+          exam: data.exam
+        }
+      })
+    },
+    *getExamDetail({ payload }, { call, put }) {
+      let data = yield call(get_test_detail,payload)
       console.log(data)
       yield put({
         type:"save",
         payload:{
-          exam:data.exam
+          detailTest:data.data.questions
         }
       })
-    },
+    }
   },
   //同步操作
   reducers: {

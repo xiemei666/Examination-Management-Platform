@@ -68,9 +68,9 @@ function TestPaper(props) {
     {
       title: '操作',
       key: 'action',
-      render: () => (
+      render: text => (
         <span>
-          <a href="javascript:;" onClick={() => { }}>详情</a>
+          <a href="javascript:;" onClick={() => {props.history.push(`/main/test/detailTest/${text.exam_exam_id}`)}}>详情</a>
         </span>
       ),
     },
@@ -98,11 +98,8 @@ function TestPaper(props) {
       >
         <Form layout="inline" onSubmit={handleSubmit}>
           <div>
-
-
-            <Form.Item label="选择考试类型">
+            <Form.Item label="考试类型">
               {getFieldDecorator('exam_id', {
-                rules: [{ required: true, message: '请选择考试类型' }],
               })(
                 <Select
                   style={{ width: '120px' }}
@@ -111,9 +108,8 @@ function TestPaper(props) {
                 </Select>,
               )}
             </Form.Item>
-            <Form.Item label="选择课程">
+            <Form.Item label="课程">
               {getFieldDecorator('subject_id', {
-                rules: [{ required: true, message: '请选择课程' }],
               })(
                 <Select
                   style={{ width: '120px' }}

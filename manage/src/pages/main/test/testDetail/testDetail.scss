@@ -1,0 +1,81 @@
+:global{
+    .test_exam{
+        min-height: 980px;
+        margin: auto;
+        padding: 40px;
+        text-align: center;
+        position: relative;
+        .test_exam_juan{
+            position: absolute;
+            border: 0;
+            right: 0;
+            bottom: 0;
+            width: 84px;
+            height: 72px;
+            background: url(http://img.233.com/student/img/theme/jixun/imgs/nav.png) no-repeat -479px -378px;
+         }
+        .style_questionitem{
+            text-align: left;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            h4{
+                margin-bottom: 0.5em;
+                color: rgba(0, 0, 0, 0.85);
+                font-weight: 500;
+            }
+            >div{
+                >pre{
+                    display: block;
+                    padding: 1em;
+                    overflow: auto;
+                    line-height: 1.3;
+                    max-height: 35em;
+                    color: #657b83;
+                    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8AgMAAABHkjHhAAAACVBMV…v3iO9zG/UOphyPeinPl1J8Gtaa7xPTa/Dk+RIs4deMvwGvcGsmsCvJ0AAAAABJRU5ErkJggg==) #f6f6f6;
+                    background-size: 30px 30px;
+                    }
+                }
+            
+        }
+        .ant-btn-button{
+            padding: 0 40px!important;
+            border-radius: 4px!important;
+            border: 0!important;
+            font-size: 14px!important;
+            color: #fff!important;
+            background: linear-gradient(-90deg,#4e75ff,#0139fd)!important;
+        }
+        
+    }
+    .ant-modal-confirm-body{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        >i{
+            margin: 0 !important;
+        }
+        >span{
+            margin: 10px 0 !important;
+        }
+        >div{
+            margin: 0 !important;
+        }
+    }
+    .ant-modal-confirm-btns{
+        float: none !important;
+        text-align: center;
+        .ant-btn-primary{
+            padding: 0 40px!important;
+            border-radius: 4px!important;
+            border: 0!important;
+            font-size: 14px!important;
+            color: #fff!important;
+            background: linear-gradient(-90deg,#4e75ff,#0139fd)!important;
+        }
+    }
+    .ant-drawer-content-wrapper{
+        width: 640px !important;
+    }
+    
+}

@@ -17,6 +17,7 @@ import ClassesApproved from './marking/classesApproved/classesApproved'
 import questiuonsDetail from "./questions/questionsDetail/questionsDetail"
 import editQuestions from "./questions/editQuestions/editQuestions"
 import createTest from "./test/CreateTest/CreateTest"
+import testDetail from "./test/testDetail/testDetail"
 import { Menu, Icon,Spin } from 'antd';
 const { SubMenu } = Menu;
 const Main = (props) => {
@@ -110,6 +111,7 @@ const Main = (props) => {
                         <Route path="/main/questions/detail/:id" component={questiuonsDetail} />
                         <Route path="/main/questions/editQuestions/:id" component={editQuestions} />
                         <Route path="/main/test/createTest" component={createTest}/>
+                        <Route path="/main/test/detailTest/:id" component={testDetail}/>
                     </Switch>
                 </div>
             </div>
