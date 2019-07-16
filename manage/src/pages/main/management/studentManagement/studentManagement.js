@@ -15,12 +15,12 @@ function StudentManagement(props) {
     props.form.validateFieldsAndScroll((err, values) => {
       
       if (!err) {
-        console.log(values,allStudent)
-        let name =allStudent && allStudent.filter(item => item.student_name==values.student_name)
-        let room =allStudent && allStudent.filter(item => item.room_id==values.room_number)
-        let Class =allStudent && allStudent.filter(item => item.grade_id==values.grade_name)
+        // console.log(values,allStudent)
+        // let name =allStudent && allStudent.filter(item => item.student_name==values.student_name)
+        // let room =allStudent && allStudent.filter(item => item.room_id==values.room_number)
+        // let Class =allStudent && allStudent.filter(item => item.grade_id==values.grade_name)
 
-        console.log(room,Class)
+        // console.log(room,Class)
       }
       
 
