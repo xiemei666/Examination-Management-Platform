@@ -8,3 +8,4 @@ export * from './addUser'
 export * from "./addTest"
 export * from './classManagement'
 export * from './classroomManagement'
+export * from "./marking"

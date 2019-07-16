@@ -70,7 +70,7 @@ function TestPaper(props) {
       key: 'action',
       render: text => (
         <span>
-          <a href="javascript:;" onClick={() => {props.history.push(`/main/test/detailTest/${text.exam_exam_id}`)}}>详情</a>
+          <a href="javascript:;" onClick={() => { props.history.push(`/main/test/detailTest/${text.exam_exam_id}`) }}>详情</a>
         </span>
       ),
     },

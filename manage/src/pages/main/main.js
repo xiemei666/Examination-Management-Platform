@@ -18,6 +18,7 @@ import questiuonsDetail from "./questions/questionsDetail/questionsDetail"
 import editQuestions from "./questions/editQuestions/editQuestions"
 import createTest from "./test/CreateTest/CreateTest"
 import testDetail from "./test/testDetail/testDetail"
+import classMate from "./marking/classMate/classMate"
 import { Menu, Icon,Spin } from 'antd';
 const { SubMenu } = Menu;
 const Main = (props) => {
@@ -112,6 +113,7 @@ const Main = (props) => {
                         <Route path="/main/questions/editQuestions/:id" component={editQuestions} />
                         <Route path="/main/test/createTest" component={createTest}/>
                         <Route path="/main/test/detailTest/:id" component={testDetail}/>
+                        <Route path="/main/classesApproved/classmate" component={classMate}/>
                     </Switch>
                 </div>
             </div>
