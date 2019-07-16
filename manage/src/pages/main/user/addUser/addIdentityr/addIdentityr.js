@@ -4,11 +4,14 @@ import styles from './addIdentityr.scss'
 import { Form, Input, Button, Radio, Select } from 'antd';
 const { Option } = Select;
 function AddIdentityr(props) {
-  const {addIdentityr} = props
+  const { addIdentityr } = props
   useEffect(() => {
 
   }, [])
   const { getFieldDecorator } = props.form;
+  let handleReset = () => {
+    props.form.resetFields();
+  };
   return (
     <div className={styles.add_identityr}>
       <Radio.Group defaultValue="a" size="large" className={styles.tab}>
@@ -20,7 +23,7 @@ function AddIdentityr(props) {
           props.form.validateFields((err, values) => {
             if (!err) {
               addIdentityr({
-                identity_text:values.identity_text
+                identity_text: values.identity_text
               })
             }
           });
@@ -41,7 +44,7 @@ function AddIdentityr(props) {
           <Button type="primary" htmlType="submit" className={styles.button}>
             确定
           </Button>
-          <Button>重置</Button>
+          <Button onClick={handleReset}>重置</Button>
         </Form.Item>
       </Form>
     </div>)

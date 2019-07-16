@@ -4,12 +4,15 @@ import styles from './view_jurisdiction.scss'
 import { Form, Input, Button, Radio, Select } from 'antd';
 const { Option } = Select;
 function view_jurisdiction(props) {
-    const { getAllId, Id1, getView,allView,viewJurisdiction } = props
+    const { getAllId, Id1, getView, allView, viewJurisdiction } = props
     useEffect(() => {
         getAllId()
         getView()
     }, [])
     const { getFieldDecorator } = props.form;
+    let handleReset = () => {
+        props.form.resetFields();
+    };
     return (
         <div className={styles.view_jurisdiction}>
             <Radio.Group defaultValue="a" size="large" className={styles.tab}>
@@ -21,8 +24,8 @@ function view_jurisdiction(props) {
                     props.form.validateFields((err, values) => {
                         if (!err) {
                             viewJurisdiction({
-                              identity_id:values.identity_id,
-                              view_authority_id:values.view_authority_id
+                                identity_id: values.identity_id,
+                                view_authority_id: values.view_authority_id
                             })
                         }
                     });
@@ -57,8 +60,8 @@ function view_jurisdiction(props) {
                 <Form.Item className={styles.footer_button}>
                     <Button type="primary" htmlType="submit" style={{ width: 110 }} className={styles.button}>
                         确定
-              </Button>
-                    <Button>重置</Button>
+                    </Button>
+                    <Button onClick={handleReset}>重置</Button>
                 </Form.Item>
             </Form>
         </div>)

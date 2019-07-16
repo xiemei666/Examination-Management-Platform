@@ -8,6 +8,9 @@ function Add_api_jurisdiction(props) {
 
     }, [])
     const { getFieldDecorator } = props.form;
+    let handleReset = () => {
+        props.form.resetFields();
+    };
     return (
         <div className={styles.add_api_jurisdiction}>
             <Radio.Group defaultValue="a" size="large" className={styles.tab}>
@@ -64,8 +67,8 @@ function Add_api_jurisdiction(props) {
                 <Form.Item className={styles.footer_button}>
                     <Button type="primary" htmlType="submit" className={styles.button}>
                         确定
-              </Button>
-                    <Button>重置</Button>
+                    </Button>
+                    <Button onClick={handleReset}>重置</Button>
                 </Form.Item>
             </Form>
         </div>)

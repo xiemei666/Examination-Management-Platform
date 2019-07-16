@@ -5,12 +5,15 @@ import { Form, Input, Button, Radio, Select } from 'antd';
 const { Option } = Select;
 function User(props) {
     const [Identityr, updataIdentityr] = useState(false)
-    const { addUser, updataUser,getId,getAllId,Id,Id1} = props
+    const { addUser, updataUser, getId, getAllId, Id, Id1 } = props
     useEffect(() => {
         getId()
         getAllId()
     }, [])
     const { getFieldDecorator } = props.form;
+    let handleReset = () => {
+        props.form.resetFields();
+    };
     return (
         <div className={styles.add_user}>
             <Radio.Group defaultValue="a" size="large" className={styles.tab}>
@@ -26,16 +29,16 @@ function User(props) {
                         if (!err) {
                             if (Identityr) {
                                 updataUser({
-                                    user_id:values.user_id ,
-                                    user_name:values.user_name,
-                                    user_pwd:values.user_pwd,
-                                    identity_id:values.identity_id
+                                    user_id: values.user_id,
+                                    user_name: values.user_name,
+                                    user_pwd: values.user_pwd,
+                                    identity_id: values.identity_id
                                 })
                             } else {
                                 addUser({
                                     user_name: values.user_name,
                                     user_pwd: values.user_pwd,
-                                    identity_id:values.identity_id
+                                    identity_id: values.identity_id
                                 })
                             }
 
@@ -51,7 +54,7 @@ function User(props) {
                             style={{ width: 200 }}
                         >
                             {
-                                Id.map(item =>(
+                                Id.map(item => (
                                     <Option key={item.user_id} value={item.user_id}>{item.user_name}</Option>
                                 ))
                             }
@@ -87,7 +90,7 @@ function User(props) {
                         style={{ width: 200 }}
                     >
                         {
-                            Id1.map(item =>(
+                            Id1.map(item => (
                                 <Option key={item.identity_id} value={item.identity_id}>{item.identity_text}</Option>
                             ))
                         }
@@ -97,7 +100,7 @@ function User(props) {
                     <Button type="primary" htmlType="submit" className={styles.button}>
                         确定
                     </Button>
-                    <Button>重置</Button>
+                    <Button onClick={handleReset}>重置</Button>
                 </Form.Item>
             </Form>
         </div>)

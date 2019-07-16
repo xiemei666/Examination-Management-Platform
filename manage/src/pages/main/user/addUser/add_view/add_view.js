@@ -5,11 +5,14 @@ import { Form, Button, Radio, Select } from 'antd';
 const { Option } = Select;
 
 function add_view(props) {
-  const { getView, allView,addView } = props
+  const { getView, allView, addView } = props
   useEffect(() => {
     getView()
   }, [])
   const { getFieldDecorator } = props.form;
+  let handleReset = () => {
+    props.form.resetFields();
+  };
   return (
     <div className={styles.add_view}>
       <Radio.Group defaultValue="a" size="large" className={styles.tab}>
@@ -20,10 +23,10 @@ function add_view(props) {
           e.preventDefault();
           props.form.validateFields((err, values) => {
             if (!err) {
-              let val=allView.filter(item=>item.view_authority_id===values.view_authority_id)[0]
+              let val = allView.filter(item => item.view_authority_id === values.view_authority_id)[0]
               addView({
-                view_authority_text:val.view_authority_text,
-                view_id:val.view_id
+                view_authority_text: val.view_authority_text,
+                view_id: val.view_id
               })
             }
           });
@@ -46,7 +49,7 @@ function add_view(props) {
           <Button type="primary" htmlType="submit" className={styles.button}>
             确定
           </Button>
-          <Button>重置</Button>
+          <Button onClick={handleReset}>重置</Button>
         </Form.Item>
       </Form>
     </div>)

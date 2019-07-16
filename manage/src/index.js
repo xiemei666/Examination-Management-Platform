@@ -32,6 +32,7 @@ app.model(require('./models/addUser').default);
 app.model(require('./models/classManagement').default);
 app.model(require('./models/classroomManagement').default);
 app.model(require('./models/marking').default);
+app.model(require('./models/studentManagement.js').default);
 
 // 4. Router
 app.router(require('./router').default);

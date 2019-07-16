@@ -4,12 +4,15 @@ import styles from './identityr_jurisdiction.scss'
 import { Form, Input, Button, Radio, Select } from 'antd';
 const { Option } = Select;
 function identityr_jurisdiction(props) {
-    const {getAllId,Id1,getApiAuthority,Api_Authority,identityrJurisdiction} = props
+    const { getAllId, Id1, getApiAuthority, Api_Authority, identityrJurisdiction } = props
     useEffect(() => {
         getAllId()
         getApiAuthority()
     }, [])
     const { getFieldDecorator } = props.form;
+    let handleReset = () => {
+        props.form.resetFields();
+    };
     return (
         <div className={styles.identityr_jurisdiction}>
             <Radio.Group defaultValue="a" size="large" className={styles.tab}>
@@ -22,8 +25,8 @@ function identityr_jurisdiction(props) {
                         console.log(values)
                         if (!err) {
                             identityrJurisdiction({
-                                identity_id:values.identity_id,
-                                api_authority_id:values.api_authority_id
+                                identity_id: values.identity_id,
+                                api_authority_id: values.api_authority_id
                             })
                         }
                     });
@@ -36,7 +39,7 @@ function identityr_jurisdiction(props) {
                         style={{ width: 200 }}
                     >
                         {
-                            Id1.map(item =>(
+                            Id1.map(item => (
                                 <Option key={item.identity_id} value={item.identity_id}>{item.identity_text}</Option>
                             ))
                         }
@@ -49,7 +52,7 @@ function identityr_jurisdiction(props) {
                         style={{ width: 200 }}
                     >
                         {
-                            Api_Authority.map(item =>(
+                            Api_Authority.map(item => (
                                 <Option key={item.api_authority_id} value={item.api_authority_id}>{item.api_authority_text}</Option>
                             ))
                         }
@@ -59,7 +62,7 @@ function identityr_jurisdiction(props) {
                     <Button type="primary" htmlType="submit" className={styles.button}>
                         确定
                     </Button>
-                    <Button>重置</Button>
+                    <Button onClick={handleReset}>重置</Button>
                 </Form.Item>
             </Form>
         </div>)
