@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { connect } from 'dva';
 import {Layout} from "antd"
 const {Content}  = Layout
