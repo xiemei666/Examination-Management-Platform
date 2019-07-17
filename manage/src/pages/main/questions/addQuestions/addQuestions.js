@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import styles from './addQuestions.scss'
 import { Select, Button, Form, Input, notification } from 'antd';
 import Editor from 'for-editor'
+import {injectIntl} from 'react-intl';
 const { Option } = Select;
 function AddQuestions(props) {
   const { addQuestions, getClass, classify, allQuestions, allSubject, getText, allText, num ,updatanull,err} = props
@@ -72,14 +73,14 @@ function AddQuestions(props) {
   const { getFieldDecorator } = props.form;
   return (
     <div className={styles.wrapper}>
-      <h2>添加试题</h2>
+      <h2>{props.intl.formatMessage({ id: 'router.questions.add' })}</h2>
       <div className={styles.content}>
         <Form onSubmit={handleSubmit}>
           <div className={styles.con}>
-            <h3>题目信息</h3>
+            <h3>{props.intl.formatMessage({ id: 'router.questions.add.topic.information' })}</h3>
 
             <div className={styles.stem}>
-              <label>题干</label>
+              <label>{props.intl.formatMessage({ id: 'router.questions.add.stem' })}</label>
               <Form.Item>
                 {getFieldDecorator('stem', {
                   //validateTrigger	校验子节点值的时机
@@ -90,18 +91,18 @@ function AddQuestions(props) {
                     { min: 1, max: 20, message: '输入字数大于20!' }
                   ],
 
-                })(<Input placeholder='请输入题目标题，不要超过20个字' />)}
+                })(<Input placeholder={props.intl.formatMessage({ id: 'router.questions.add.a' })}/>)}
               </Form.Item>
             </div>
 
             <div className={styles.topic_theme}>
-              <label>题目主题</label>
-              <Editor placeholder="请输入内容..." value={value} onChange={(value) => handleChange(value)} />
+              <label>{props.intl.formatMessage({ id: 'router.questions.add.topic.theme' })}</label>
+              <Editor placeholder={props.intl.formatMessage({ id: 'router.questions.add.Please.enter.the.content' })} value={value} onChange={(value) => handleChange(value)} />
             </div>
 
             <div className={styles.class}>
               <div className={styles.examination_type}>
-                <label>请选择考试类型</label>
+                <label>{props.intl.formatMessage({ id: 'router.questions.add.please.choose.the.exam.type' })}</label>
                 <Form.Item>
                   {getFieldDecorator('exam_id', {
                     initialValue: "8sc5d7-7p5f9e-cb2zii-ahe5i"
@@ -119,7 +120,7 @@ function AddQuestions(props) {
 
               </div>
               <div className={styles.course_types}>
-                <label>请选择课程类型</label>
+                <label>{props.intl.formatMessage({ id: 'router.questions.add.please.choose.the.course.type' })}</label>
                 <Form.Item>
                   {getFieldDecorator('subject_id', {
                     initialValue: "fqtktr-1lq5u"
@@ -136,7 +137,7 @@ function AddQuestions(props) {
 
               </div>
               <div className={styles.topic_type}>
-                <label>请选择题目类型</label>
+                <label>{props.intl.formatMessage({ id: 'router.questions.add.please.choose.the.topic.type' })}</label>
                 <Form.Item>
                   {getFieldDecorator('questions_type_id', {
                     initialValue: "774318-730z8m"
@@ -155,12 +156,12 @@ function AddQuestions(props) {
             </div>
 
             <div className={styles.answer_information}>
-              <h3>答案信息</h3>
-              <Editor placeholder="请输入内容..." answerValue={answerValue} onChange={(answerValue) => handleChangeAnswer(answerValue)} />
+              <h3>{props.intl.formatMessage({ id: 'router.questions.add.answer.information' })}</h3>
+              <Editor placeholder={props.intl.formatMessage({ id: 'router.questions.add.Please.enter.the.content' })} answerValue={answerValue} onChange={(answerValue) => handleChangeAnswer(answerValue)} />
             </div>
             <div className={styles.footer}>
               <Button onClick={() => updataMask(true)}>
-                提交
+              {props.intl.formatMessage({ id: 'router.questions.add.submission' })}
               </Button>
             </div>
 
@@ -244,4 +245,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(AddQuestions));
+export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Form.create()(AddQuestions)));
