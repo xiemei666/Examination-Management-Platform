@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'dva';
-import { Layout, Table,Pagination  } from "antd"
+import { Layout, Table  } from "antd"
 const { Content } = Layout
 function ClassesApproved(props) {
   useEffect(() => {
@@ -37,7 +37,7 @@ function ClassesApproved(props) {
     {
       title: '操作',
       key: 'key',
-      render: text => <a href="javascript:;" onClick={()=>{}}>批卷</a>
+      render: text => <a href="javascript:;" onClick={()=>{props.history.push(`/main/marking/classmate/${text.grade_id}`)}}>批卷</a>
     }
   ];
 

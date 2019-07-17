@@ -1,10 +1,12 @@
-import {get_Awaiting_approval_class} from "@/services"
+import {get_Awaiting_approval_class,get_exam_student} from "@/services"
 export default {
     //命名空间
     namespace: 'mark',
     //模块状态
     state: {
-      Grade:[]
+      Grade:[],
+      //学生试卷列表
+      examStudent:[]
     },
     //订阅
     subscriptions: {
@@ -18,6 +20,11 @@ export default {
         console.log(data)
         yield put({ type: 'save',payload:{Grade:data.data} });
       },
+      *getExamStudent({ payload }, { call, put }){
+        let data = yield call(get_exam_student,payload)
+        console.log(data)
+        yield put({type:"save",payload:{examStudent:data.exam}})
+      }
     },
     //同步操作
     reducers: {
