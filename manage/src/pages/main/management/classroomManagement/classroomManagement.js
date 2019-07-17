@@ -1,15 +1,29 @@
 import React,{ useEffect, useState }  from 'react';
 import { connect } from 'dva';
 import styles from './classroomManagement.scss'
-import { Layout, Button, Form, Table, Input,} from 'antd';
+import { Layout, Button, Form, Table, Input,Modal} from 'antd';
 const { Content } = Layout;
+const { confirm } = Modal;
+
 function ClassroomManagement(props) {
   const { classroomManagement, allClass,addroomManagement,deleteroomManagement } = props
   const [mask, updataMask] = useState(false)
   useEffect(() => {
     classroomManagement()
   }, [])
-
+  function showConfirm(text) {
+    confirm({
+      title: '确定要删除此教室吗?',
+      okText: '确定',
+      cancelText: '取消',
+      onOk() {
+        deleteroomManagement({room_id:text.room_id})
+      },
+      onCancel() {
+  
+      },
+    });
+  }
   let handleSubmit = e => {
     e.preventDefault();
     props.form.validateFieldsAndScroll((err, values) => {
@@ -33,7 +47,7 @@ function ClassroomManagement(props) {
       key: '操作',
       render: (text, record) => (
         <span>
-            <span onClick={() => deleteroomManagement({room_id:text.room_id})}>删除</span>
+            <span onClick={() =>showConfirm(text)}>删除</span>
         </span>
       ),
     },
