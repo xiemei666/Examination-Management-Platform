@@ -56,7 +56,7 @@ const MenuList = props => {
         title={
           <span>
             <Icon type="mail" />
-            <span>{props.intl.formatMessage({ id: 'router.managemen' })}</span>
+            <span>{props.intl.formatMessage({ id: 'router.management' })}</span>
           </span>
         }
       >
