@@ -25,29 +25,89 @@
         justify-content: center;
         align-items: center;
         padding: 0 10px;
-        .header_user_img{
-            font-size: 14px;
-            font-variant: tabular-nums;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: inline-block;
+        .headerUser{
+            width: 135px;
+            height: 64px;
             text-align: center;
-            color: #fff;
-            white-space: nowrap;
-            position: relative;
-            overflow: hidden;
-            vertical-align: middle;
-            width: 32px;
-            height: 32px;
-            line-height: 32px;
-            border-radius: 50%;
-            margin-right: 10px;
-            img{
+            .header_user_img{
+                font-size: 14px;
+                font-variant: tabular-nums;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                display: inline-block;
+                text-align: center;
+                color: #fff;
+                white-space: nowrap;
+                position: relative;
+                overflow: hidden;
+                vertical-align: middle;
+                width: 32px;
+                height: 32px;
+                line-height: 32px;
+                border-radius: 50%;
+                margin-right: 10px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                }
+            }
+        }
+        .headerUser:hover{
+            background:#eee;
+        }
+    }
+    .mask{
+        width: 100%;
+        height: 100%;
+        background:rgba(0, 0, 0, .3);
+        position: absolute;
+        top:0;
+        left:0;
+        z-index: 99999;
+        .mask_content{
+            width: 310px;
+            height: 200px;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            background:#fff;
+            .content_top{
                 width: 100%;
-                height: 100%;
-                display: block;
+                height: 60px;
+                margin-top: 30px;
+                .header_user_img{
+                    width: 50px;
+                    height: 50px;
+                    display:block;
+                    line-height: 32px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    margin-left: 130px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            .content_con{
+                width: 100%;
+                height: 50px;
+                line-height: 50px;
+                margin-left: 50px;
+            }
+            .footer_button{
+                width: 100%;
+                height: 80px;
+                display:block;
+                text-align: center;
+                Button{
+                    height: 40px;
+                    margin-right: 10px;
+                }
             }
         }
     }

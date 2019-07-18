@@ -1,4 +1,4 @@
-import { login } from '@/services';
+import { login,getUserInfo } from '@/services';
 import { setToken, getToken } from '@/utils/index';
 import { routerRedux } from 'dva/router';
 export default {
@@ -6,7 +6,8 @@ export default {
   namespace: 'login',
   //模块状态
   state: {
-    isLogin: -1
+    isLogin: -1,
+    userInfo: {}
   },
   // 订阅
   subscriptions: {
@@ -32,6 +33,10 @@ export default {
             }))
           }
         }
+        // 获取用户信息
+        dispatch({
+          type: 'getUserInfo'
+        })
       });
     },
   },
@@ -41,7 +46,6 @@ export default {
     *login({ payload, type }, { call, put }) {  // eslint-disable-line
       // console.log('payload...',payload,type)
       let data = yield call(login, payload)
-      console.log('data...', data)
 
       if (data.code == 1) {
         // 1.设置cookie
@@ -54,12 +58,27 @@ export default {
         payload: data.code
       });
     },
+    * getUserInfo(action, {call, put, select}){ 
+      let userInfo = yield select(state=>state.login.userInfo);
+      if (Object.keys(userInfo).length){
+        return;
+      }
+      console.log('userInfo...', userInfo);
+      let data = yield getUserInfo();
+      console.log('data...', data);
+      yield put({
+        type: 'updateUserInfo',
+        payload: data.data
+      })
+    }
   },
   //同步操作
   reducers: {
     updataLogin(state, action) {
       return { ...state, isLogin: action.payload };
     },
+    updateUserInfo(state, action){
+      return { ...state, userInfo: action.payload };
+    }
   },
-
 };

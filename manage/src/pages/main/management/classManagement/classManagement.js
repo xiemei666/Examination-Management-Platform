@@ -27,7 +27,9 @@ function ClassManagement(props) {
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         if (num) {
-          console.log('111', values)
+          // console.log(values)
+          // let val = allClass.find(item => item.grade_name === values.class_name)
+          // console.log(val)
           // updataClassManagement({
           //   grade_name: values.grade_name,
           //   room_id: values.room_id,
@@ -35,9 +37,9 @@ function ClassManagement(props) {
           // })
         } else {
           addClassManagement({
-            grade_name: values.class_name,
-            subject_id: values.Course_name,
-            room_id: values.classroom_number
+            grade_name: values.grade_name,
+            subject_id: values.subject_id,
+            room_id: values.room_id
           })
           updataMask(false)
         }
@@ -48,35 +50,30 @@ function ClassManagement(props) {
     {
       title: '班级名',
       dataIndex: 'grade_name',
-      key: 'grade_id',
     },
     {
       title: '课程名',
       dataIndex: 'subject_text',
-      key: 'age',
     }, {
       title: '教室号',
       dataIndex: 'room_text',
-      key: 'room_id',
     },
     {
       title: '操作',
-      key: '操作',
-      render: (text, record) => (
+      render: (val) => (
         <span>
           <span onClick={() => {
             updataNum(true)
             updataMask(true)
-            console.log("text", text),
-            console.log("record", record)
-            props.form.setFieldsValue({
-              class_name: text.grade_name,
-              classroom_number: text.room_id,
-              Course_name: text.subject_id
-            })
+            console.log(val)
+            // props.form.setFieldsValue({ 
+            //   grade_name: val.grade_name, 
+            //   room_id: val.room_id, 
+            //   subject_id: val.subject_id 
+            // })
           }}>修改</span>
           <Divider type="vertical" />
-          <span onClick={() => { deleteClassManagement({ grade_id: text.grade_id }) }}>删除</span>
+          <span onClick={() => { deleteClassManagement({ grade_id: val.grade_id }) }}>删除</span>
         </span>
       ),
     },
@@ -108,7 +105,7 @@ function ClassManagement(props) {
                 </div>
                 <div className={styles.content_content}>
                   <Form.Item label="班级名">
-                    {getFieldDecorator('class_name', {
+                    {getFieldDecorator('grade_name', {
                       rules: [
                         {
                           required: true,
@@ -118,7 +115,7 @@ function ClassManagement(props) {
                     })(<Input placeholder='班级名' />)}
                   </Form.Item>
                   <Form.Item label="教室号">
-                    {getFieldDecorator('classroom_number', {
+                    {getFieldDecorator('room_id', {
                       rules: [
                         {
                           required: true,
@@ -134,7 +131,7 @@ function ClassManagement(props) {
                     </Select>)}
                   </Form.Item>
                   <Form.Item label="课程名">
-                    {getFieldDecorator('Course_name', {
+                    {getFieldDecorator('subject_id', {
                       rules: [
                         {
                           required: true,

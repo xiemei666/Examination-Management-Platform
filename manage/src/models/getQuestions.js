@@ -23,7 +23,6 @@ export default {
     //异步操作
     effects: {
         *questions({ payload }, { call, put }) {  // eslint-disable-line所有的试题
-            console.log('payload...')
             let data = yield call(getQuestions)
             // console.log('question...', data.data)
             yield put({ type: 'save', payload: { qustions: data.data } });
