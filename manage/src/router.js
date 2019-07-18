@@ -8,15 +8,19 @@ import { connect } from 'dva';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import zh from 'react-intl/locale-data/zh';
+import ja from 'react-intl/locale-data/ja';
 import zhCN from '@/lang/zh-CN.js';
 import enUS from '@/lang/en-US.js'
+import jaJP from '@/lang/ja-JP.js'
+
 
 // 配置国际化字典
 const localMap = {
   en: enUS,
-  zh: zhCN
+  zh: zhCN,
+  ja: jaJP
 }
-addLocaleData([...en, ...zh]);
+addLocaleData([...en, ...zh,...ja]);
 
 const mapStateToProps = state => {
   return {
