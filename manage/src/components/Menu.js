@@ -6,7 +6,6 @@ import { injectIntl } from 'react-intl';
 const { SubMenu } = Menu;
 
 const MenuList = props => {
-  console.log('menu props...', props);
   return (
     <Menu
       defaultSelectedKeys={['1']}

@@ -90,6 +90,7 @@ const Header = (props) => {
                 >
                   <Option value='中文' onClick={() => props.changeLocale(props.intl.locale = 'zh')}>{props.intl.locale = '中文'}</Option>
                   <Option value='英语' onClick={() => props.changeLocale(props.intl.locale = 'en')}>{props.intl.locale = 'English'}</Option>
+                  <Option value='日语' onClick={() => props.changeLocale(props.intl.locale = 'ja')}>{props.intl.locale = '日本語'}</Option>
                 </Select>)}
               </Form.Item>
             </div>

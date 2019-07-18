@@ -1,29 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
 import styles from './studentManagement.scss'
-import { Layout, Button, Form, Table, Input, Pagination, Select } from 'antd';
+import { Layout, Button, Form, Table, Input, Select } from 'antd';
 const { Content } = Layout;
 const { Option } = Select;
 function StudentManagement(props) {
-  const {getRoomName, allRoom,getGrade,allGrade,getStudent,allStudent,deleteStudent } = props
+  const { 
+    getRoomName, 
+    allRoom, 
+    getGrade, 
+    allGrade, 
+    getStudent, 
+    allStudent: reduxStudent, //给所有的学生信息赋值一个变量
+    deleteStudent } = props
+  //变量改变所有学生信息改变
+  let [allStudent, updateStudent] = useState([])
+  useEffect(() => {
+    updateStudent(reduxStudent)
+  }, [reduxStudent])
+
   useEffect(() => {
     getRoomName()
     getGrade()
     getStudent()
   }, [])
   let handleSubmit = e => {
+    //给resut赋值所有的学生信息
+    let resut = reduxStudent;
     props.form.validateFieldsAndScroll((err, values) => {
-      
       if (!err) {
-        // console.log(values,allStudent)
-        // let name =allStudent && allStudent.filter(item => item.student_name==values.student_name)
-        // let room =allStudent && allStudent.filter(item => item.room_id==values.room_number)
-        // let Class =allStudent && allStudent.filter(item => item.grade_id==values.grade_name)
-
-        // console.log(room,Class)
+        //遍历values，为空就删除
+        Object.keys(values).forEach(k => {
+          if (!values[k]) {
+            delete values[k]
+          }
+        })
+        //获取键值对
+        let vals = Object.entries(values)
+        console.log(vals,resut)
+        // [[k,v]]
+        let arr = resut.filter(item => vals.every(v => item[v[0]] === v[1]))
+        console.log(arr)
+        updateStudent(arr)
       }
-      
-
     });
   };
   let handleReset = () => {
@@ -38,7 +57,7 @@ function StudentManagement(props) {
     {
       title: '学号',
       dataIndex: 'student_id',
- 
+
     }, {
       title: '班级',
       dataIndex: 'grade_name',
@@ -58,7 +77,7 @@ function StudentManagement(props) {
       title: '操作',
       key: '操作',
       render: (text, record) => (
-        <span onClick={() => {deleteStudent({student_id:text.student_id})}}>删除</span>
+        <span onClick={() => { deleteStudent({ student_id: text.student_id }) }}>删除</span>
       ),
     },
   ];
@@ -79,7 +98,7 @@ function StudentManagement(props) {
           })(<Input placeholder='输入学生姓名' />)}
         </Form.Item>
         <Form.Item className={styles.li}>
-          {getFieldDecorator('room_number', {
+          {getFieldDecorator('room_id', {
           })(<Select placeholder='请选择教室号' style={{ width: '180px', height: '32px' }}>
             {
               allRoom.map(item => (
@@ -89,7 +108,7 @@ function StudentManagement(props) {
           </Select>)}
         </Form.Item>
         <Form.Item className={styles.li}>
-          {getFieldDecorator('grade_name', {
+          {getFieldDecorator('grade_id', {
           })(<Select placeholder='班级名' style={{ width: '180px', height: '32px' }}>
             {
               allGrade.map(item => (
@@ -110,18 +129,18 @@ function StudentManagement(props) {
           borderRadius: 10
         }}
       >
-        <Table 
-        rowKey="student_id" 
-        columns={columns} 
-        dataSource={allStudent}
-        pagination={{
-          showSizeChanger:true, //是否可以改变 pageSize
-          onShowSizeChange:onShowSizeChange, //pageSize 变化的回调
-          showQuickJumper:true, //是否可以快速跳转至某页
-          defaultCurrent:1, //默认的当前页数
-          total:allStudent.length,//总条数
-          onChange:onChange //页码改变的回调，参数是改变后的页码及每页条数
-        }}
+        <Table
+          rowKey="student_id"
+          columns={columns}
+          dataSource={allStudent}
+          pagination={{
+            showSizeChanger: true, //是否可以改变 pageSize
+            onShowSizeChange: onShowSizeChange, //pageSize 变化的回调
+            showQuickJumper: true, //是否可以快速跳转至某页
+            defaultCurrent: 1, //默认的当前页数
+            total: allStudent.length,//总条数
+            onChange: onChange //页码改变的回调，参数是改变后的页码及每页条数
+          }}
         />
       </Content>
     </Layout>

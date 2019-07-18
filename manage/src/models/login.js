@@ -49,7 +49,6 @@ export default {
       // console.log('payload...',payload,type)
       // let data = yield login(payload)
       let data = yield call(login, payload)
-      console.log('data...', data)
 
       if (data.code == 1) {
         // 1.设置cookie
