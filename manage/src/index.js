@@ -35,6 +35,7 @@ app.model(require('./models/marking').default);
 app.model(require('./models/studentManagement').default);
 app.model(require('./models/global').default);
 
+
 // 4. Router
 app.router(require('./router').default);
 

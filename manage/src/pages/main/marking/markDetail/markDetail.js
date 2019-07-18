@@ -4,7 +4,11 @@ import { Layout, Empty, Slider ,Button,Modal} from "antd"
 import styles from "./markDetail.scss"
 const { Content } = Layout
 const { confirm } = Modal;
-function markDetail() {
+function markDetail(props) {
+    console.log(props)
+    useEffect(()=>{
+        props.getStudentExam(props.match.params.id)
+    },[])
     let [num, setNum] = useState(0)
     let onChange = value => {
         setNum(value)
@@ -63,4 +67,21 @@ function markDetail() {
 
     )
 }
-export default connect()(markDetail)
+const mapStateToProps = state => {
+    return {
+        ...state.management,
+        ...state.mark,
+        global: state.loading.global
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        getStudentExam:(payload)=>{
+            dispatch({
+                type:"mark/getStudentExam",
+                payload
+            })
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(markDetail)

@@ -60,7 +60,7 @@ const MenuList = props => {
           </span>
         }
       >
-        <Menu.Item key="8"><Link to='/main/classManagement'>{props.intl.formatMessage({ id: 'router.managemen' })}</Link></Menu.Item>
+        <Menu.Item key="8"><Link to='/main/classManagement'>{props.intl.formatMessage({ id: 'router.management' })}</Link></Menu.Item>
         <Menu.Item key="9"><Link to='/main/classroomManagement'>{props.intl.formatMessage({ id: 'router.management.room' })}</Link></Menu.Item>
         <Menu.Item key="10"><Link to='/main/studentManagement'>{props.intl.formatMessage({ id: 'router.management.student' })}</Link></Menu.Item>
       </SubMenu>

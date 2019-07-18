@@ -19,23 +19,23 @@ function classMate(props) {
         });
     }
     const { getFieldDecorator } = props.form;
-    const { allClass,examStudent } = props
+    const { allClass, examStudent } = props
     const columns = [
         {
             title: '班级',
             key: 'name',
-            render:()=><>{allClass && allClass.filter(item=>item.grade_id==props.match.params.id)[0].grade_name}</>
+            render: () => <>{allClass && allClass.filter(item => item.grade_id == props.match.params.id)[0].grade_name}</>
         },
         {
             title: '姓名',
             dataIndex: 'student_name',
             key: 'age',
-            
+
         },
         {
             title: '阅卷状态',
             key: 'address',
-            render:text=><>{text.status ? '已阅' : '未阅'}</>
+            render: text => <>{text.status ? '已阅' : '未阅'}</>
         },
         {
             title: '开始时间',
@@ -51,12 +51,12 @@ function classMate(props) {
         {
             title: '成才率',
             key: 'qwe',
-            render:()=><>-</>
+            render: () => <>-</>
         },
         {
             title: '操作',
             key: 'key',
-            render: text => <a href="javascript:;" onClick={() => {props.history.push("/main/marking/detail")}}>批卷</a>
+            render: text => <a href="javascript:;" onClick={() => { props.history.push(`/main/marking/detail/${text.exam_student_id}`) }}>批卷</a>
         }
     ];
     return (
@@ -79,7 +79,8 @@ function classMate(props) {
                                 <Select
                                     style={{ width: '120px' }}
                                 >
-                                    {/* {examType && examType.map((item, index) => <Option key={index} value={item.exam_id}>{item.exam_name}</Option>)} */}
+                                    <Option value='已阅'>已阅</Option>
+                                    <Option value='未阅'>未阅</Option>
                                 </Select>,
                             )}
                         </Form.Item>

@@ -1,12 +1,14 @@
-import { login } from '@/services';
-import { setToken, getToken } from '@/utils/index';
+import { login ,getUserInfo,change_user_msg,change_pic} from '@/services';
+import { setToken, getToken,removeToken } from '@/utils/index';
 import { routerRedux } from 'dva/router';
 export default {
   //命名空间
   namespace: 'login',
   //模块状态
   state: {
-    isLogin: -1
+    isLogin: -1,
+    userInfo: {},
+    picUrl:''
   },
   // 订阅
   subscriptions: {
@@ -27,11 +29,16 @@ export default {
           // 1.2.1去登陆页面，如果已登陆跳回首页
           if (getToken()) {
             // 利用redux做路由跳转
+            
             dispatch(routerRedux.replace({
               pathname: `/main`,
             }))
+            
           }
         }
+        dispatch({
+          type:'getUserInfo'
+        })
       });
     },
   },
@@ -40,6 +47,7 @@ export default {
   effects: {
     *login({ payload, type }, { call, put }) {  // eslint-disable-line
       // console.log('payload...',payload,type)
+      // let data = yield login(payload)
       let data = yield call(login, payload)
       console.log('data...', data)
 
@@ -54,12 +62,46 @@ export default {
         payload: data.code
       });
     },
+    * getUserInfo(action, {call, put, select}){
+      let userInfo = yield select(state=>state.login.userInfo);
+      if (Object.keys(userInfo).length){
+        return;
+      }
+      console.log('userInfo...', userInfo);
+      let data = yield getUserInfo();
+      console.log('data...', data);
+      yield put({
+        type: 'updateUserInfo',
+        payload: data.data
+      })
+    },
+    *changePic({ payload, type }, { call, put }){
+      let data = yield call(change_pic,payload)
+      yield put({
+        type:"picurl",
+        payload:{picUrl:data.data[0].path}
+      })
+      console.log(data)
+    },
+    *changeUserMsg({ payload, type }, { call, put }){
+      let data = yield call(change_user_msg,payload)
+      console.log(data)
+    },
+    *logout({ payload, type }, { call, put }){
+      yield removeToken()
+      window.location.reload()
+    }
   },
   //同步操作
   reducers: {
     updataLogin(state, action) {
       return { ...state, isLogin: action.payload };
     },
-  },
-
+    updateUserInfo(state, action){
+      return { ...state, userInfo: action.payload };
+    },
+    picurl(state,action){
+      return { ...state, ...action.payload };
+    }
+  }
 };

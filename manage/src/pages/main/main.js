@@ -49,7 +49,7 @@ const Main = (props) => {
                         <Route path="/main/test/createTest" component={createTest}/>
                         <Route path="/main/test/detailTest/:id" component={testDetail}/>
                         <Route path="/main/marking/classmate/:id" component={classMate}/>
-                        <Route path="/main/marking/detail" component={markDetail}/>
+                        <Route path="/main/marking/detail/:id" component={markDetail}/>
                     </Switch>
                 </div>
             </div>
