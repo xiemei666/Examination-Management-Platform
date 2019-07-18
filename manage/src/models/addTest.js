@@ -34,6 +34,14 @@ export default {
     },
     *updatedTest({ payload }, { call, put }) {
       let data = yield call(updated_test, payload)
+      if(data.code===1){
+        yield put({
+          type: "getExam",
+          payload: {
+            exam: data.exam
+          }
+        })
+      }
       console.log(data, "123123")
     },
     *getExam({ payload }, { call, put }) {
