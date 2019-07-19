@@ -4,23 +4,16 @@ import { connect } from 'dva';
 import { Select, Form, Menu, Dropdown, Modal, Button } from 'antd';
 import { injectIntl } from 'react-intl';
 const { Option } = Select;
-
 const Header = (props) => {
-
-
-  console.log(props)
   let { userInfo, picUrl } = props
   const { getFieldDecorator } = props.form;
   let [loading, setLoading] = useState(false)
   let [visible, setVisible] = useState(false)
   let [userPic,setUserPic] = useState(picUrl)
-  console.log(picUrl)
   useEffect(()=>{
     setUserPic(picUrl)
-    console.log(321)
   },[picUrl])
   let showModal = (e) => {
-    console.log(e.key)
     let key = e.key * 1
     switch (key) {
       case 0:

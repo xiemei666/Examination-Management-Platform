@@ -29,11 +29,9 @@ export default {
           // 1.2.1去登陆页面，如果已登陆跳回首页
           if (getToken()) {
             // 利用redux做路由跳转
-            
             dispatch(routerRedux.replace({
               pathname: `/main`,
             }))
-            
           }
         }
         dispatch({
@@ -49,11 +47,9 @@ export default {
       // console.log('payload...',payload,type)
       // let data = yield login(payload)
       let data = yield call(login, payload)
-
       if (data.code == 1) {
         // 1.设置cookie
         setToken(data.token)
-
       }
       //调用reduce改变登录状态
       yield put({
@@ -74,6 +70,7 @@ export default {
         payload: data.data
       })
     },
+    //上传图片到服务器
     *changePic({ payload, type }, { call, put }){
       let data = yield call(change_pic,payload)
       yield put({
@@ -82,6 +79,7 @@ export default {
       })
       console.log(data)
     },
+    //图片更新成功
     *changeUserMsg({ payload, type }, { call, put }){
       let data = yield call(change_user_msg,payload)
       console.log(data)
