@@ -17,6 +17,9 @@ export default {
         // 1.判断去的页面是否是登陆页面
         if (pathname.indexOf('/login') === -1) {
           // 1.1 判断是否有登陆态
+          dispatch({
+            type:'getUserInfo'
+          })
           if (!getToken()) {
             // 1.1.1没有登陆态，利用redux做路由跳转
             dispatch(routerRedux.replace({
@@ -36,9 +39,7 @@ export default {
             
           }
         }
-        dispatch({
-          type:'getUserInfo'
-        })
+        
       });
     },
   },

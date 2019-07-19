@@ -60,6 +60,7 @@ export default {
             })
         },
         *getTests({ payload }, { call, put }) {
+            console.log(payload)
             let data = yield call(get_Test, payload);
             console.log(data)
             yield put({ type: 'save', payload: { question: data.data } });

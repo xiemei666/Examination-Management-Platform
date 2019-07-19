@@ -15,15 +15,7 @@ export function get_Subject() {
 export function get_Question() {
   return request.get("/exam/getQuestionsType")
 }
-export function get_Test(payload) {
+export function get_Test(params) {
   //按条件获取试题
-  console.log(payload)
-  let str = ''
-  Object.values(payload).forEach((item, index) => {
-    if (item) {
-      str += Object.keys(payload)[index] + "=" + item + "&"
-    }
-  })
-  str = str.slice(0, str.length - 1)
-  return request.get(`/exam/questions/condition?${str}`);
+  return request.get("/exam/questions/condition",{params});
 }

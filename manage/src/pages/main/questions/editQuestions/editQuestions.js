@@ -72,7 +72,7 @@ function AddQuestions(props) {
     console.log(user_name)
     return (
         <div className={styles.wrapper}>
-            <h2>添加试题</h2>
+            <h2>b编辑试题</h2>
             <div className={styles.content}>
                 <Form onSubmit={handleSubmit}>
                     <div className={styles.con}>

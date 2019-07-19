@@ -6,8 +6,6 @@ import { injectIntl } from 'react-intl';
 const { Option } = Select;
 
 const Header = (props) => {
-
-
   console.log(props)
   let { userInfo, picUrl } = props
   const { getFieldDecorator } = props.form;
@@ -17,8 +15,8 @@ const Header = (props) => {
   console.log(picUrl)
   useEffect(()=>{
     setUserPic(picUrl)
-    console.log(321)
   },[picUrl])
+  //判断点击的下拉菜单是哪个
   let showModal = (e) => {
     console.log(e.key)
     let key = e.key * 1
@@ -45,15 +43,13 @@ const Header = (props) => {
   let handleCancel = () => {
     setVisible(false)
   };
+  //头像图片formdata上传
   let replaceUserPic = (e) => {
     let form = new FormData()
     form.append(e.target.files[0].name, e.target.files[0])
     props.changePic(form)
-    // if(picUrl){
-    //   props.changeUserMsg({user_id:userInfo.user_id,avatar:picUrl})
-    // }
-    // console.log(e.target.files)
   }
+  //下拉菜单的选项
   const menu = (
     <Menu style={{ width: '100%', borderRadius: '2px' }} onClick={showModal}>
       <Menu.Item key="0">
@@ -95,6 +91,7 @@ const Header = (props) => {
               </Form.Item>
             </div>
           </Form>
+          {/* 头像滑过下拉菜单 */}
           <div className={styles.header_hove}>
             <Dropdown overlay={menu} placement='bottomCenter'>
               <a className="ant-dropdown-link" href="#">

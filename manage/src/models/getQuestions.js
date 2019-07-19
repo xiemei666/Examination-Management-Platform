@@ -43,9 +43,12 @@ export default {
             yield put({ type: 'save', payload: { subjects: data.data } });
         },
         *searchTest({ payload }, { call, put }) {//查询试题
-            // console.log(payload)
-            let data = yield call(searchTests, payload)
-            console.log("data", data)
+            let params = {}
+            payload = Object.entries(payload).filter(item=>item[1].length>0)
+            payload.forEach(item=>{
+                params[item[0]]=item[1]
+            })
+            let data = yield call(searchTests, params)
             yield put({ type: 'save', payload: { qustions: data.data } });
         }
     },

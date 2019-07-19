@@ -16,17 +16,8 @@ export function getSubject() {
   //获取所有的课程
   return request.get('/exam/subject');
 }
-export function searchTests(payload) {
+export function searchTests(params) {
   //按条件获取试题
-  // console.log("ppp",payload.questions_id)
-  // console.log(Object.keys(payload), Object.values(payload))
-  let str = ''
-  Object.values(payload).forEach((item, index) => {
-    if (item) {
-      str += Object.keys(payload)[index] + "=" + item + "&"
-    }
-  })
-  str = str.slice(0, str.length - 1)
-  // console.log(str)
-  return request.get(`/exam/questions/condition?${str}`);
+  console.log(params)
+  return request.get("/exam/questions/condition",{params});
 }
