@@ -26,8 +26,9 @@ const Header = (props) => {
     }
 
   };
+  //点击确定的时候把用户信息改变
   let handleOk =  () => {
-    setLoading(true)
+    
     props.changeUserMsg({ user_id: userInfo.user_id, avatar: props.picUrl })
     setLoading(false)
     setVisible(false)

@@ -6,7 +6,7 @@ export function add_test(params){
 }
 export function del_test(params){
     //删除试卷
-    // console.log(params)
+    console.log(params)
     return request.delete(`/exam/exam/${params}`)
 }
     

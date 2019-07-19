@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
 import styles from './editQuestions.scss'
-import { Select, Button, Form, Input, notification } from 'antd';
+import { Select, Button, Form, Input } from 'antd';
 import Editor from 'for-editor'
 const { Option } = Select;
 function AddQuestions(props) {
@@ -21,19 +21,10 @@ function AddQuestions(props) {
             updataAddedMask(true)
         } else if (num != 1) {
             updataMask(false)
-            openNotification()
+          
         }
     }, [num])
-    const openNotification = () => {
-        notification.open({
-            message: 'Notification Title',
-            description:
-                'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-            onClick: () => {
-                console.log('Notification Clicked!');
-            },
-        });
-    };
+    
     //声明题干
     let [value, setValue] = useState('')
     //声明答案
@@ -162,7 +153,7 @@ function AddQuestions(props) {
                         <div className={styles.footer}>
                             <Button onClick={() => updataMask(true)}>
                                 提交
-              </Button>
+                            </Button>
                         </div>
                     </div>
 
@@ -177,10 +168,10 @@ function AddQuestions(props) {
                                 <Form.Item className={styles.footer_button}>
                                     <Button onClick={() => updataMask(false)}>
                                         取消
-                </Button>
+                                    </Button>
                                     <Button type="primary" htmlType="submit" style={{ width: 110 }}>
                                         确定
-                </Button>
+                                    </Button>
                                 </Form.Item>
                             </div>
                         </div>
@@ -193,7 +184,7 @@ function AddQuestions(props) {
                                 <h3>试题添加成功</h3>
                                 <Button type="primary" style={{ width: 110 }} onClick={() => updataAddedMask(false)}>
                                     知道了
-                </Button>
+                                </Button>
                             </div>
                         </div>
                     }
