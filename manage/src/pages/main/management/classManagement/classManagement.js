@@ -27,14 +27,14 @@ function ClassManagement(props) {
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         if (num) {
-          // console.log(values)
-          // let val = allClass.find(item => item.grade_name === values.class_name)
-          // console.log(val)
-          // updataClassManagement({
-          //   grade_name: values.grade_name,
-          //   room_id: values.room_id,
-          //   subject_id: values.subject_id
-          // })
+          let val = allClass.find(item => item.grade_name === values.grade_name)
+          updataClassManagement({
+            grade_id:val.grade_id,
+            grade_name: values.grade_name,
+            room_id: values.room_id,
+            subject_id: values.subject_id
+          })
+          updataMask(false)
         } else {
           addClassManagement({
             grade_name: values.grade_name,
@@ -65,12 +65,13 @@ function ClassManagement(props) {
           <span onClick={() => {
             updataNum(true)
             updataMask(true)
-            console.log(val)
-            // props.form.setFieldsValue({ 
-            //   grade_name: val.grade_name, 
-            //   room_id: val.room_id, 
-            //   subject_id: val.subject_id 
-            // })
+            setTimeout(() => {
+              props.form.setFieldsValue({
+                grade_name: val.grade_name,
+                room_id: val.room_id,
+                subject_id: val.subject_id
+              })
+            }, 0)
           }}>修改</span>
           <Divider type="vertical" />
           <span onClick={() => { deleteClassManagement({ grade_id: val.grade_id }) }}>删除</span>
@@ -112,7 +113,7 @@ function ClassManagement(props) {
                           message: '请输入班级名!',
                         },
                       ],
-                    })(<Input placeholder='班级名' />)}
+                    })(<Input placeholder='班级名' disabled={num ? true : false}/>)}
                   </Form.Item>
                   <Form.Item label="教室号">
                     {getFieldDecorator('room_id', {

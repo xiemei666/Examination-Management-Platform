@@ -21,6 +21,5 @@ export function delete_Class_Management(params) {
 }
 //更新班级
 export function updata_Class_Management(params) {
-  console.log("params",params)
   return request.put('/manger/grade/update', params);
 }

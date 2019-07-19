@@ -9,18 +9,21 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import zh from 'react-intl/locale-data/zh';
 import ja from 'react-intl/locale-data/ja';
+import ru from 'react-intl/locale-data/ru';
 import zhCN from '@/lang/zh-CN.js';
 import enUS from '@/lang/en-US.js'
 import jaJP from '@/lang/ja-JP.js'
+import ruRU from '@/lang/ru-RU.js'
 
 
 // 配置国际化字典
 const localMap = {
   en: enUS,
   zh: zhCN,
-  ja: jaJP
+  ja: jaJP,
+  ru: ruRU
 }
-addLocaleData([...en, ...zh,...ja]);
+addLocaleData([...en, ...zh,...ja,...ru]);
 
 const mapStateToProps = state => {
   return {
