@@ -74,11 +74,18 @@ export default {
         },
         // 更新班级
         *updataClass_Management({ payload }, { call, put }) {
-            console.log(payload)
             let data = yield call(updata_Class_Management,payload);
             yield put({
                 type: "save",
             })
+            if(data.code===1){
+                yield put({
+                    type: "classManagement",
+                    payload: {
+                        allClass: data.data
+                    }
+                })
+            }
         },
     },
     //同步操作

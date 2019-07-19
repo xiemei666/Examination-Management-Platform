@@ -4,7 +4,6 @@ import { connect } from 'dva';
 import { Select, Form, Menu, Dropdown, Modal, Button } from 'antd';
 import { injectIntl } from 'react-intl';
 const { Option } = Select;
-
 const Header = (props) => {
   console.log(props)
   let { userInfo} = props
@@ -14,7 +13,6 @@ const Header = (props) => {
   
   //判断点击的下拉菜单是哪个
   let showModal = (e) => {
-    console.log(e.key)
     let key = e.key * 1
     switch (key) {
       case 0:
@@ -80,6 +78,7 @@ const Header = (props) => {
                 >
                   <Option value='中文' onClick={() => props.changeLocale(props.intl.locale = 'zh')}>{props.intl.locale = '中文'}</Option>
                   <Option value='英语' onClick={() => props.changeLocale(props.intl.locale = 'en')}>{props.intl.locale = 'English'}</Option>
+                  <Option value='俄罗斯语' onClick={() => props.changeLocale(props.intl.locale = 'ru')}>{props.intl.locale = 'русский язык '}</Option>
                   <Option value='日语' onClick={() => props.changeLocale(props.intl.locale = 'ja')}>{props.intl.locale = '日本語'}</Option>
                 </Select>)}
               </Form.Item>

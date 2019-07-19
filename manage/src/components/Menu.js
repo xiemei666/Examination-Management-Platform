@@ -23,8 +23,8 @@ const MenuList = props => {
         }
       >
         <Menu.Item key="1"><Link to='/main/addQuestions'>{props.intl.formatMessage({ id: 'router.questions.add' })}</Link></Menu.Item>
-        <Menu.Item key="2"><Link to='/main/classQuestions'>{props.intl.formatMessage({ id: 'router.questions.view' })}</Link></Menu.Item>
-        <Menu.Item key="3"><Link to='/main/checkQuestions'>{props.intl.formatMessage({ id: 'router.questions.type' })}</Link></Menu.Item>
+        <Menu.Item key="2"><Link to='/main/classQuestions'></Link>{props.intl.formatMessage({ id: 'router.questions.type' })}</Menu.Item>
+        <Menu.Item key="3"><Link to='/main/checkQuestions'>{props.intl.formatMessage({ id: 'router.questions.view' })}</Link></Menu.Item>
       </SubMenu>
       <SubMenu
         key="sub2"
