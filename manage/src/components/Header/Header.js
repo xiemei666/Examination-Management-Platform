@@ -7,15 +7,11 @@ const { Option } = Select;
 
 const Header = (props) => {
   console.log(props)
-  let { userInfo, picUrl } = props
+  let { userInfo} = props
   const { getFieldDecorator } = props.form;
   let [loading, setLoading] = useState(false)
   let [visible, setVisible] = useState(false)
-  let [userPic,setUserPic] = useState(picUrl)
-  console.log(picUrl)
-  useEffect(()=>{
-    setUserPic(picUrl)
-  },[picUrl])
+  
   //判断点击的下拉菜单是哪个
   let showModal = (e) => {
     console.log(e.key)
@@ -32,13 +28,11 @@ const Header = (props) => {
     }
 
   };
-  let handleOk = () => {
+  let handleOk =  () => {
     setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      setVisible(false)
-      props.changeUserMsg({ user_id: userInfo.user_id, avatar: picUrl })
-    }, 1000);
+    props.changeUserMsg({ user_id: userInfo.user_id, avatar: props.picUrl })
+    setLoading(false)
+    setVisible(false)
   };
   let handleCancel = () => {
     setVisible(false)
@@ -96,7 +90,7 @@ const Header = (props) => {
             <Dropdown overlay={menu} placement='bottomCenter'>
               <a className="ant-dropdown-link" href="#">
                 <span className={styles.header_user_img}>
-                  <img src={userPic ? userPic : 'https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png'} />
+                  <img src={userInfo.avatar} />
                 </span>
                 <span>{userInfo.user_name}</span>
               </a>
@@ -120,7 +114,7 @@ const Header = (props) => {
       >
         <div className="user_pic">
           <span>头像:</span>
-          <span><img src={userPic ? userPic : 'https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png'} />
+          <span><img src={props.picUrl ? props.picUrl: props.userInfo.avatar ? props.userInfo.avatar: 'https://cdn.nlark.com/yuque/0/2019/png/anonymous/1547609339813-e4e49227-157c-452d-be7e-408ca8654ffe.png?x-oss-process=image/resize,m_fill,w_48,h_48/format,png'} />
             <input type="file" onChange={(e) => replaceUserPic(e)} /></span></div>
         <div><span>用户名:</span><span>{userInfo.user_name}</span></div>
         <div><span>身份名称:</span><span>{userInfo.identity_text}</span></div>
@@ -132,6 +126,7 @@ const Header = (props) => {
 Header.propTypes = {
 };
 const mapStateToProps = state => {
+  console.log('state.login...', state.login);
   return {
     ...state.login
   }

@@ -8,7 +8,7 @@ export default {
   state: {
     isLogin: -1,
     userInfo: {},
-    picUrl:''
+    picUrl: ''
   },
   // 订阅
   subscriptions: {
@@ -78,7 +78,7 @@ export default {
     *changePic({ payload, type }, { call, put }){
       let data = yield call(change_pic,payload)
       yield put({
-        type:"picurl",
+        type:"picUrl",
         payload:{picUrl:data.data[0].path}
       })
       console.log(data)
@@ -86,6 +86,16 @@ export default {
     *changeUserMsg({ payload, type }, { call, put }){
       let data = yield call(change_user_msg,payload)
       console.log(data)
+      if(data.code===1){
+        yield put({
+          type: 'updateUserInfo',
+          payload:{}
+        })
+        yield put({
+          type:'getUserInfo',
+          payload: data.data
+        })
+      }
     },
     *logout({ payload, type }, { call, put }){
       yield removeToken()
@@ -100,8 +110,8 @@ export default {
     updateUserInfo(state, action){
       return { ...state, userInfo: action.payload };
     },
-    picurl(state,action){
-      return { ...state, ...action.payload };
+    picUrl(state, action){
+      return {...state, ...action.payload}
     }
   }
 };
