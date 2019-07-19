@@ -176,10 +176,10 @@ function AddQuestions(props) {
                   <Form.Item className={styles.footer_button}>
                     <Button onClick={() => updataMask(false)}>
                       取消
-                </Button>
+                    </Button>
                     <Button type="primary" htmlType="submit" style={{ width: 110 }}>
                       确定
-                </Button>
+                    </Button>
                   </Form.Item>
                 </div>
               </div>

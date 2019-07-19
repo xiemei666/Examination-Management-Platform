@@ -5,7 +5,6 @@ import { Select, Form, Menu, Dropdown, Modal, Button } from 'antd';
 import { injectIntl } from 'react-intl';
 const { Option } = Select;
 const Header = (props) => {
-  console.log(props)
   let { userInfo} = props
   const { getFieldDecorator } = props.form;
   let [loading, setLoading] = useState(false)
@@ -125,7 +124,6 @@ const Header = (props) => {
 Header.propTypes = {
 };
 const mapStateToProps = state => {
-  console.log('state.login...', state.login);
   return {
     ...state.login
   }
@@ -139,7 +137,6 @@ const mapDispatchToProps = dispatch => {
       })
     },
     changePic: payload => {
-      console.log(payload)
       dispatch({
         type: "login/changePic",
         payload

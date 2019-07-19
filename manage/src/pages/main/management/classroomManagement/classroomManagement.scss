@@ -66,3 +66,14 @@
         }
     }
 }
+:global{
+    .ant-modal-content{
+        
+       
+        .ant-modal-confirm-body-wrapper{
+            height:auto;
+            display:flex;
+            flex-direction: column;
+        }
+    }
+}

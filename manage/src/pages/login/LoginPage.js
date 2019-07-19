@@ -4,17 +4,7 @@ import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import styles from './LoginPage.scss';
 
 function LoginPage(props) {
-  // console.log('props...',props)
-  //模拟componentDidMount
-  // useEffect(() => {
-  //   props.login({user_name:'chenmanjie',user_pwd:'Chenmanjie123!'});
-  // },[])
-  // let {isLogin} = props
-  // console.log(isLogin)
-  // if(isLogin){
-  //   props.history.push('/main')
-  // }
-
+  //判断是否登录成功
   useEffect(()=>{
     if (props.isLogin === 1){
       message.success('登陆成功');

@@ -21,19 +21,8 @@ function AddQuestions(props) {
             updataAddedMask(true)
         } else if (num != 1) {
             updataMask(false)
-            openNotification()
         }
     }, [num])
-    const openNotification = () => {
-        notification.open({
-            message: 'Notification Title',
-            description:
-                'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-            onClick: () => {
-                console.log('Notification Clicked!');
-            },
-        });
-    };
     //声明题干
     let [value, setValue] = useState('')
     //声明答案

@@ -38,7 +38,14 @@ let RouterView = connect(mapStateToProps)((props) => {
         <Switch>
           <Route path="/login" component={LoginPage} />
           <Route path="/main" component={Main} />
-          <Redirect to="/main" from="/" />
+          <Redirect from="/" to="/main"/>
+          {/* 添加403和404页面 */}
+          <Route path="/403" render={props=>{
+              return <p>你无权访问当前页面</p>
+            }}></Route>
+            <Route path="/404" render={props=>{
+              return <p>当前页面不存在</p>
+            }}></Route>
         </Switch>
       </Router>
     </IntlProvider >
