@@ -51,7 +51,7 @@ function classMate(props) {
         {
             title: '成才率',
             key: 'qwe',
-            render: () => <>-</>
+            render: text => <>{text.score ? text.score : "-"}</>
         },
         {
             title: '操作',

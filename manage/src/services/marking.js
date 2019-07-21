@@ -12,3 +12,7 @@ export function get_student_exam(id,params={}){
     //获取学生试卷详情
     return request.get(`/exam/student/${id}`,params)
 }
+export function correct_Test_Paper(params){
+    //批改试卷
+    return request.put(`/exam/student/${params.exam_student_id}`,{score:params.score})
+}

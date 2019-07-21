@@ -36,7 +36,7 @@ function CreateTest(props) {
         testArr.questions.splice(testArr.questions.findIndex(item=>item.questions_id==id),1)
         // console.log(tests.questions)
         setTests(testArr)
-        window.localStorage.setItem('test',JSON.stringify(tests))
+        window.localStorage.setItem('test',JSON.stringify(testArr))
       },
       onCancel() {
         console.log('Cancel');
