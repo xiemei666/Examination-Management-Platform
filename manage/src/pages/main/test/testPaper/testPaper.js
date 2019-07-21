@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'dva';
 import { Layout, Radio, Table, Form, Button, Select } from 'antd';
-import styles from "./testPaper.scss"
+import "./testPaper.scss"
 import moment from 'moment';
 const { Content } = Layout;
 const { Option } = Select;
 function TestPaper(props) {
-  console.log(props)
+  // console.log(props)
   useEffect(() => {
     props.getExam()
     props.getExamTypes()
     props.getSubjects()
   }, [])
   function onChange(e) {
-    console.log(`radio checked:${e.target.value}`);
+    // console.log(`radio checked:${e.target.value}`);
   }
-
   let { exam, examType, subjects } = props
-
-  console.log(exam)
+  // console.log(exam)
   let [Allexams, setAllexams] = useState(exam)
   useEffect(() => {
     setAllexams(exam)
@@ -29,7 +27,7 @@ function TestPaper(props) {
       dataIndex: '',
       key: '',
       render: text => {
-        console.log(text)
+        // console.log(text)
         let time = moment(text.end_time - text.start_time);
         return (
           <div>
@@ -79,7 +77,7 @@ function TestPaper(props) {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
       }
     });
   }
@@ -118,11 +116,8 @@ function TestPaper(props) {
                 </Select>,
               )}
             </Form.Item>
-
             <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
-              <Button type="primary" icon="search" htmlType="submit">
-                查询
-            </Button>
+              <Button type="primary" icon="search" htmlType="submit">查询</Button>
             </Form.Item>
           </div>
         </Form>

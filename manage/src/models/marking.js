@@ -17,18 +17,18 @@ export default {
   effects: {
     *getGrade({ payload }, { call, put }) {  // eslint-disable-line
       let data = yield call(get_Awaiting_approval_class)
-      console.log(data)
+      // console.log(data)
       yield put({ type: 'save', payload: { Grade: data.data } });
     },
     *getExamStudent({ payload }, { call, put }) {
       let data = yield call(get_exam_student, payload)
-      console.log(data)
+      // console.log(data)
       yield put({ type: "save", payload: { examStudent: data.exam } })
     },
     *getStudentExam({ payload }, { call, put }) {
-      console.log(payload)
-      let data = yield call(get_student_exam, payload)
-      console.log(data)
+      // console.log(payload)
+      yield call(get_student_exam, payload)
+      // console.log(data)
     }
   },
   //同步操作

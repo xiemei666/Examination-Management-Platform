@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'dva';
 import styles from './Add_api_jurisdiction.scss'
-import { Form, Input, Button, Radio, Select } from 'antd';
+import { Form, Input, Button, Radio } from 'antd';
 function Add_api_jurisdiction(props) {
-    const {addApi_jurisdiction} = props
+    const { addApi_jurisdiction } = props
     useEffect(() => {
 
     }, [])
@@ -23,9 +23,9 @@ function Add_api_jurisdiction(props) {
                         console.log(values)
                         if (!err) {
                             addApi_jurisdiction({
-                                api_authority_text:values.api_authority_text,
-                                api_authority_url:values.api_authority_url,
-                                api_authority_method:values.api_authority_method
+                                api_authority_text: values.api_authority_text,
+                                api_authority_url: values.api_authority_url,
+                                api_authority_method: values.api_authority_method
                             })
                         }
                     });
@@ -37,7 +37,7 @@ function Add_api_jurisdiction(props) {
                         validateTrigger: 'onBlur',
                         //rules	校验规则
                         rules: [
-                            { required: true,message: '请输入api接口权限名称' },
+                            { required: true, message: '请输入api接口权限名称' },
                             { min: 1, max: 20, message: '请输入api接口权限名称!' }
                         ],
                     })(<Input placeholder='请输入api接口权限名称' />)}
@@ -48,7 +48,7 @@ function Add_api_jurisdiction(props) {
                         validateTrigger: 'onBlur',
                         //rules	校验规则
                         rules: [
-                            { required: true,message: '请输入api接口权限url' },
+                            { required: true, message: '请输入api接口权限url' },
                             { min: 1, max: 20, message: '请输入api接口权限url!' }
                         ],
                     })(<Input placeholder='请输入api接口权限url' />)}
@@ -59,19 +59,18 @@ function Add_api_jurisdiction(props) {
                         validateTrigger: 'onBlur',
                         //rules	校验规则
                         rules: [
-                            { required: true,message: '请输入api接口权限方法' },
+                            { required: true, message: '请输入api接口权限方法' },
                             { min: 1, max: 20, message: '请输入api接口权限方法!' }
                         ],
                     })(<Input placeholder='请输入api接口权限方法' />)}
                 </Form.Item>
                 <Form.Item className={styles.footer_button}>
-                    <Button type="primary" htmlType="submit" className={styles.button}>
-                        确定
-                    </Button>
+                    <Button type="primary" htmlType="submit" className={styles.button}>确定</Button>
                     <Button onClick={handleReset}>重置</Button>
                 </Form.Item>
             </Form>
-        </div>)
+        </div>
+    )
 }
 
 Add_api_jurisdiction.propTypes = {

@@ -3,10 +3,10 @@ import { connect } from 'dva';
 import styles from './addQuestions.scss'
 import { Select, Button, Form, Input, notification } from 'antd';
 import Editor from 'for-editor'
-import {injectIntl} from 'react-intl';
+import { injectIntl } from 'react-intl';
 const { Option } = Select;
 function AddQuestions(props) {
-  const { addQuestions, getClass, classify, allQuestions, allSubject, getText, allText, num ,updatanull,err} = props
+  const { addQuestions, getClass, classify, allQuestions, allSubject, getText, allText, num, updatanull, err } = props
   const [mask, updataMask] = useState(false)
   const [addedMask, updataAddedMask] = useState(false)
   useEffect(() => {
@@ -20,23 +20,20 @@ function AddQuestions(props) {
       updataAddedMask(true)
       updatanull()
     }
-    
   }, [num])
-  useEffect(()=>{
-    if(err){
-      console.log(err)
+  useEffect(() => {
+    if (err) {
+      // console.log(err)
       openNotification()
       updataMask(false)
       updatanull()
     }
-    
-  },[err])
-  
-  function openNotification () {
+  }, [err])
+
+  function openNotification() {
     notification.open({
       message: 'Notification Title',
-      description:"err"
-      ,
+      description: "err",
       onClick: () => {
         console.log('Notification Clicked!');
       },
@@ -78,7 +75,6 @@ function AddQuestions(props) {
         <Form onSubmit={handleSubmit}>
           <div className={styles.con}>
             <h3>{props.intl.formatMessage({ id: 'router.questions.add.topic.information' })}</h3>
-
             <div className={styles.stem}>
               <label>{props.intl.formatMessage({ id: 'router.questions.add.stem' })}</label>
               <Form.Item>
@@ -91,7 +87,7 @@ function AddQuestions(props) {
                     { min: 1, max: 20, message: '输入字数大于20!' }
                   ],
 
-                })(<Input placeholder={props.intl.formatMessage({ id: 'router.questions.add.a' })}/>)}
+                })(<Input placeholder={props.intl.formatMessage({ id: 'router.questions.add.a' })} />)}
               </Form.Item>
             </div>
 
@@ -114,7 +110,6 @@ function AddQuestions(props) {
                         <Option key={item.exam_id} value={item.exam_id}>{item.exam_name}</Option>
                       ))
                     }
-
                   </Select>)}
                 </Form.Item>
 
@@ -161,7 +156,7 @@ function AddQuestions(props) {
             </div>
             <div className={styles.footer}>
               <Button onClick={() => updataMask(true)}>
-              {props.intl.formatMessage({ id: 'router.questions.add.submission' })}
+                {props.intl.formatMessage({ id: 'router.questions.add.submission' })}
               </Button>
             </div>
 
@@ -237,9 +232,9 @@ const mapDispatchToProps = dispatch => {
         type: "add/getAllQuestions"
       })
     },
-    updatanull:()=>{
+    updatanull: () => {
       dispatch({
-        type:"add/changeNull"
+        type: "add/changeNull"
       })
     }
   }

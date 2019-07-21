@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from "dva"
 import { Layout, Empty, Slider ,Button,Modal} from "antd"
-import styles from "./markDetail.scss"
+import "./markDetail.scss"
 const { Content } = Layout
 const { confirm } = Modal;
 function markDetail(props) {
-    console.log(props)
+    // console.log(props)
     useEffect(()=>{
         props.getStudentExam(props.match.params.id)
     },[])
@@ -20,10 +20,10 @@ function markDetail(props) {
           cancelText:'取消',
           okText:'确认',
           onOk() {
-            console.log('OK');
+            // console.log('OK');
           },
           onCancel() {
-            console.log('Cancel');
+            // console.log('Cancel');
           },
         });
       }
@@ -64,7 +64,6 @@ function markDetail(props) {
                 </Content>
             </div>
         </Layout>
-
     )
 }
 const mapStateToProps = state => {

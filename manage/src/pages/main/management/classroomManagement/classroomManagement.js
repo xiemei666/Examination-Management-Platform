@@ -82,8 +82,7 @@ function ClassroomManagement(props) {
                   {getFieldDecorator('room_name', {
                     rules: [
                       {
-                        required: true,
-                        message: '请输入班级名!',
+                        required: true,message: '请输入班级名!',
                       },
                     ],
                   })(<Input placeholder='教室名' />)}
@@ -91,12 +90,8 @@ function ClassroomManagement(props) {
               </div>
               <div className={styles.content_bottom}>
                 <Form.Item className={styles.footer_button}>
-                  <Button onClick={() => updataMask(false)}>
-                    取消
-                  </Button>
-                  <Button type="primary" htmlType="submit" className={styles.Button}>
-                    提交
-                  </Button>
+                  <Button onClick={() => updataMask(false)}>取消</Button>
+                  <Button type="primary" htmlType="submit" className={styles.Button}>提交</Button>
                 </Form.Item>
               </div>
             </div>

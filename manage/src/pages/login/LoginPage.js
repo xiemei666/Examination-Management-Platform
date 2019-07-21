@@ -1,30 +1,30 @@
-import React, {useState,useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'dva';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
-import styles from './LoginPage.scss';
+import './LoginPage.scss';
 
 function LoginPage(props) {
   //判断是否登录成功
-  useEffect(()=>{
-    if (props.isLogin === 1){
+  useEffect(() => {
+    if (props.isLogin === 1) {
       message.success('登陆成功');
       let path = '/main';
-      if (props.location.search){
+      if (props.location.search) {
         path = decodeURIComponent(props.location.search.split('=')[1]);
       }
-      console.log(path)
+      // console.log(path)
       props.history.push(path);
-    }else if(props.isLogin === 0){
+    } else if (props.isLogin === 0) {
       message.success('用户名或密码错误');
     }
   }, [props.isLogin])
-  
+
   // 处理表单提交
-  let handleSubmit = ()=>{
+  let handleSubmit = () => {
     //validateFields  校验并获取一组输入域的值与 Error，若 fieldNames 参数为空，则校验全部组件
     props.form.validateFields((err, values) => {
       if (!err) {
-        props.login({user_name: values.username, user_pwd: values.password});
+        props.login({ user_name: values.username, user_pwd: values.password });
         // console.log('Received values of form: ', values);
       }
     });
@@ -68,7 +68,7 @@ function LoginPage(props) {
           )}
         </Form.Item>
         <Form.Item>
-        <Checkbox>记住密码</Checkbox>
+          <Checkbox>记住密码</Checkbox>
           <a className="login-form-forgot" href="">
             忘记密码
           </a>
@@ -87,13 +87,13 @@ LoginPage.propTypes = {
 };
 
 const mapStateToProps = state => {
-  return {...state.login}
+  return { ...state.login }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    login:payload => {
+    login: payload => {
       dispatch({
-        type:'login/login',
+        type: 'login/login',
         payload
       })
     }

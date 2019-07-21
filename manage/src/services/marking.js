@@ -8,7 +8,7 @@ export function get_exam_student(params){
     return request.get("/exam/student",{params})
 }
 export function get_student_exam(id,params={}){
-    console.log(id)
+    // console.log(id)
     //获取学生试卷详情
     return request.get(`/exam/student/${id}`,params)
 }

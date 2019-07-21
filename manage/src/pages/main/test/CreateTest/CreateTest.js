@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'dva';
 import { Layout, Button, Modal, Drawer } from 'antd';
-import styles from "./CreateTest.scss"
+import "./CreateTest.scss"
 const { Content } = Layout;
 const { confirm } = Modal;
 function CreateTest(props) {
+  useEffect(()=>{
+    
+  },[])
   let { testQuestions } = props
   // console.log(props)
   function showConfirm(id) {
@@ -14,12 +17,12 @@ function CreateTest(props) {
       cancelText: "取消",
       okText: "确认",
       onOk() {
-        console.log('OK');
+        // console.log('OK');
         // console.log(id)
         props.delTest(id)
       },
       onCancel() {
-        console.log('Cancel');
+        // console.log('Cancel');
       },
     });
   }
@@ -28,7 +31,6 @@ function CreateTest(props) {
     setVisible(false)
   };
   function handsubmit(){
-
     let ids = testQuestions.questions && testQuestions.questions.map((item)=>item.questions_id)
     // console.log(ids)
     let id = testQuestions && testQuestions.exam_exam_id
@@ -76,9 +78,7 @@ function CreateTest(props) {
           <p>Some contents...</p>
         </Drawer>
       </Content>
-
     </Layout>
-
   )
 }
 const mapStateToProps = state => {

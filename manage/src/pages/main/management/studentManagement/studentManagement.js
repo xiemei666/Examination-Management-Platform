@@ -40,7 +40,7 @@ function StudentManagement(props) {
         console.log(vals,resut)
         // [[k,v]]
         let arr = resut.filter(item => vals.every(v => item[v[0]] === v[1]))
-        console.log(arr)
+        // console.log(arr)
         updateStudent(arr)
       }
     });
@@ -52,28 +52,19 @@ function StudentManagement(props) {
     {
       title: '姓名',
       dataIndex: 'student_name',
-
-    },
-    {
+    },{
       title: '学号',
       dataIndex: 'student_id',
-
     }, {
       title: '班级',
       dataIndex: 'grade_name',
-
-    },
-    {
+    },{
       title: '教室',
       dataIndex: 'room_text',
-
-    },
-    {
+    },{
       title: '密码',
       dataIndex: 'student_pwd',
-      key: '',
-    },
-    {
+    },{
       title: '操作',
       key: '操作',
       render: (text, record) => (

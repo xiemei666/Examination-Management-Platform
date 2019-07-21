@@ -11,6 +11,10 @@ import StudentManagement from '../pages/main/management/studentManagement/studen
 import ClassesApproved from '../pages/main/marking/classesApproved/classesApproved'
 import Classmate from '../pages/main/marking/classMate/classMate'
 import CreateTest from '../pages/main/test/CreateTest/CreateTest'
+import QuestionsDetail from '../pages/main/questions/questionsDetail/questionsDetail'
+import EditQuestions from '../pages/main/questions/editQuestions/editQuestions'
+import DetailTest from '../pages/main/test/testDetail/testDetail'
+import MarkingDetail from '../pages/main/marking/markDetail/markDetail'
 export default {
     routes: [{
         name: 'router.questions',
@@ -21,22 +25,28 @@ export default {
             view_id: 'main-addQuestions',
             component: AddQuestions
         }, {
-            name: 'router.questions.view',
-            path: '/main/checkQuestions',
-            view_id: 'main-questionsType',
-            component: CheckQuestions
-        }, {
             name: 'router.questions.type',
             path: '/main/classQuestions',
             view_id: 'main-watchQuestions',
             component: ClassQuestions
         }, {
-            name: 'router.questions.fobidden',
-            path: '/main/forbidden',
-            view_id: 'main-forbidden',
-            component: null
+            name: 'router.questions.view',
+            path: '/main/checkQuestions',
+            view_id: 'main-questionsType',
+            component: CheckQuestions,
+
+        }, {
+            name: '',
+            path: '/main/questions/detail/:id',
+            view_id: 'main-questionsDetail',
+            component: QuestionsDetail,
+        }, {
+            name: '',
+            path: '/main/questions/editQuestions/:id',
+            view_id: 'main-editQuestions',
+            component: EditQuestions
         }]
-    },{
+    }, {
         name: 'router.user',
         path: '',
         children: [{
@@ -50,7 +60,7 @@ export default {
             view_id: 'main-showUser',
             component: UserDisplay
         }]
-    },{
+    }, {
         name: 'router.text',
         path: '',
         children: [{
@@ -63,15 +73,18 @@ export default {
             path: '/main/testPaper',
             view_id: 'main-examList',
             component: TestPaper
-        }, 
-        // {
-        //     name: 'router.text',
-        //     path: '/main/test/createTest',
-        //     view_id: 'main-examEdit',
-        //     component: CreateTest
-        // }
-    ]
-    },{
+        }, {
+            name: '',
+            path: '/main/test/createTest',
+            view_id: 'main-examEdit',
+            component: CreateTest
+        }, {
+            name: '',
+            path: '/main/test/detailTest/:id',
+            view_id: 'main-examDetail',
+            component: DetailTest
+        }]
+    }, {
         name: 'router.management',
         path: '',
         children: [{
@@ -90,25 +103,24 @@ export default {
             view_id: 'main-student',
             component: StudentManagement
         }]
-    },
-    {
+    },{
         name: 'router.marking',
         path: '',
         children: [{
             name: 'router.marking.approved',
             path: '/main/classesApproved',
+            view_id: 'main-examPaperClassmate',
+            component: ClassesApproved
+        },{
+            name: '',
+            path: '/main/marking/classmate/:id',
             view_id: 'main-examPaperClassList',
-            component: ClassesApproved,
-            // children:[{
-            //     name: 'router.marking',
-            //     path: '/main/classesApproved/classmate/id',
-            //     view_id: 'main-examPaperClassmate',
-            //     component: Classmate
-            // }]
-        }
-        // {
-            
-        // }
-    ]
+            component: Classmate
+        },{
+            name: '',
+            path: '/main/marking/detail/:id',
+            view_id: 'main-examinationPapers',
+            component: MarkingDetail
+        }]
     }]
 }

@@ -15,7 +15,6 @@ import enUS from '@/lang/en-US.js'
 import jaJP from '@/lang/ja-JP.js'
 import ruRU from '@/lang/ru-RU.js'
 
-
 // 配置国际化字典
 const localMap = {
   en: enUS,

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'dva';
 import styles from './addIdentityr.scss'
-import { Form, Input, Button, Radio, Select } from 'antd';
-const { Option } = Select;
+import { Form, Input, Button, Radio } from 'antd';
 function AddIdentityr(props) {
   const { addIdentityr } = props
   useEffect(() => {
@@ -41,13 +40,12 @@ function AddIdentityr(props) {
           })(<Input placeholder='请输入身份名称' />)}
         </Form.Item>
         <Form.Item className={styles.footer_button}>
-          <Button type="primary" htmlType="submit" className={styles.button}>
-            确定
-          </Button>
+          <Button type="primary" htmlType="submit" className={styles.button}>确定</Button>
           <Button onClick={handleReset}>重置</Button>
         </Form.Item>
       </Form>
-    </div>)
+    </div>
+  )
 }
 
 AddIdentityr.propTypes = {

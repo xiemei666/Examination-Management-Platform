@@ -41,7 +41,6 @@ function User(props) {
                                     identity_id: values.identity_id
                                 })
                             }
-
                         }
                     });
                 }
@@ -97,13 +96,12 @@ function User(props) {
                     </Select>)}
                 </Form.Item>
                 <Form.Item className={styles.footer_button}>
-                    <Button type="primary" htmlType="submit" className={styles.button}>
-                        确定
-                    </Button>
+                    <Button type="primary" htmlType="submit" className={styles.button}>确定</Button>
                     <Button onClick={handleReset}>重置</Button>
                 </Form.Item>
             </Form>
-        </div>)
+        </div>
+    )
 }
 
 User.propTypes = {

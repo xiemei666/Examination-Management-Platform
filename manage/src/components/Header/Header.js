@@ -5,11 +5,13 @@ import { Select, Form, Menu, Dropdown, Modal, Button } from 'antd';
 import { injectIntl } from 'react-intl';
 const { Option } = Select;
 const Header = (props) => {
+  useEffect(()=>{
+    
+  },[])
   let { userInfo} = props
   const { getFieldDecorator } = props.form;
   let [loading, setLoading] = useState(false)
   let [visible, setVisible] = useState(false)
-  
   //判断点击的下拉菜单是哪个
   let showModal = (e) => {
     let key = e.key * 1

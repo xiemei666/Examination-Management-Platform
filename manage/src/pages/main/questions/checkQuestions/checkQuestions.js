@@ -83,7 +83,6 @@ function CheckQuestions(props) {
             <div style={{ width: '62.5%' }}>
               <Select style={{ width: '100%' }} onChange={(e) => getExamTypeId(e)}>
                 {examType && examType.map((item, index) => <Option key={index} value={item.exam_name}>{item.exam_name}</Option>)}
-
               </Select>
             </div>
           </div>
@@ -92,14 +91,11 @@ function CheckQuestions(props) {
             <div style={{ width: '62.5%' }}>
               <Select defaultValue="" style={{ width: '100%' }} onChange={(e) => getQuestionsTypeId(e)}>
                 {QuestionsType && QuestionsType.map((item, index) => <Option key={index} value={item.questions_type_text}>{item.questions_type_text}</Option>)}
-
               </Select>
             </div>
           </div>
           <div style={{ width: '25%' }} className={styles.ant_submit}>
-            <Button type="primary" icon="search" onClick={searchTest}>
-              查询
-            </Button>
+            <Button type="primary" icon="search" onClick={searchTest}>查询</Button>
           </div>
         </div>
       </Content>
