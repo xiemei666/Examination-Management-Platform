@@ -57,6 +57,7 @@ function ClassesApproved(props) {
         <Table 
         columns={columns} 
         dataSource={Grade && Grade}
+        rowKey="grade_id"
         pagination={{
           showQuickJumper:true,
           showSizeChanger:true,

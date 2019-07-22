@@ -147,7 +147,7 @@ function TestPaper(props) {
           </div>
         </div>
         <div>
-          <Table columns={columns} dataSource={Allexams} pagination={false} />
+          <Table columns={columns} dataSource={Allexams} pagination={false} rowKey="start_time"/>
         </div>
       </Content>
     </Layout>

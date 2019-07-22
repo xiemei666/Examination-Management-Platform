@@ -23,39 +23,39 @@ function classMate(props) {
     const columns = [
         {
             title: '班级',
-            key: 'name',
+            key:"grade_id",
             render: () => <>{allClass && allClass.filter(item => item.grade_id == props.match.params.id)[0].grade_name}</>
         },
         {
             title: '姓名',
+            key:"student_name",
             dataIndex: 'student_name',
-            key: 'age',
-
         },
         {
             title: '阅卷状态',
-            key: 'address',
+            key:"status",
             render: text => <>{text.status ? '已阅' : '未阅'}</>
         },
         {
             title: '开始时间',
-            key: 'tags',
+            key:"start_time",
             dataIndex: 'start_time',
 
         },
         {
             title: '结束时间',
+            key:"end_time",
             dataIndex: 'end_time',
-            key: 'action',
+
         },
         {
             title: '成才率',
-            key: 'qwe',
+            key:"score",
             render: text => <>{text.score ? text.score : "-"}</>
         },
         {
             title: '操作',
-            key: 'key',
+            key:"student_id",
             render: text => <a href="javascript:;" onClick={() => { props.history.push(`/main/marking/detail/${text.exam_student_id}`) }}>批卷</a>
         }
     ];
@@ -114,7 +114,8 @@ function classMate(props) {
             >
                 <Table
                     columns={columns}
-                    dataSource={examStudent && examStudent}
+                    dataSource={examStudent}
+                    rowKey="answer_json_path"
                     pagination={{
                         showQuickJumper: true,
                         showSizeChanger: true,

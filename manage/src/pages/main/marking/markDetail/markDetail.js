@@ -5,11 +5,12 @@ import styles from "./markDetail.scss"
 const { Content } = Layout
 const { confirm } = Modal;
 function markDetail(props) {
-    console.log(props)
+    // console.log(props)
     useEffect(() => {
         props.getStudentExam(props.match.params.id)
     }, [])
     let { markStudent } = props
+    console.log(Object.keys(markStudent).length)
     let [num, setNum] = useState(0)
     let onChange = value => {
         setNum(value)
@@ -60,7 +61,7 @@ function markDetail(props) {
                         width: '70%'
                     }}
                 >
-                    {markStudent ? <div className="ant_student_questions">
+                    {Object.keys(markStudent).length ? <div className="ant_student_questions">
                         {markStudent.questions && markStudent.questions.map((item, index) => <div key={item.questions_id}>
                             <h2>{index + 1}、{item.title}</h2>
                             <div className="ant_questions_stem">
