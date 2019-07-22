@@ -31,14 +31,14 @@ export default {
         // },
         //添加用户
         *addUser({ payload }, { call, put }) {
-            let data = yield call(add_User, payload)
+            yield call(add_User, payload)
             yield put({
                 type: "save"
             })
         },
         //更新用户
         *updataUser({ payload }, { call, put }) {
-            let data = yield call(updata_User, payload)
+            yield call(updata_User, payload)
             yield put({
                 type: "save",
             })

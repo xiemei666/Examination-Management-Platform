@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'dva';
 import styles from './view_jurisdiction.scss'
-import { Form, Input, Button, Radio, Select } from 'antd';
+import { Form, Button, Radio, Select } from 'antd';
 const { Option } = Select;
 function view_jurisdiction(props) {
     const { getAllId, Id1, getView, allView, viewJurisdiction } = props
@@ -58,13 +58,12 @@ function view_jurisdiction(props) {
                     </Select>)}
                 </Form.Item>
                 <Form.Item className={styles.footer_button}>
-                    <Button type="primary" htmlType="submit" style={{ width: 110 }} className={styles.button}>
-                        确定
-                    </Button>
+                    <Button type="primary" htmlType="submit" style={{ width: 110 }} className={styles.button}>确定</Button>
                     <Button onClick={handleReset}>重置</Button>
                 </Form.Item>
             </Form>
-        </div>)
+        </div>
+    )
 }
 
 view_jurisdiction.propTypes = {

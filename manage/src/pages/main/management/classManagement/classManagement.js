@@ -21,7 +21,6 @@ function ClassManagement(props) {
     classroomManagement()
     Coursename()
   }, [])
-
   let handleSubmit = e => {
     e.preventDefault();
     props.form.validateFieldsAndScroll((err, values) => {
@@ -109,8 +108,7 @@ function ClassManagement(props) {
                     {getFieldDecorator('grade_name', {
                       rules: [
                         {
-                          required: true,
-                          message: '请输入班级名!',
+                          required: true,message: '请输入班级名!',
                         },
                       ],
                     })(<Input placeholder='班级名' disabled={num ? true : false}/>)}
@@ -119,8 +117,7 @@ function ClassManagement(props) {
                     {getFieldDecorator('room_id', {
                       rules: [
                         {
-                          required: true,
-                          message: '请选择教室号!',
+                          required: true,message: '请选择教室号!',
                         },
                       ],
                     })(<Select placeholder='请选择教室号'>
@@ -135,8 +132,7 @@ function ClassManagement(props) {
                     {getFieldDecorator('subject_id', {
                       rules: [
                         {
-                          required: true,
-                          message: '请输入课程名!',
+                          required: true,message: '请输入课程名!',
                         },
                       ],
                     })(<Select placeholder='课程名'>
@@ -150,12 +146,8 @@ function ClassManagement(props) {
                 </div>
                 <div className={styles.content_bottom}>
                   <Form.Item className={styles.footer_button}>
-                    <Button onClick={() => updataMask(false)}>
-                      取消
-                    </Button>
-                    <Button type="primary" htmlType="submit" className={styles.Button}>
-                      提交
-                    </Button>
+                    <Button onClick={() => updataMask(false)}>取消</Button>
+                    <Button type="primary" htmlType="submit" className={styles.Button}>提交</Button>
                   </Form.Item>
                 </div>
               </div>

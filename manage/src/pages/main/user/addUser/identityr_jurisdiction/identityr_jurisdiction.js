@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'dva';
 import styles from './identityr_jurisdiction.scss'
-import { Form, Input, Button, Radio, Select } from 'antd';
+import { Form, Button, Radio, Select } from 'antd';
 const { Option } = Select;
 function identityr_jurisdiction(props) {
     const { getAllId, Id1, getApiAuthority, Api_Authority, identityrJurisdiction } = props
@@ -59,13 +59,12 @@ function identityr_jurisdiction(props) {
                     </Select>)}
                 </Form.Item>
                 <Form.Item className={styles.footer_button}>
-                    <Button type="primary" htmlType="submit" className={styles.button}>
-                        确定
-                    </Button>
+                    <Button type="primary" htmlType="submit" className={styles.button}>确定</Button>
                     <Button onClick={handleReset}>重置</Button>
                 </Form.Item>
             </Form>
-        </div>)
+        </div>
+    )
 }
 
 identityr_jurisdiction.propTypes = {

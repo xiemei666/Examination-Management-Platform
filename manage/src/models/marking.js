@@ -25,8 +25,13 @@ export default {
       yield put({ type: "save", payload: { examStudent: data.exam } })
     },
     *getStudentExam({ payload }, { call, put }) {
-      let data = yield call(get_student_exam, payload)
-      yield put({type:"save",payload:{markStudent:data.data}})
+      try {
+        let data = yield call(get_student_exam, payload)
+        yield put({type:"save",payload:{markStudent:data.data}})
+      } catch (error) {
+        yield put({type:"save",payload:{markStudent:{}}})
+      }
+      
     },
     *correctTestPaper({ payload }, { call, put }){
       let data = yield call(correct_Test_Paper, payload)

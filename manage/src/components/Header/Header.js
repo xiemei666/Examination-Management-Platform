@@ -5,12 +5,13 @@ import { Select, Form, Menu, Dropdown, Modal, Button } from 'antd';
 import { injectIntl } from 'react-intl';
 const { Option } = Select;
 const Header = (props) => {
-  console.log(props)
+  useEffect(()=>{
+    
+  },[])
   let { userInfo} = props
   const { getFieldDecorator } = props.form;
   let [loading, setLoading] = useState(false)
   let [visible, setVisible] = useState(false)
-  
   //判断点击的下拉菜单是哪个
   let showModal = (e) => {
     let key = e.key * 1
@@ -88,7 +89,7 @@ const Header = (props) => {
           {/* 头像滑过下拉菜单 */}
           <div className={styles.header_hove}>
             <Dropdown overlay={menu} placement='bottomCenter'>
-              <a className="ant-dropdown-link" href="#">
+              <a className="ant-dropdown-link">
                 <span className={styles.header_user_img}>
                   <img src={userInfo.avatar} />
                 </span>
@@ -126,7 +127,6 @@ const Header = (props) => {
 Header.propTypes = {
 };
 const mapStateToProps = state => {
-  console.log('state.login...', state.login);
   return {
     ...state.login
   }
@@ -140,7 +140,6 @@ const mapDispatchToProps = dispatch => {
       })
     },
     changePic: payload => {
-      console.log(payload)
       dispatch({
         type: "login/changePic",
         payload

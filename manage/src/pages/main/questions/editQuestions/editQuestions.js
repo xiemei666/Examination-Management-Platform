@@ -12,19 +12,17 @@ function AddQuestions(props) {
         getClass()
         allQuestions()
         getText()
-        console.log(props)
+        // console.log(props)
         getTests({ questions_id: props.match.params.id })
     }, [])
     useEffect(() => {
         if (num === 1) {
             updataMask(false)
             updataAddedMask(true)
-        } else if (num != 1) {
+        } else if (num !== 1) {
             updataMask(false)
-          
         }
     }, [num])
-    
     //声明题干
     let [value, setValue] = useState('')
     //声明答案
@@ -56,14 +54,12 @@ function AddQuestions(props) {
     };
     const { getFieldDecorator } = props.form;
 
-
-
     let { question } = props
-    let { user_name, questions_type_id, exam_id, subject_id, title, questions_stem, questions_answer } = question && { ...question[0] }
-    console.log(user_name)
+    let { questions_type_id, exam_id, subject_id, title, questions_stem, questions_answer } = question && { ...question[0] }
+    // console.log(user_name)
     return (
         <div className={styles.wrapper}>
-            <h2>b编辑试题</h2>
+            <h2>编辑试题</h2>
             <div className={styles.content}>
                 <Form onSubmit={handleSubmit}>
                     <div className={styles.con}>
@@ -166,25 +162,18 @@ function AddQuestions(props) {
                                     <p>真的要添加吗</p>
                                 </div>
                                 <Form.Item className={styles.footer_button}>
-                                    <Button onClick={() => updataMask(false)}>
-                                        取消
-                                    </Button>
-                                    <Button type="primary" htmlType="submit" style={{ width: 110 }}>
-                                        确定
-                                    </Button>
+                                    <Button onClick={() => updataMask(false)}>取消</Button>
+                                    <Button type="primary" htmlType="submit" style={{ width: 110 }}>确定</Button>
                                 </Form.Item>
                             </div>
                         </div>
                     }
-
                     {
                         addedMask && <div className={styles.added_mask}>
                             <div className={styles.added_mask_content}>
                                 <i>√</i>
                                 <h3>试题添加成功</h3>
-                                <Button type="primary" style={{ width: 110 }} onClick={() => updataAddedMask(false)}>
-                                    知道了
-                                </Button>
+                                <Button type="primary" style={{ width: 110 }} onClick={() => updataAddedMask(false)}>知道了</Button>
                             </div>
                         </div>
                     }

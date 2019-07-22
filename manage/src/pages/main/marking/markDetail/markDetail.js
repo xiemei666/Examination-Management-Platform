@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from "dva"
 import { Layout, Empty, Slider, Button, Modal } from "antd"
-import styles from "./markDetail.scss"
+import "./markDetail.scss"
 const { Content } = Layout
 const { confirm } = Modal;
 function markDetail(props) {
@@ -119,7 +119,6 @@ function markDetail(props) {
                 </div>
             </div>
         </Layout>
-
     )
 }
 const mapStateToProps = state => {

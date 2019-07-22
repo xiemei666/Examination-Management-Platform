@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "dva";
 import { Layout } from 'antd';
-import styles from "./testDetail.scss"
+import "./testDetail.scss"
 const { Content } = Layout;
 
 function testDetail(props) {
-    console.log(props)
-    useEffect(()=>{
+    // console.log(props)
+    useEffect(() => {
         props.getTestDetail(props.match.params.id)
-    },[])
-    let {detailTest} = props
+    }, [])
+    let { detailTest } = props
     return (
         <Layout style={{ padding: '0 24px 24px' }}>
             <h2 style={{ padding: '20px 0px', marginTop: '10px' }}>试卷详情</h2>
@@ -45,7 +45,6 @@ function testDetail(props) {
                         flexShrink: 0
                     }}
                 ></Content>
-
             </div>
         </Layout>
     )
@@ -58,12 +57,12 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        getTestDetail:(payload)=>{
+        getTestDetail: (payload) => {
             dispatch({
-                type:"addTest/getExamDetail",
+                type: "addTest/getExamDetail",
                 payload
             })
         }
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(testDetail)
+export default connect(mapStateToProps, mapDispatchToProps)(testDetail)

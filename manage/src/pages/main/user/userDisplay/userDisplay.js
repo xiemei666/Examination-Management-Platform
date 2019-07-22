@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
-import { Layout, Radio, Table, Divider, Tag } from 'antd';
+import { Layout, Radio, Table } from 'antd';
 import styles from "./userDisplay.scss"
 
 function UserDisplay(props) {
@@ -122,7 +122,7 @@ function UserDisplay(props) {
   const [userListInd, setUserListInd] = useState(0)
   let userListTrCon = userDispalyList[userListInd].structure
   function handTab(e) {
-    setUserListInd(userDispalyList.findIndex(item => item.title == e.target.value))
+    setUserListInd(userDispalyList.findIndex(item => item.title === e.target.value))
 
 
   }
@@ -163,7 +163,7 @@ function UserDisplay(props) {
 
         </Radio.Group>
         <h1 className={styles['user-title']}>{userDispalyList[userListInd].title}</h1>
-        <Table columns={userListTrCon} dataSource={UserData && UserData} />
+        <Table columns={userListTrCon} dataSource={UserData && UserData} rowKey />
       </div>
     </Layout>
 

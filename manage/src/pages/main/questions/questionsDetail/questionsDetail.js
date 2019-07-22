@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'dva';
 import { Layout, Tag} from 'antd';
 import styles from "./questionsDetail.scss"
 const { Content } = Layout;
 
-
-
 function questionsDetail(props) {
-
+   
     useEffect(() => {
         props.searchTests({ questions_id: props.match.params.id })
     }, [])
-
     let { qustions } = props
     let { user_name, questions_type_text, subject_text, exam_name, title, questions_stem, questions_answer } = qustions && { ...qustions[0] } 
-
-
     return (
         <Layout style={{ padding: '0 24px 24px' }}>
             <h2 style={{ padding: '20px 0px', marginTop: '10px' }}>试题详情</h2>

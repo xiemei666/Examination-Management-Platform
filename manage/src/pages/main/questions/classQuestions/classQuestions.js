@@ -83,12 +83,8 @@ function ClassQuestions(props) {
                 </Form.Item>
               </div>
               <Form.Item className={styles.footer_button}>
-                <Button type="primary" htmlType="submit" style={{ width: 110 }}>
-                  确定
-              </Button>
-                <Button onClick={() => updataMask(false)}>
-                  取消
-              </Button>
+                <Button type="primary" htmlType="submit" style={{ width: 110 }}>确定</Button>
+                <Button onClick={() => updataMask(false)}>取消</Button>
               </Form.Item>
             </div>
           </div>

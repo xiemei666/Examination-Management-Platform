@@ -1,6 +1,7 @@
-import { login ,getUserInfo,change_user_msg,change_pic} from '@/services';
-import { setToken, getToken,removeToken } from '@/utils/index';
+import { login, getUserInfo, change_user_msg, change_pic, getViewAuthority } from '@/services';
+import { setToken, getToken, removeToken } from '@/utils/index';
 import { routerRedux } from 'dva/router';
+import allAuthority from '@/router/config';
 export default {
   //命名空间
   namespace: 'login',
@@ -8,7 +9,9 @@ export default {
   state: {
     isLogin: -1,
     userInfo: {},
-    picUrl: ''
+    picUrl: '',
+    myView: [],
+    forbiddenView: []
   },
   // 订阅
   subscriptions: {
@@ -48,10 +51,8 @@ export default {
   //异步操作
   effects: {
     *login({ payload, type }, { call, put }) {  // eslint-disable-line
-      // console.log('payload...',payload,type)
-      // let data = yield login(payload)
       let data = yield call(login, payload)
-      if (data.code == 1) {
+      if (data.code === 1) {
         // 1.设置cookie
         setToken(data.token)
       }
@@ -61,44 +62,53 @@ export default {
         payload: data.code
       });
     },
-    * getUserInfo(action, {call, put, select}){
-      let userInfo = yield select(state=>state.login.userInfo);
-      if (Object.keys(userInfo).length){
+    //获取用户信息
+    * getUserInfo(action, { call, put, select }) {
+      //1.判断用户是否以获取用户
+      let userInfo = yield select(state => state.login.userInfo);
+      if (Object.keys(userInfo).length) {
         return;
       }
-      console.log('userInfo...', userInfo);
+      //2.获取用户信息
       let data = yield getUserInfo();
-      console.log('data...', data);
       yield put({
         type: 'updateUserInfo',
         payload: data.data
       })
+      // 3.获取用户权限
+      let authority = yield getViewAuthority();
+      //所有的用户权限信息
+      console.log('authority...', authority);
+      //0: {view_authority_id: "r50r9t-1p1kbm", view_authority_text: "登录", view_id: "login"}
+      //1: { view_authority_id: "8olznh-943zt", view_authority_text: "主界面", view_id: "main" }
+      yield put({
+        type: 'updateViewAuthority',
+        payload: authority.data
+      })
     },
     //上传图片到服务器
-    *changePic({ payload, type }, { call, put }){
-      let data = yield call(change_pic,payload)
+    *changePic({ payload, type }, { call, put }) {
+      let data = yield call(change_pic, payload)
       yield put({
-        type:"picUrl",
-        payload:{picUrl:data.data[0].path}
+        type: "picUrl",
+        payload: { picUrl: data.data[0].path }
       })
-      console.log(data)
     },
     //图片更新成功
-    *changeUserMsg({ payload, type }, { call, put }){
-      let data = yield call(change_user_msg,payload)
-      console.log(data)
-      if(data.code===1){
+    *changeUserMsg({ payload, type }, { call, put }) {
+      let data = yield call(change_user_msg, payload)
+      if (data.code === 1) {
         yield put({
           type: 'updateUserInfo',
-          payload:{}
+          payload: {}
         })
         yield put({
-          type:'getUserInfo',
+          type: 'getUserInfo',
           payload: data.data
         })
       }
     },
-    *logout({ payload, type }, { call, put }){
+    *logout({ payload, type }, { call, put }) {
       yield removeToken()
       window.location.reload()
     }
@@ -108,11 +118,30 @@ export default {
     updataLogin(state, action) {
       return { ...state, isLogin: action.payload };
     },
-    updateUserInfo(state, action){
+    updateUserInfo(state, action) {
       return { ...state, userInfo: action.payload };
     },
-    picUrl(state, action){
-      return {...state, ...action.payload}
+    picUrl(state, action) {
+      return { ...state, ...action.payload }
+    },
+    updateViewAuthority(state, action) {
+      // 筛选出我拥有的路由
+      let myView = [], forbiddenView = [];
+      allAuthority.routes.forEach(item => {
+        let obj = {
+          name: item.name,
+          children: []
+        }
+        item.children.forEach(value => {
+          if (action.payload.findIndex(item => item.view_id === value.view_id) !== -1) {
+            obj.children.push(value);
+          } else {
+            forbiddenView.push(value);
+          }
+        })
+        myView.push(obj)
+      })
+      return { ...state, myView, forbiddenView }
     }
   }
 };

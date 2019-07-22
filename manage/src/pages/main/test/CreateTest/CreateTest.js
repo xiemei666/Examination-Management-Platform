@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'dva';
-import { Layout, Button, Modal, Drawer, Tag, Form, Select } from 'antd';
-import styles from "./CreateTest.scss"
+import { Layout, Button, Modal, Drawer,Tag,Select,Form } from 'antd';
+import "./CreateTest.scss"
 const { Content } = Layout;
 const { confirm } = Modal;
 const { CheckableTag } = Tag;
@@ -30,16 +30,16 @@ function CreateTest(props) {
       cancelText: "取消",
       okText: "确认",
       onOk() {
-        console.log('OK');
+        // console.log('OK');
         // console.log(id)
         // props.delTest(id)
-        testArr.questions.splice(testArr.questions.findIndex(item=>item.questions_id==id),1)
+        testArr.questions.splice(testArr.questions.findIndex(item=>item.questions_id===id),1)
         // console.log(tests.questions)
         setTests(testArr)
         window.localStorage.setItem('test',JSON.stringify(testArr))
       },
       onCancel() {
-        console.log('Cancel');
+        // console.log('Cancel');
       },
     });
   }
@@ -59,7 +59,7 @@ function CreateTest(props) {
       setCheckedCon('')
     } else {
       setCheckedCon(tag)
-      setSubjectId(subjects && subjects.filter(item => item.subject_text == tag)[0].subject_id)
+      setSubjectId(subjects && subjects.filter(item => item.subject_text === tag)[0].subject_id)
     }
   }
   let handleSubmit = e => {
@@ -114,7 +114,7 @@ function CreateTest(props) {
           <p>考试时间：1小时30分钟  监考人：刘于       开始考试时间：2018.9.10  10:00  阅卷人：刘于</p>
           <div>
             {tests.questions && tests.questions.map((item, index) => <div key={index} className="style_questionitem">
-              <h4>{index + 1}: {item.title}<a href="javascript:;" style={{ float: "right" }} onClick={() => showConfirm(item.exam_id)}>删除</a></h4>
+              <h4>{index + 1}: {item.title}<a style={{ float: "right" }} onClick={() => showConfirm(item.exam_id)}>删除</a></h4>
               <div>
                 <pre>
                   <code>{item.questions_stem}</code>
@@ -139,7 +139,7 @@ function CreateTest(props) {
                 <div>
                   {tagsFromServer.map(item => <CheckableTag
                     key={item}
-                    checked={checkedCon == item}
+                    checked={checkedCon === item}
                     className={allChecked ? 'ant-tag-checkable-checked' : ''}
                     onChange={checked => handleChange(item, checked)}
                   >
@@ -202,9 +202,7 @@ function CreateTest(props) {
         </div>
         </Drawer>
       </Content>
-
     </Layout>
-
   )
 }
 const mapStateToProps = state => {

@@ -6,6 +6,7 @@ function ClassesApproved(props) {
   useEffect(() => {
     props.getGrade()
   }, [])
+  let [] = useState()
   let { Grade } = props
   const columns = [
     {
@@ -41,7 +42,6 @@ function ClassesApproved(props) {
     }
   ];
 
-  console.log(props)
   return (
     <Layout style={{ padding: '0 24px 24px' }}>
       <h2 style={{ padding: '20px 0px', marginTop: '10px' }}>待批班级</h2>

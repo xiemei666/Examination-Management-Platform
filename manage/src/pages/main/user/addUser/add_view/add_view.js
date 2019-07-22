@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'dva';
 import styles from './add_view.scss'
 import { Form, Button, Radio, Select } from 'antd';
@@ -46,13 +46,12 @@ function add_view(props) {
           </Select>)}
         </Form.Item>
         <Form.Item className={styles.footer_button}>
-          <Button type="primary" htmlType="submit" className={styles.button}>
-            确定
-          </Button>
+          <Button type="primary" htmlType="submit" className={styles.button}>确定</Button>
           <Button onClick={handleReset}>重置</Button>
         </Form.Item>
       </Form>
-    </div>)
+    </div>
+  )
 }
 
 add_view.propTypes = {

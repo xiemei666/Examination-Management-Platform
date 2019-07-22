@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from "dva"
-import { Layout, Radio, Table, Form, Button, Select } from "antd";
+import { Layout, Table, Form, Button, Select } from "antd";
 const { Content } = Layout;
 const { Option } = Select;
 
@@ -9,12 +9,12 @@ function classMate(props) {
         props.getGrade()
         props.getExamStudent({ grade_id: props.match.params.id })
     }, [])
-    console.log(props)
+    // console.log(props)
     let handleSubmit = (e) => {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                // console.log('Received values of form: ', values);
             }
         });
     }
@@ -24,7 +24,7 @@ function classMate(props) {
         {
             title: '班级',
             key:"grade_id",
-            render: () => <>{allClass && allClass.filter(item => item.grade_id == props.match.params.id)[0].grade_name}</>
+            render: () => <>{allClass && allClass.filter(item => item.grade_id === props.match.params.id)[0].grade_name}</>
         },
         {
             title: '姓名',
@@ -40,13 +40,11 @@ function classMate(props) {
             title: '开始时间',
             key:"start_time",
             dataIndex: 'start_time',
-
         },
         {
             title: '结束时间',
             key:"end_time",
             dataIndex: 'end_time',
-
         },
         {
             title: '成才率',
@@ -56,7 +54,7 @@ function classMate(props) {
         {
             title: '操作',
             key:"student_id",
-            render: text => <a href="javascript:;" onClick={() => { props.history.push(`/main/marking/detail/${text.exam_student_id}`) }}>批卷</a>
+            render: text => <a onClick={() => { props.history.push(`/main/marking/detail/${text.exam_student_id}`) }}>批卷</a>
         }
     ];
     return (
@@ -96,9 +94,7 @@ function classMate(props) {
                         </Form.Item>
 
                         <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
-                            <Button type="primary" icon="search" htmlType="submit">
-                                查询
-                            </Button>
+                            <Button type="primary" icon="search" htmlType="submit">查询</Button>
                         </Form.Item>
                     </div>
                 </Form>

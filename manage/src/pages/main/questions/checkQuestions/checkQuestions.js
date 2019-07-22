@@ -36,16 +36,16 @@ function CheckQuestions(props) {
       setCheckedCon('')
     } else {
       setCheckedCon(tag)
-      setSubjectId(subjects && subjects.filter(item => item.subject_text == tag)[0].subject_id)
+      setSubjectId(subjects && subjects.filter(item => item.subject_text === tag)[0].subject_id)
     }
   }
   let getExamTypeId = (e) => {
-    let id = examType && examType.filter(item => item.exam_name == e)[0].exam_id
+    let id = examType && examType.filter(item => item.exam_name === e)[0].exam_id
     setExamTypeId(id)
     // console.log(id)
   }
   let getQuestionsTypeId = (e) => {
-    let id = QuestionsType && QuestionsType.filter(item => item.questions_type_text == e)[0].questions_type_id
+    let id = QuestionsType && QuestionsType.filter(item => item.questions_type_text === e)[0].questions_type_id
     setQuestionsTypeId(id)
   }
   let searchTest = () => {
@@ -68,7 +68,7 @@ function CheckQuestions(props) {
             {tagsFromServer.map((tag, index) => (
               <CheckableTag
                 key={tag}
-                checked={checkedCon == tag}
+                checked={checkedCon === tag}
                 className={allChecked ? styles['ant-tag-checkable-checked'] : ''}
                 onChange={checked => handleChange(tag, checked)}
               >
@@ -83,7 +83,6 @@ function CheckQuestions(props) {
             <div style={{ width: '62.5%' }}>
               <Select style={{ width: '100%' }} onChange={(e) => getExamTypeId(e)}>
                 {examType && examType.map((item, index) => <Option key={index} value={item.exam_name}>{item.exam_name}</Option>)}
-
               </Select>
             </div>
           </div>
@@ -92,14 +91,11 @@ function CheckQuestions(props) {
             <div style={{ width: '62.5%' }}>
               <Select defaultValue="" style={{ width: '100%' }} onChange={(e) => getQuestionsTypeId(e)}>
                 {QuestionsType && QuestionsType.map((item, index) => <Option key={index} value={item.questions_type_text}>{item.questions_type_text}</Option>)}
-
               </Select>
             </div>
           </div>
           <div style={{ width: '25%' }} className={styles.ant_submit}>
-            <Button type="primary" icon="search" onClick={searchTest}>
-              查询
-            </Button>
+            <Button type="primary" icon="search" onClick={searchTest}>查询</Button>
           </div>
         </div>
       </Content>

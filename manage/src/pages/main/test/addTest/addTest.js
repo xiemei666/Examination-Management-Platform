@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'dva';
-import { Layout, Spin, Form,  Input, Button, Select, InputNumber, DatePicker } from 'antd';
+import { Layout, Form, Input, Button, Select, InputNumber, DatePicker } from 'antd';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
-import styles from "./addTest.scss"
+import "./addTest.scss"
 const { Content } = Layout;
 const { Option } = Select;
 // const { MonthPicker, RangePicker } = DatePicker;
 function AddTest(props) {
-  let {getExamTypes,getSubjects,examType,subjects,addTest} = props
+  let { getExamTypes, getSubjects, examType, subjects, addTest } = props
   // console.log(props)
-  useEffect(()=>{
+  useEffect(() => {
     getExamTypes()
     getSubjects()
-  },[])
+  }, [])
   let handleSubmit = e => {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
         addTest(values)
         props.history.push("/main/test/createTest")
       }
@@ -25,8 +25,6 @@ function AddTest(props) {
   };
 
   const { getFieldDecorator } = props.form;
-
-  
   return (
     <Layout style={{ padding: '0 24px 24px' }}>
       <h2 style={{ padding: '20px 0px', marginTop: '10px' }}>添加考试</h2>
@@ -54,7 +52,7 @@ function AddTest(props) {
                   <Select
                     style={{ width: '120px' }}
                   >
-                    {examType && examType.map((item,index)=><Option key={index} value={item.exam_id}>{item.exam_name}</Option>)}
+                    {examType && examType.map((item, index) => <Option key={index} value={item.exam_id}>{item.exam_name}</Option>)}
                   </Select>,
                 )}
               </Form.Item>
@@ -65,7 +63,7 @@ function AddTest(props) {
                   <Select
                     style={{ width: '120px' }}
                   >
-                    {subjects && subjects.map((item,index)=><Option key={index} value={item.subject_id}>{item.subject_text}</Option>)}
+                    {subjects && subjects.map((item, index) => <Option key={index} value={item.subject_id}>{item.subject_text}</Option>)}
                   </Select>,
                 )}
               </Form.Item>
@@ -79,31 +77,26 @@ function AddTest(props) {
                 <Form.Item label="">
                   {getFieldDecorator('start_time', {
                     rules: [{ required: true, message: '请选择考试开始时间' }],
-                   
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" style={{width:'100%'}}  placeholder="开始时间" locale={locale}/>,
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" style={{ width: '100%' }} placeholder="开始时间" locale={locale} />,
                   )}
                 </Form.Item>
-                <span style={{display:'block',width:'24px',textAlign:'center'}}>-</span>
+                <span style={{ display: 'block', width: '24px', textAlign: 'center' }}>-</span>
                 <Form.Item label="">
                   {getFieldDecorator('end_time', {
                     rules: [{ required: true, message: '请选择考试结束时间' }],
-               
                   })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" style={{minWidth: '100px',width:'100%'}} placeholder="结束时间" locale={locale}/>,
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" style={{ minWidth: '100px', width: '100%' }} placeholder="结束时间" locale={locale} />,
                   )}
                 </Form.Item>
               </Form.Item>
               <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
-                <Button type="primary" htmlType="submit">
-                  创建试卷
-                </Button>
+                <Button type="primary" htmlType="submit">创建试卷</Button>
               </Form.Item>
             </div>
           </div>
         </Form>
       </Content>
-      {props.global ? <div className={styles.loading}><Spin /></div> : null}
     </Layout>
   );
 }
@@ -112,8 +105,8 @@ AddTest.propTypes = {
 };
 const mapStateToProps = state => {
   return {
-      ...state.questions,
-      global: state.loading.global
+    ...state.questions,
+    global: state.loading.global
   }
 }
 const mapDispatchToProps = dispatch => {
@@ -128,12 +121,12 @@ const mapDispatchToProps = dispatch => {
         type: 'questions/Subject'
       })
     },
-    addTest:(payload)=>{
+    addTest: (payload) => {
       dispatch({
-        type:"addTest/addTest",
+        type: "addTest/addTest",
         payload
       })
     }
   }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Form.create()(AddTest));
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(AddTest));
