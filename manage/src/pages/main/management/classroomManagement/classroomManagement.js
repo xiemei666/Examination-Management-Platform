@@ -69,7 +69,7 @@ function ClassroomManagement(props) {
       >
         <Form onSubmit={handleSubmit} className={styles.wrapper}>
           <Button type="primary" className={styles.addButton} onClick={() => updataMask(true)}>+添加教室</Button>
-          <Table rowKey="grade_id" columns={columns} dataSource={allClass} pagination={pageSizeOptions} />
+          <Table rowKey="room_id" columns={columns} dataSource={allClass} pagination={pageSizeOptions} />
           {
             mask && <div className={styles.mask}>
             <div className={styles.mask_content}>

@@ -19,7 +19,7 @@ export default {
         //添加试题
         *classQuestions({ payload }, { call, put }) {
             let data = yield call(class_Questions, payload)
-            console.log(data)
+            // console.log(data)
             if (data.code === 1) {
                 let data = yield call(get_Questionss);
                 yield put({
@@ -31,7 +31,6 @@ export default {
             }
             yield put({
                 type: "save",
-
             })
         },
         // 获取题目类型
@@ -51,5 +50,4 @@ export default {
             return { ...state, ...action.payload };
         },
     },
-
 };

@@ -23,7 +23,7 @@ function classMate(props) {
     const columns = [
         {
             title: '班级',
-            key: 'name',
+            dataIndex: 'grade_id',
             render: () => <>{allClass && allClass.filter(item => item.grade_id === props.match.params.id)[0].grade_name}</>
         },
         {
@@ -32,12 +32,11 @@ function classMate(props) {
         },
         {
             title: '阅卷状态',
-            key: 'address',
+            dataIndex: 'title',
             render: text => <>{text.status ? '已阅' : '未阅'}</>
         },
         {
             title: '开始时间',
-            key: 'tags',
             dataIndex: 'start_time',
         },
         {
@@ -46,12 +45,12 @@ function classMate(props) {
         },
         {
             title: '成才率',
-            key: 'qwe',
-            render: () => <>-</>
+            render: () => <>-</>,
+            dataIndex: 'titles',
         },
         {
             title: '操作',
-            key: 'key',
+            dataIndex: 'titl',
             render: text => <a href="javascript:;" onClick={() => { props.history.push(`/main/marking/detail/${text.exam_student_id}`) }}>批卷</a>
         }
     ];
@@ -109,6 +108,7 @@ function classMate(props) {
                 <Table
                     columns={columns}
                     dataSource={examStudent && examStudent}
+                    rowKey="grade_id"
                     pagination={{
                         showQuickJumper: true,
                         showSizeChanger: true,
