@@ -3,7 +3,6 @@ import { Menu, Icon } from 'antd';
 import { NavLink } from 'dva/router';
 import { injectIntl } from 'react-intl';
 import { connect } from 'dva';
-
 const { SubMenu } = Menu;
 
 const MenuList = props => {
