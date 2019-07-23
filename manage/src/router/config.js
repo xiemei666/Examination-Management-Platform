@@ -34,7 +34,6 @@ export default {
             path: '/main/checkQuestions',
             view_id: 'main-questionsType',
             component: CheckQuestions,
-
         }, {
             name: '',
             path: '/main/questions/detail/:id',
@@ -45,6 +44,11 @@ export default {
             path: '/main/questions/editQuestions/:id',
             view_id: 'main-editQuestions',
             component: EditQuestions
+        }, {
+            name: 'router.questions.fobidden',
+            path: '/main/fobidden',
+            view_id: 'main-fobidden',
+            component: null
         }]
     }, {
         name: 'router.user',
