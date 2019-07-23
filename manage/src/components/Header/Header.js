@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import styles from './Header.scss'
 import { connect } from 'dva';
+import {withRouter} from "dva/router"
 import { Select, Form, Menu, Dropdown, Modal, Button } from 'antd';
 import { injectIntl } from 'react-intl';
+// import styles from "./excel.scss"
 const { Option } = Select;
 const Header = (props) => {
+  console.log(props)
   let { userInfo} = props
   const { getFieldDecorator } = props.form;
   let [loading, setLoading] = useState(false)
@@ -15,6 +18,9 @@ const Header = (props) => {
     switch (key) {
       case 0:
         setVisible(true)
+        break;
+      case 2:
+        props.history.push("/excel")
         break;
       case 3:
         props.logOut()
@@ -55,7 +61,7 @@ const Header = (props) => {
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="2">
-        设置
+        Excel导入导出
       </Menu.Item>
       <Menu.Item key="3">
         退出登录
@@ -156,4 +162,4 @@ const mapDispatchToProps = dispatch => {
 
   }
 }
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Form.create()(Header)));
+export default withRouter(injectIntl(connect(mapStateToProps, mapDispatchToProps)(Form.create()(Header))));

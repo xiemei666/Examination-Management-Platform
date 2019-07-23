@@ -4,6 +4,7 @@ import LoginPage from './pages/login/LoginPage'
 import Main from './pages/main/main'
 import { connect } from 'dva';
 import notFound from "./pages/404"
+import Excel from "./components/excel/excel"
 // 引入国际化
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
@@ -38,6 +39,7 @@ let RouterView = connect(mapStateToProps)((props) => {
           <Redirect from="/" exact to="/main"/>
           <Route path="/login" component={LoginPage} />
           <Route path="/main" component={Main} />
+          <Route path="/excel" component={Excel} />
           {/* 添加403和404页面 */}
           <Route path="/403" render={props => {
             return <p>你无权访问当前页面</p>
