@@ -68,7 +68,7 @@ function TestPaper(props) {
       key: 'action',
       render: text => (
         <span>
-          <a href="javascript:;" onClick={() => { props.history.push(`/main/test/detailTest/${text.exam_exam_id}`) }}>详情</a>
+          <a onClick={() => { props.history.push(`/main/test/detailTest/${text.exam_exam_id}`) }}>详情</a>
         </span>
       ),
     },
@@ -142,7 +142,7 @@ function TestPaper(props) {
           </div>
         </div>
         <div>
-          <Table columns={columns} dataSource={Allexams} pagination={false} />
+          <Table columns={columns} dataSource={Allexams} pagination={false} rowKey="start_time"/>
         </div>
       </Content>
     </Layout>

@@ -36,16 +36,16 @@ function CheckQuestions(props) {
       setCheckedCon('')
     } else {
       setCheckedCon(tag)
-      setSubjectId(subjects && subjects.filter(item => item.subject_text == tag)[0].subject_id)
+      setSubjectId(subjects && subjects.filter(item => item.subject_text === tag)[0].subject_id)
     }
   }
   let getExamTypeId = (e) => {
-    let id = examType && examType.filter(item => item.exam_name == e)[0].exam_id
+    let id = examType && examType.filter(item => item.exam_name === e)[0].exam_id
     setExamTypeId(id)
     // console.log(id)
   }
   let getQuestionsTypeId = (e) => {
-    let id = QuestionsType && QuestionsType.filter(item => item.questions_type_text == e)[0].questions_type_id
+    let id = QuestionsType && QuestionsType.filter(item => item.questions_type_text === e)[0].questions_type_id
     setQuestionsTypeId(id)
   }
   let searchTest = () => {
@@ -68,7 +68,7 @@ function CheckQuestions(props) {
             {tagsFromServer.map((tag, index) => (
               <CheckableTag
                 key={tag}
-                checked={checkedCon == tag}
+                checked={checkedCon === tag}
                 className={allChecked ? styles['ant-tag-checkable-checked'] : ''}
                 onChange={checked => handleChange(tag, checked)}
               >

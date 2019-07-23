@@ -27,8 +27,9 @@ const Header = (props) => {
     }
 
   };
+  //点击确定的时候把用户信息改变
   let handleOk =  () => {
-    setLoading(true)
+    
     props.changeUserMsg({ user_id: userInfo.user_id, avatar: props.picUrl })
     setLoading(false)
     setVisible(false)
@@ -88,7 +89,7 @@ const Header = (props) => {
           {/* 头像滑过下拉菜单 */}
           <div className={styles.header_hove}>
             <Dropdown overlay={menu} placement='bottomCenter'>
-              <a className="ant-dropdown-link" href="#">
+              <a className="ant-dropdown-link">
                 <span className={styles.header_user_img}>
                   <img src={userInfo.avatar} />
                 </span>

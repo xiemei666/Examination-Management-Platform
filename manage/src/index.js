@@ -14,10 +14,10 @@ const app = dva(createLoading());
 app.use({
     //查看action前后的状态
     // onAction: createLogger(),
-    //全局报错信息
-    // onError: (e) => {
-    //     message.error(e.message, /* duration */3);
-    // }
+    // 全局报错信息
+    onError: (e) => {
+        message.error(e.message, /* duration */3);
+    }
 });
 
 // 3. Model

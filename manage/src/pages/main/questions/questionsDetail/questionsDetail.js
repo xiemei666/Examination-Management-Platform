@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'dva';
 import { Layout, Tag} from 'antd';
 import styles from "./questionsDetail.scss"
 const { Content } = Layout;
 
 function questionsDetail(props) {
-    let [] = useState()
+   
     useEffect(() => {
         props.searchTests({ questions_id: props.match.params.id })
     }, [])

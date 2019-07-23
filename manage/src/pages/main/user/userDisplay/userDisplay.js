@@ -122,10 +122,12 @@ function UserDisplay(props) {
   const [userListInd, setUserListInd] = useState(0)
   let userListTrCon = userDispalyList[userListInd].structure
   function handTab(e) {
-    setUserListInd(userDispalyList.findIndex(item => item.title == e.target.value))
+    setUserListInd(userDispalyList.findIndex(item => item.title === e.target.value))
+
+
   }
   useEffect(() => {
-    // console.log(userListInd)
+    console.log(userListInd)
     switch (userListInd) {
       case 0:
         props.getUserData()
@@ -150,23 +152,28 @@ function UserDisplay(props) {
     }
   }, [userListInd])
   let { UserData } = props
+
   return (
     <Layout style={{ padding: '0 24px 24px' }}>
       <h2 style={{ padding: '20px 0px', marginTop: '10px' }}>用户展示</h2>
       <div>
         <Radio.Group defaultValue={userDispalyList[0].title} className={styles['userDisplay-list']} >
           {userDispalyList.map((item, index) => <Radio.Button value={item.title} key={index} onClick={handTab}>{item.title}</Radio.Button>)}
+
+
         </Radio.Group>
         <h1 className={styles['user-title']}>{userDispalyList[userListInd].title}</h1>
-        <Table columns={userListTrCon} dataSource={UserData && UserData} />
+        <Table columns={userListTrCon} dataSource={UserData && UserData} rowKey />
       </div>
     </Layout>
+
   );
 }
 
 UserDisplay.propTypes = {
 };
 const mapStateToProps = state => {
+
   return {
     ...state.userDisplay
   }
@@ -191,6 +198,7 @@ const mapDispatchToProps = dispatch => {
     getIdentityViewAuthorityRelation: () => {
       dispatch({ type: "userDisplay/getIdentityViewAuthorityRelation" })
     }
+
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UserDisplay);

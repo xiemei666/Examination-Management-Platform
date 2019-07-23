@@ -7,4 +7,47 @@
         color: #fff!important;
         background: linear-gradient(-90deg,#4e75ff,#0139fd)!important;
     }
+    .ant_marking_con{
+        position: fixed;
+        top: 156px;
+    }
+    .ant_student_questions{
+        >div{
+            border:1px solid #ccc;
+            margin-top: 10px;
+            padding: 20px;
+        }
+        .ant_questions_stem{
+            margin-bottom: 10px;
+        }
+        .ant_student_answer{
+            display: flex;
+            justify-content: space-between;
+            >div{
+                flex: 1;
+                >h3{
+                    line-height: 40px;
+                    position: relative;
+                }
+                >h3:after{
+                    content: "";
+                    height: 1px;
+                    background: #ddd;
+                    position: absolute;
+                    top:20px;
+                    width: 355px;
+                    left: 70px;
+                }
+                >div{
+                    >pre{
+                        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8AgMAAABHkjHhAAAACVBMV…v3iO9zG/UOphyPeinPl1J8Gtaa7xPTa/Dk+RIs4deMvwGvcGsmsCvJ0AAAAABJRU5ErkJggg==) #f6f6f6;
+                        background-size: 30px 30px;
+                    }
+                }
+            }
+            >div:first-of-type{
+                margin-right: 10px;
+            }
+        }
+    }
 }

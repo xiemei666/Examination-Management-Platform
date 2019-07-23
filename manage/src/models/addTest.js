@@ -22,11 +22,12 @@ export default {
       // console.log(payload.start_time.valueOf())
       let data = yield call(add_test, payload)
       console.log(data)
-      yield put({
-        type: 'save', payload: {
-          testQuestions: data.data
-        }
-      });
+      window.localStorage.setItem('test',JSON.stringify(data.data))
+      // yield put({
+      //   type: 'save', payload: {
+      //     testQuestions: data.data
+      //   }
+      // });
     },
     *delTest({ payload }, { call, put }) {
       let data = yield call(del_test, payload)

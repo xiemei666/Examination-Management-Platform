@@ -55,7 +55,7 @@ function AddQuestions(props) {
     const { getFieldDecorator } = props.form;
 
     let { question } = props
-    let { user_name, questions_type_id, exam_id, subject_id, title, questions_stem, questions_answer } = question && { ...question[0] }
+    let { questions_type_id, exam_id, subject_id, title, questions_stem, questions_answer } = question && { ...question[0] }
     // console.log(user_name)
     return (
         <div className={styles.wrapper}>

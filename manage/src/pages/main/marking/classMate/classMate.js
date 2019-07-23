@@ -23,35 +23,38 @@ function classMate(props) {
     const columns = [
         {
             title: '班级',
-            dataIndex: 'grade_id',
+            key:"grade_id",
             render: () => <>{allClass && allClass.filter(item => item.grade_id === props.match.params.id)[0].grade_name}</>
         },
         {
             title: '姓名',
+            key:"student_name",
             dataIndex: 'student_name',
         },
         {
             title: '阅卷状态',
-            dataIndex: 'title',
+            key:"status",
             render: text => <>{text.status ? '已阅' : '未阅'}</>
         },
         {
             title: '开始时间',
+            key:"start_time",
             dataIndex: 'start_time',
         },
         {
             title: '结束时间',
+            key:"end_time",
             dataIndex: 'end_time',
         },
         {
             title: '成才率',
-            render: () => <>-</>,
-            dataIndex: 'titles',
+            key:"score",
+            render: text => <>{text.score ? text.score : "-"}</>
         },
         {
             title: '操作',
-            dataIndex: 'titl',
-            render: text => <a href="javascript:;" onClick={() => { props.history.push(`/main/marking/detail/${text.exam_student_id}`) }}>批卷</a>
+            key:"student_id",
+            render: text => <a onClick={() => { props.history.push(`/main/marking/detail/${text.exam_student_id}`) }}>批卷</a>
         }
     ];
     return (
@@ -107,8 +110,8 @@ function classMate(props) {
             >
                 <Table
                     columns={columns}
-                    dataSource={examStudent && examStudent}
-                    rowKey="grade_id"
+                    dataSource={examStudent}
+                    rowKey="answer_json_path"
                     pagination={{
                         showQuickJumper: true,
                         showSizeChanger: true,
