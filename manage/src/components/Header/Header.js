@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './Header.scss'
 import { connect } from 'dva';
 import { Select, Form, Menu, Dropdown, Modal, Button } from 'antd';
 import { injectIntl } from 'react-intl';
 const { Option } = Select;
 const Header = (props) => {
-  useEffect(()=>{
-    
-  },[])
   let { userInfo} = props
   const { getFieldDecorator } = props.form;
   let [loading, setLoading] = useState(false)

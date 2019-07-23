@@ -3,7 +3,7 @@ import { Router, Route, Switch, Redirect } from 'dva/router';
 import LoginPage from './pages/login/LoginPage'
 import Main from './pages/main/main'
 import { connect } from 'dva';
-
+import notFound from "./pages/404"
 // 引入国际化
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
@@ -42,9 +42,8 @@ let RouterView = connect(mapStateToProps)((props) => {
           <Route path="/403" render={props => {
             return <p>你无权访问当前页面</p>
           }}></Route>
-          <Route path="/404" render={props => {
-            return <p>当前页面不存在</p>
-          }}></Route>
+          <Route path="/404" component={notFound}></Route>
+          <Redirect from="/" exact to="/main" />
         </Switch>
       </Router>
     </IntlProvider >

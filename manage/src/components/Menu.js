@@ -27,8 +27,8 @@ const MenuList = props => {
               item.children.map(value => {
                 //判断二级页面不需要显示的时候就没有name
                 return value.name ? <Menu.Item key={value.name}>
-                <NavLink to={value.path}>{props.intl.formatMessage({ id: value.name })}</NavLink>
-              </Menu.Item> : null
+                  <NavLink to={value.path}>{props.intl.formatMessage({ id: value.name })}</NavLink>
+                </Menu.Item> : null
               })
             }</SubMenu>
         })
